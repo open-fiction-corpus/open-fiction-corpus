@@ -80,7 +80,7 @@ A work is considered **added** only when:
 | Candidate | P2 | The Portrait of a Lady | Henry James | Psychological and social complexity; potentially overrepresented high-formality prose |
 | Candidate | P2 | The Custom of the Country | Edith Wharton | Social ambition and character-driven satire |
 
-## Mystery, suspense, and adventure candidates
+## Mystery, suspense, pulp, and adventure candidates
 
 | Status | Priority | Work | Author | Notes |
 |---|---:|---|---|---|
@@ -92,6 +92,10 @@ A work is considered **added** only when:
 | Candidate | P1 | The Call of the Wild | Jack London | Lean action prose and nonhuman viewpoint |
 | Candidate | P1 | Scaramouche | Rafael Sabatini | Swashbuckling revenge arc, wit, dramatic reversals |
 | Candidate | P1 | Kim | Rudyard Kipling | Espionage-adventure and sensory density; colonial framing needs an editorial note |
+| Candidate | P1 | Tarzan of the Apes | Edgar Rice Burroughs | Pulp pacing, spatially clear action, survival, chapter hooks; requires historical-content flags |
+| Candidate | P1 | Jungle Tales of Tarzan | Edgar Rice Burroughs | Multiple complete pulp-adventure arcs; requires historical-content flags |
+| Candidate | P2 | The Return of Tarzan | Edgar Rice Burroughs | Sequel continuity and extended adventure structure; avoid over-weighting Burroughs |
+| Rights review | P1 | Around the World in Eighty Days | Jules Verne | Strong clock-driven quest; select and document an exact public-domain English translation |
 | Candidate | P2 | King Solomon's Mines | H. Rider Haggard | Expedition adventure template; colonial-era framing needs review |
 | Candidate | P2 | Riders of the Purple Sage | Zane Grey | Western genre coverage currently absent from the backlog |
 | Candidate | P2 | The Mystery of the Yellow Room | Gaston Leroux | Translation must be selected and cleared |
@@ -107,6 +111,11 @@ A work is considered **added** only when:
 | Candidate | P1 | Alice's Adventures in Wonderland | Lewis Carroll | Wordplay, absurdity, episodic fantasy |
 | Candidate | P1 | The Wind in the Willows | Kenneth Grahame | Pastoral fantasy, friendship, tonal range |
 | Candidate | P1 | The House on the Borderland | William Hope Hodgson | Weird fantasy, cosmic horror, isolation |
+| Rights review | P1 | The Hour of the Dragon | Robert E. Howard | Sword-and-sorcery novel; verify original Howard text rather than a later edited collection |
+| Rights review | P1 | Red Nails | Robert E. Howard | Complete Conan novella; catalogue the original publication text separately |
+| Rights review | P1 | Queen of the Black Coast | Robert E. Howard | Strong atmosphere, action, and tragic arc; exclude later completions and pastiches |
+| Rights review | P1 | Beyond the Black River | Robert E. Howard | Frontier fantasy and escalating external threat; verify textual provenance |
+| Rights review | P2 | The People of the Black Circle | Robert E. Howard | Longer sword-and-sorcery adventure; verify original publication version |
 | Candidate | P2 | A Voyage to Arcturus | David Lindsay | Philosophical weird fantasy; author died 1945, so life+70 has expired |
 | Candidate | P2 | The King of Elfland's Daughter | Lord Dunsany | Rights and jurisdiction review required before redistribution |
 | Candidate | P2 | Lud-in-the-Mist | Hope Mirrlees | Rights and jurisdiction review required before redistribution |
@@ -120,6 +129,10 @@ A work is considered **added** only when:
 | Candidate | P1 | A Princess of Mars | Edgar Rice Burroughs | Adventure pacing and planetary romance |
 | Candidate | P1 | The Iron Heel | Jack London | Political speculation and framed narrative |
 | Candidate | P1 | Last and First Men | Olaf Stapledon | Large-scale speculative history; less useful for scene-level prose |
+| Rights review | P1 | Twenty Thousand Leagues Under the Seas | Jules Verne | Scientific adventure and sustained travel structure; exact translation may be abridged or altered |
+| Rights review | P1 | Journey to the Center of the Earth | Jules Verne | Expedition structure and escalating discovery; avoid the heavily rewritten anonymous 1871 English version |
+| Rights review | P1 | The Mysterious Island | Jules Verne | Ensemble survival, engineering, and long-form problem solving; translation quality requires review |
+| Rights review | P2 | From the Earth to the Moon | Jules Verne | Compact scientific-adventure premise; exact translation must be recorded |
 | Candidate | P2 | We | Yevgeny Zamyatin | Translation must be selected and cleared |
 | Candidate | P2 | Animal Farm | George Orwell | Fable compression and allegory; public domain in life+70 jurisdictions (EU/UK) since 2021 but **still copyrighted in the US until 2041** — EU-scoped release only |
 | Candidate | P2 | Nineteen Eighty-Four | George Orwell | Dystopian worldbuilding and controlled tone; same split status — **US copyright runs until 2044** |
@@ -147,6 +160,24 @@ A work is considered **added** only when:
 | Candidate | P2 | Winesburg, Ohio | Sherwood Anderson | Linked stories, interiority, recurring setting |
 | Candidate | P2 | Selected Kate Chopin Stories | Kate Chopin | Edition and selection must be recorded precisely |
 
+## Valuable modern prose currently blocked by jurisdiction
+
+These works are editorially valuable but should not be redistributed in the global corpus until the project can verify that the selected text is public domain in every jurisdiction targeted by the release. A work being public domain in the United States is not enough for the default globally downloadable dataset.
+
+The usual screen: European and UK copyright runs for 70 years after the author's death, so as of 2026 only authors who died in **1955 or earlier** are public domain there. Every candidate in the tables above passes that screen. The works below are frequently suggested but do not pass it yet — recorded here so contributors do not repeat the investigation. Note the asymmetry with the US, where pre-1931 *publications* are public domain regardless of the author's death date.
+
+| Status | Priority | Work | Author | Reason for deferral |
+|---|---:|---|---|---|
+| Deferred | P1 | In Our Time | Ernest Hemingway | Excellent short-form economy and implication, but Hemingway's works remain protected under the ordinary EU term through 31 December 2031 |
+| Deferred | P1 | The Sun Also Rises | Ernest Hemingway | Dialogue, restraint, subtext, and scene compression; revisit for global release on or after 1 January 2032 |
+| Deferred | P1 | A Farewell to Arms | Ernest Hemingway | Public domain in the United States, but not yet suitable for an EU-hosted global corpus |
+| Deferred | P1 | Passing; Quicksand | Nella Larsen | US public domain (published 1928–29), but the author died in 1964, so EU-protected until 2035 |
+| Deferred | P1 | A Room with a View; Howards End | E. M. Forster | Author died 1970; EU-protected until 2041 despite early works being US public domain |
+| Deferred | P1 | Early Jeeves and Blandings books | P. G. Wodehouse | Author died 1975; EU-protected until 2046; pre-1931 works are US public domain only |
+| Deferred | P1 | The Mysterious Affair at Styles and other early novels | Agatha Christie | Author died 1976; EU-protected until 2047; pre-1931 works are US public domain only |
+| Deferred | P2 | Zuleika Dobson | Max Beerbohm | Author died 1956; enters EU/UK public domain on 1 January 2027 — revisit next year |
+| Deferred | P2 | Buddenbrooks; The Magic Mountain | Thomas Mann | German originals entered EU public domain on 1 January 2026, but English translations carry their own, still-active copyrights; defer until the translation-rights workflow exists |
+
 ## Foundational classics and premodern literature
 
 These works are valuable, but they should not dominate the main prose corpus. Most are poetry, premodern language, or translations. Their primary home should be an optional `foundational-classics` or `heritage` pack.
@@ -169,19 +200,6 @@ A sensible initial ceiling would be:
 | Candidate | Heritage | The Arabian Nights / One Thousand and One Nights | Anonymous / multiple traditions | Edition, translation, omissions, and colonial-era framing vary substantially | Treat each translation as a distinct work; defer until editorial policy is ready |
 | Candidate | Heritage | The Mabinogion | Anonymous / medieval Welsh sources | Translation must be selected and cleared | Valuable for mythic and episodic fantasy heritage |
 | Candidate | Heritage | The Nibelungenlied | Anonymous | Translation and verse/prose form must be recorded | Heritage pack |
-
-## Screened out for now: not yet public domain in life+70 jurisdictions
-
-European (and UK) copyright generally runs for 70 years after the author's death, so as of 2026 only authors who died in **1955 or earlier** are public domain there. Everything added to the candidate tables above passes that screen. The authors below are frequently suggested but do **not** pass it yet — recorded here so contributors do not repeat the investigation. Note the asymmetry with the US, where pre-1931 *publications* are public domain regardless of the author's death date.
-
-| Status | Work / author | Died | Why deferred |
-|---|---|---:|---|
-| Deferred | Zuleika Dobson — Max Beerbohm | 1956 | Enters EU/UK public domain on 1 January 2027 — revisit next year |
-| Deferred | Thomas Mann (Buddenbrooks, The Magic Mountain) | 1955 | German originals entered EU public domain on 1 January 2026, but English **translations** carry their own, still-active copyrights; defer until the translation-rights workflow exists |
-| Deferred | Passing, Quicksand — Nella Larsen | 1964 | US public domain (published 1928–29) but EU-protected until 2035 |
-| Deferred | E. M. Forster (A Room with a View, Howards End) | 1970 | EU-protected until 2041 despite early works being US public domain |
-| Deferred | P. G. Wodehouse (early Jeeves and Blandings books) | 1975 | EU-protected until 2046; pre-1931 works are US public domain only |
-| Deferred | Agatha Christie (The Mysterious Affair at Styles etc.) | 1976 | EU-protected until 2047; pre-1931 works are US public domain only |
 
 ## Corpus-balance guardrails
 
