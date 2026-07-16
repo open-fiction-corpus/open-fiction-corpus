@@ -58,6 +58,8 @@ ofc build
 
 The project is in its initial scaffolding phase. No books are included yet.
 
+The planned reading list and processing status are tracked in the **[Book Backlog](docs/book-backlog.md)**.
+
 ## Contributing
 
 Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before proposing a book, classification change, cleaner, or source adapter.
