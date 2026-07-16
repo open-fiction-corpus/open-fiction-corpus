@@ -34,7 +34,11 @@ def _is_absolute_http_url(value: str) -> bool:
         _ = parsed.port
     except ValueError:
         return False
-    return parsed.scheme in {"http", "https"} and bool(parsed.netloc) and parsed.hostname is not None
+    return (
+        parsed.scheme in {"http", "https"}
+        and bool(parsed.netloc)
+        and parsed.hostname is not None
+    )
 
 
 def _string_set(value: object) -> set[str] | None:
