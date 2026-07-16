@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import gzip
 import json
+import os
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -132,24 +134,35 @@ def build_dataset(
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / (f"{pack}.jsonl.gz" if pack else "books.jsonl.gz")
 
+    file_descriptor, temporary_name = tempfile.mkstemp(
+        dir=output_dir, prefix=f".{output_path.name}.", suffix=".tmp"
+    )
+    os.close(file_descriptor)
+    temporary_path = Path(temporary_name)
+
     written = 0
-    with gzip.open(output_path, "wt", encoding="utf-8", newline="\n") as output:
-        for manifest in gated:
-            text_path = root / "workspace" / "clean" / f"{manifest['id']}.txt"
-            if not text_path.exists():
-                if allow_missing_text:
-                    continue
-                raise FileNotFoundError(
-                    f"Missing cleaned text for {manifest['id']}: {text_path}"
-                )
-            text = text_path.read_text(encoding="utf-8").strip()
-            minimum = manifest.get("processing", {}).get("expected_min_words")
-            if minimum and len(text.split()) < minimum:
-                raise ValueError(
-                    f"{manifest['id']} has fewer than expected {minimum} words"
-                )
-            output.write(json.dumps(_dataset_row(manifest, text), ensure_ascii=False))
-            output.write("\n")
-            written += 1
+    try:
+        with gzip.open(temporary_path, "wt", encoding="utf-8", newline="\n") as output:
+            for manifest in gated:
+                text_path = root / "workspace" / "clean" / f"{manifest['id']}.txt"
+                if not text_path.exists():
+                    if allow_missing_text:
+                        continue
+                    raise FileNotFoundError(
+                        f"Missing cleaned text for {manifest['id']}: {text_path}"
+                    )
+                text = text_path.read_text(encoding="utf-8").strip()
+                minimum = manifest.get("processing", {}).get("expected_min_words")
+                if minimum and len(text.split()) < minimum:
+                    raise ValueError(
+                        f"{manifest['id']} has fewer than expected {minimum} words"
+                    )
+                output.write(json.dumps(_dataset_row(manifest, text), ensure_ascii=False))
+                output.write("\n")
+                written += 1
+        temporary_path.replace(output_path)
+    except BaseException:
+        temporary_path.unlink(missing_ok=True)
+        raise
 
     print(f"Built {written} whole-book row(s): {output_path}")
