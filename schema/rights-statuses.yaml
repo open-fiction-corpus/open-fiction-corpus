@@ -1,11 +1,16 @@
 rights_statuses:
   public-domain:
     description: Reviewed as public domain in every jurisdiction listed in verified_jurisdictions.
+    releasable: true
   openly-licensed:
     description: Distributed under a recorded licence permitting redistribution and the intended dataset use.
+    releasable: true
   permission-granted:
     description: Rights holder supplied explicit permission recorded by the project.
+    releasable: true
   uncertain:
     description: Insufficient evidence; never eligible for a public release pack.
+    releasable: false
   excluded:
     description: Known not to satisfy the project release policy.
+    releasable: false

@@ -38,6 +38,11 @@ def validate_repository(root: Path) -> bool:
         for item in details.get("subgenres", [])
     }
     rights_statuses = set(rights_doc.get("rights_statuses", {}))
+    for status_name, details in rights_doc.get("rights_statuses", {}).items():
+        if not isinstance(details, dict) or not isinstance(details.get("releasable"), bool):
+            errors.append(
+                f"{rights_path}: rights status '{status_name}' must declare releasable: true|false"
+            )
     quality_flags = set(flags_doc.get("quality_flags", []))
 
     seen_ids: dict[str, Path] = {}
