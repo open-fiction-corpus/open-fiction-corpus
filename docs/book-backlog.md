@@ -65,6 +65,18 @@ A work is considered **added** only when:
 | Candidate | P1 | Daddy-Long-Legs | Jean Webster | Epistolary voice and comic intimacy |
 | Candidate | P1 | The Shuttle | Frances Hodgson Burnett | Social conflict, family dynamics, transatlantic setting |
 | Candidate | P1 | The Scarlet Pimpernel | Baroness Orczy | Romance, disguise, adventure, dramatic reversals |
+| Candidate | P1 | Wuthering Heights | Emily Brontë | Nested narration, obsessive intensity, gothic realism |
+| Candidate | P1 | Adventures of Huckleberry Finn | Mark Twain | Vernacular first-person voice; period racial language needs an editorial note, not silent alteration |
+| Candidate | P1 | Tess of the d'Urbervilles | Thomas Hardy | Tragic arc, rural realism, atmospheric description |
+| Candidate | P1 | The Awakening | Kate Chopin | Interior emancipation narrative and sensory prose; pairs with the story collection already listed |
+| Candidate | P1 | My Ántonia | Willa Cather | Retrospective narration, landscape writing, immigrant experience |
+| Candidate | P1 | Main Street | Sinclair Lewis | Small-town satire and social observation; realism counterweight to gothic-heavy lists |
+| Candidate | P1 | The Good Soldier | Ford Madox Ford | Unreliable narrator and non-chronological revelation |
+| Candidate | P1 | Three Men in a Boat | Jerome K. Jerome | Sustained comic prose; comedy is underrepresented per the guardrails below |
+| Candidate | P1 | The Sport of the Gods | Paul Laurence Dunbar | Early Black American urban fiction and social critique |
+| Candidate | P2 | Sons and Lovers | D. H. Lawrence | Family entanglement and psychological realism |
+| Candidate | P2 | The Diary of a Nobody | George and Weedon Grossmith | Comic first-person mundane voice |
+| Candidate | P2 | The Life and Death of Harriett Frean | May Sinclair | Compressed psychological portrait of a whole life |
 | Candidate | P2 | The Portrait of a Lady | Henry James | Psychological and social complexity; potentially overrepresented high-formality prose |
 | Candidate | P2 | The Custom of the Country | Edith Wharton | Social ambition and character-driven satire |
 
@@ -76,10 +88,16 @@ A work is considered **added** only when:
 | Candidate | P1 | The Lodger | Marie Belloc Lowndes | Psychological suspense and domestic dread |
 | Candidate | P1 | The Thirty-Nine Steps | John Buchan | Pursuit structure and economical action |
 | Candidate | P1 | The Riddle of the Sands | Erskine Childers | Investigation, technical detail, slow-building threat |
+| Candidate | P1 | Treasure Island | Robert Louis Stevenson | Adventure pacing, first-person voice, iconic quest structure |
+| Candidate | P1 | The Call of the Wild | Jack London | Lean action prose and nonhuman viewpoint |
+| Candidate | P1 | Scaramouche | Rafael Sabatini | Swashbuckling revenge arc, wit, dramatic reversals |
+| Candidate | P1 | Kim | Rudyard Kipling | Espionage-adventure and sensory density; colonial framing needs an editorial note |
 | Candidate | P1 | Tarzan of the Apes | Edgar Rice Burroughs | Pulp pacing, spatially clear action, survival, chapter hooks; requires historical-content flags |
 | Candidate | P1 | Jungle Tales of Tarzan | Edgar Rice Burroughs | Multiple complete pulp-adventure arcs; requires historical-content flags |
 | Candidate | P2 | The Return of Tarzan | Edgar Rice Burroughs | Sequel continuity and extended adventure structure; avoid over-weighting Burroughs |
 | Rights review | P1 | Around the World in Eighty Days | Jules Verne | Strong clock-driven quest; select and document an exact public-domain English translation |
+| Candidate | P2 | King Solomon's Mines | H. Rider Haggard | Expedition adventure template; colonial-era framing needs review |
+| Candidate | P2 | Riders of the Purple Sage | Zane Grey | Western genre coverage currently absent from the backlog |
 | Candidate | P2 | The Mystery of the Yellow Room | Gaston Leroux | Translation must be selected and cleared |
 | Candidate | P2 | Trent's Last Case | E. C. Bentley | Detective convention and reversal |
 
@@ -98,6 +116,7 @@ A work is considered **added** only when:
 | Rights review | P1 | Queen of the Black Coast | Robert E. Howard | Strong atmosphere, action, and tragic arc; exclude later completions and pastiches |
 | Rights review | P1 | Beyond the Black River | Robert E. Howard | Frontier fantasy and escalating external threat; verify textual provenance |
 | Rights review | P2 | The People of the Black Circle | Robert E. Howard | Longer sword-and-sorcery adventure; verify original publication version |
+| Candidate | P2 | A Voyage to Arcturus | David Lindsay | Philosophical weird fantasy; author died 1945, so life+70 has expired |
 | Candidate | P2 | The King of Elfland's Daughter | Lord Dunsany | Rights and jurisdiction review required before redistribution |
 | Candidate | P2 | Lud-in-the-Mist | Hope Mirrlees | Rights and jurisdiction review required before redistribution |
 
@@ -120,6 +139,8 @@ A work is considered **added** only when:
 
 | Status | Priority | Work | Author | Notes |
 |---|---:|---|---|---|
+| Candidate | P1 | Strange Case of Dr Jekyll and Mr Hyde | Robert Louis Stevenson | Dual-narrative gothic compression and testimony structure |
+| Candidate | P1 | The Picture of Dorian Gray | Oscar Wilde | Epigrammatic dialogue and gothic decadence; record which edition (1890 magazine vs 1891 book) |
 | Candidate | P1 | The Turn of the Screw | Henry James | Ambiguity, psychological tension, framed narration |
 | Candidate | P1 | The Great God Pan | Arthur Machen | Compact supernatural escalation |
 | Candidate | P1 | The King in Yellow | Robert W. Chambers | Weird fiction, linked stories, atmosphere |
@@ -141,11 +162,21 @@ A work is considered **added** only when:
 
 These works are editorially valuable but should not be redistributed in the global corpus until the project can verify that the selected text is public domain in every jurisdiction targeted by the release. A work being public domain in the United States is not enough for the default globally downloadable dataset.
 
+The usual screen: European and UK copyright runs for 70 years after the author's death, so as of 2026 only authors who died in **1955 or earlier** are public domain there. Every candidate in the tables above passes that screen. The works below are frequently suggested but do not pass it yet — recorded here so contributors do not repeat the investigation. Note the asymmetry with the US, where pre-1931 *publications* are public domain regardless of the author's death date.
+
 | Status | Priority | Work | Author | Reason for deferral |
 |---|---:|---|---|---|
 | Deferred | P1 | In Our Time | Ernest Hemingway | Excellent short-form economy and implication, but Hemingway's works remain protected under the ordinary EU term through 31 December 2031 |
 | Deferred | P1 | The Sun Also Rises | Ernest Hemingway | Dialogue, restraint, subtext, and scene compression; revisit for global release on or after 1 January 2032 |
 | Deferred | P1 | A Farewell to Arms | Ernest Hemingway | Public domain in the United States, but not yet suitable for an EU-hosted global corpus |
+| Deferred | P1 | Animal Farm | George Orwell | Fable compression and allegory; public domain in life+70 jurisdictions (EU/UK) since 2021, but enters the US public domain on 1 January 2041; the default corpus is globally downloadable, so defer unless the project adopts an explicit jurisdiction-scoped pack and hosting policy |
+| Deferred | P1 | Nineteen Eighty-Four | George Orwell | Dystopian worldbuilding and controlled tone; same split status — enters the US public domain on 1 January 2045 |
+| Deferred | P1 | Passing; Quicksand | Nella Larsen | US public domain (published 1928–29), but the author died in 1964, so EU-protected until 2035 |
+| Deferred | P1 | A Room with a View; Howards End | E. M. Forster | Author died 1970; EU-protected until 2041 despite early works being US public domain |
+| Deferred | P1 | Early Jeeves and Blandings books | P. G. Wodehouse | Author died 1975; EU-protected until 2046; pre-1931 works are US public domain only |
+| Deferred | P1 | The Mysterious Affair at Styles and other early novels | Agatha Christie | Author died 1976; EU-protected until 2047; pre-1931 works are US public domain only |
+| Deferred | P2 | Zuleika Dobson | Max Beerbohm | Author died 1956; enters EU/UK public domain on 1 January 2027 — revisit next year |
+| Deferred | P2 | Buddenbrooks; The Magic Mountain | Thomas Mann | German originals entered EU public domain on 1 January 2026, but English translations carry their own, still-active copyrights; defer until the translation-rights workflow exists |
 
 ## Foundational classics and premodern literature
 
