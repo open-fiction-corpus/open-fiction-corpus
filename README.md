@@ -38,7 +38,7 @@ This repository contains the **catalogue, schemas, cleaning rules, validation to
 python -m venv .venv
 # Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
-pip install -e ".[dev]"
+pip install -e "[dev]"
 ofc validate
 ```
 
@@ -64,7 +64,7 @@ ofc build --pack general-fiction
 
 The project is in its initial scaffolding phase. No books are included yet.
 
-The planned reading list and processing status are tracked in the **[Book Backlog](docs/book-backlog.md)**.
+The planned reading list and processing status are tracked in the **[Book Backlog](docs/book-backlog.md)**. Book suggestions are open now; see **[Suggesting a book](docs/suggesting-a-book.md)** for a nontechnical contribution guide.
 
 ## Contributing
 
