@@ -1,0 +1,33 @@
+name: Nominate a book
+description: Propose a work for research and possible inclusion
+title: "Book nomination: "
+labels: ["book nomination"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title and author
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Proposed source edition
+      description: Include a stable URL or repository identifier.
+    validations:
+      required: true
+  - type: textarea
+    id: rights
+    attributes:
+      label: Rights evidence
+      description: Identify author/translator death dates, licence, permission, edition year, and jurisdictions checked.
+    validations:
+      required: true
+  - type: input
+    id: genres
+    attributes:
+      label: Proposed genre and subgenre tags
+  - type: textarea
+    id: notes
+    attributes:
+      label: Quality or formatting notes

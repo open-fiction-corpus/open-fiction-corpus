@@ -1,0 +1,24 @@
+name: Dispute a classification
+description: Propose a change to genre or narrative metadata
+title: "Classification: "
+labels: ["classification"]
+body:
+  - type: input
+    id: work
+    attributes:
+      label: Work ID
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current and proposed classification
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Explain the textual or bibliographic basis for the change.
+    validations:
+      required: true

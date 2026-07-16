@@ -1,0 +1,12 @@
+name: romance
+description: Reviewed works classified as romance.
+version: 0.1.0
+filters:
+  language: en
+  forms: [novel, novella, short-story, short-story-collection]
+  genres_any: [romance]
+  quality_status: [human-reviewed]
+  origin: [human]
+exclude_flags: [uncertain-rights, severe-ocr-errors, incomplete, abridged]
+selection:
+  max_works_per_author: 5

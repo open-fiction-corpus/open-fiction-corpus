@@ -1,0 +1,11 @@
+quality_flags:
+  - incomplete
+  - uncertain-rights
+  - severe-ocr-errors
+  - minor-ocr-errors
+  - duplicate-edition
+  - missing-sections
+  - mixed-language
+  - unresolved-footnotes
+  - modernized-edition
+  - abridged

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "open-fiction-corpus"
+version = "0.1.0"
+description = "Tools and metadata for building a reproducible open fiction corpus"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Open Fiction Corpus contributors" }]
+dependencies = [
+  "jsonschema>=4.23,<5",
+  "PyYAML>=6.0.2,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9",
+  "ruff>=0.9,<1",
+]
+parquet = [
+  "pyarrow>=18,<20",
+]
+
+[project.scripts]
+ofc = "open_fiction_corpus.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/open_fiction_corpus"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100

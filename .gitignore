@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Generated or downloaded corpus data
+workspace/
+dist/
+
+# Local credentials
+.env
+*.token
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

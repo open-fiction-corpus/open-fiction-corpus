@@ -1,0 +1,32 @@
+name: Report a text problem
+description: Report truncation, OCR, duplication, or cleaning errors
+title: "Text problem: "
+labels: ["text quality"]
+body:
+  - type: input
+    id: work
+    attributes:
+      label: Work ID
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: Problem type
+      options:
+        - Missing or truncated text
+        - OCR corruption
+        - Duplicate passage
+        - Boilerplate remains
+        - Meaningful formatting lost
+        - Wrong edition or source
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: location
+    attributes:
+      label: Location and evidence
+      description: Quote only the shortest passage needed to identify the problem.
+    validations:
+      required: true

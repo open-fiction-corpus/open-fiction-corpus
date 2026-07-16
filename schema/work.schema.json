@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-fiction-corpus.example/schema/work.schema.json",
+  "title": "Open Fiction Corpus work manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "title", "language", "form", "authors", "publication",
+    "source", "rights", "classification", "content", "quality", "processing"
+  ],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1},
+    "language": {"type": "string", "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$"},
+    "form": {"enum": ["novel", "novella", "short-story", "short-story-collection"]},
+    "authors": {
+      "type": "array", "minItems": 1,
+      "items": {"$ref": "#/$defs/person"}
+    },
+    "contributors": {
+      "type": "array", "default": [],
+      "items": {"$ref": "#/$defs/contributor"}
+    },
+    "publication": {
+      "type": "object", "additionalProperties": false,
+      "required": ["original_year"],
+      "properties": {
+        "original_year": {"type": ["integer", "null"], "minimum": 1},
+        "edition_year": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "identifier", "revision", "format"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1},
+        "identifier": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "revision": {"type": "string", "minLength": 1},
+        "format": {"enum": ["txt", "xhtml", "html", "epub", "markdown"]}
+      }
+    },
+    "rights": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "verified_jurisdictions", "evidence", "notes"],
+      "properties": {
+        "status": {"type": "string", "minLength": 1},
+        "verified_jurisdictions": {"type": "array", "items": {"type": "string"}},
+        "unverified_jurisdictions": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "licence": {"type": ["string", "null"]},
+        "notes": {"type": "string"}
+      }
+    },
+    "classification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["primary_genre", "genres", "subgenres", "audience"],
+      "properties": {
+        "primary_genre": {"type": "string", "minLength": 1},
+        "genres": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "subgenres": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "audience": {"type": "array", "uniqueItems": true, "items": {"enum": ["children", "middle-grade", "young-adult", "adult"]}},
+        "pov": {"type": "array", "uniqueItems": true, "items": {"enum": ["first-person", "second-person", "third-person-limited", "third-person-omniscient", "mixed"]}},
+        "tense": {"type": "array", "uniqueItems": true, "items": {"enum": ["past", "present", "mixed"]}},
+        "style_tags": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "content": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin", "ai_assistance", "original_language", "is_translation"],
+      "properties": {
+        "origin": {"enum": ["human", "mixed", "ai-generated", "unknown"]},
+        "ai_assistance": {"enum": ["none", "proofreading", "substantive", "unknown"]},
+        "original_language": {"type": "string"},
+        "is_translation": {"type": "boolean"}
+      }
+    },
+    "quality": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "flags", "reviewed_by"],
+      "properties": {
+        "status": {"enum": ["candidate", "automatically-validated", "human-reviewed", "rejected"]},
+        "flags": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "reviewed_by": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "review_notes": {"type": "string"}
+      }
+    },
+    "processing": {
+      "type": "object", "additionalProperties": false,
+      "required": ["extractor", "cleaner"],
+      "properties": {
+        "extractor": {"type": "string"},
+        "cleaner": {"type": "string"},
+        "expected_min_words": {"type": "integer", "minimum": 1},
+        "source_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  },
+  "$defs": {
+    "person": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "birth_year": {"type": ["integer", "null"]},
+        "death_year": {"type": ["integer", "null"]}
+      }
+    },
+    "contributor": {
+      "allOf": [
+        {"$ref": "#/$defs/person"},
+        {"type": "object", "required": ["role"], "properties": {"role": {"enum": ["translator", "editor", "illustrator", "introducer", "other"]}}}
+      ]
+    }
+  }
+}

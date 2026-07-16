@@ -1,0 +1,59 @@
+# Example only. Files in catalog/examples are never included in builds.
+id: example-author-example-novel-en
+title: Example Novel
+language: en
+form: novel
+
+authors:
+  - name: Example Author
+    birth_year: 1850
+    death_year: 1910
+
+contributors: []
+
+publication:
+  original_year: 1890
+  edition_year: 1912
+
+source:
+  provider: example-provider
+  identifier: example-work-123
+  url: https://example.invalid/work/123
+  revision: pinned-revision-or-commit
+  format: txt
+
+rights:
+  status: public-domain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU]
+  evidence:
+    - Author death year and edition publication date independently verified.
+  licence: null
+  notes: Replace this explanation with work-specific evidence.
+
+classification:
+  primary_genre: fantasy
+  genres: [fantasy, adventure]
+  subgenres: [historical-fantasy]
+  audience: [adult]
+  pov: [third-person-limited]
+  tense: [past]
+  style_tags: [dialogue-heavy]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: []
+  reviewed_by: []
+  review_notes: Not yet reviewed.
+
+processing:
+  extractor: plain_text_v1
+  cleaner: fiction_clean_v1
+  expected_min_words: 30000
+  source_sha256: null

@@ -1,0 +1,35 @@
+genres:
+  adventure:
+    subgenres: [sea-adventure, survival, quest]
+  fantasy:
+    subgenres:
+      - epic-fantasy
+      - historical-fantasy
+      - comic-fantasy
+      - dark-fantasy
+      - romantic-fantasy
+      - urban-fantasy
+  historical-fiction:
+    subgenres: [alternate-history, historical-adventure]
+  horror:
+    subgenres: [gothic-horror, supernatural-horror, psychological-horror]
+  literary-fiction:
+    subgenres: [bildungsroman, social-novel, philosophical-fiction]
+  mystery:
+    subgenres:
+      - detective
+      - amateur-sleuth
+      - cozy-mystery
+      - historical-mystery
+      - locked-room
+      - police-procedural
+  romance:
+    subgenres:
+      - historical-romance
+      - gothic-romance
+      - romantic-comedy
+      - romantic-suspense
+  science-fiction:
+    subgenres: [space-opera, time-travel, dystopian, scientific-romance]
+  thriller:
+    subgenres: [crime-thriller, espionage, psychological-thriller]

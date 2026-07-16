@@ -1,0 +1,11 @@
+rights_statuses:
+  public-domain:
+    description: Reviewed as public domain in every jurisdiction listed in verified_jurisdictions.
+  openly-licensed:
+    description: Distributed under a recorded licence permitting redistribution and the intended dataset use.
+  permission-granted:
+    description: Rights holder supplied explicit permission recorded by the project.
+  uncertain:
+    description: Insufficient evidence; never eligible for a public release pack.
+  excluded:
+    description: Known not to satisfy the project release policy.
