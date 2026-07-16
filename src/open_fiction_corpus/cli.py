@@ -17,12 +17,15 @@ def main() -> None:
     build_parser = subparsers.add_parser("build", help="Build whole-book dataset exports")
     build_parser.add_argument("--root", type=Path, default=Path.cwd())
     build_parser.add_argument("--allow-missing-text", action="store_true")
+    build_parser.add_argument(
+        "--pack", help="Build only works selected by the named pack definition"
+    )
 
     args = parser.parse_args()
     if args.command == "validate":
         raise SystemExit(0 if validate_repository(args.root) else 1)
     if args.command == "build":
-        build_dataset(args.root, allow_missing_text=args.allow_missing_text)
+        build_dataset(args.root, pack=args.pack, allow_missing_text=args.allow_missing_text)
 
 
 if __name__ == "__main__":

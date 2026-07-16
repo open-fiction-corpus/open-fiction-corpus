@@ -54,6 +54,12 @@ Then run:
 ofc build
 ```
 
+Works whose rights status is not marked `releasable` in `schema/rights-statuses.yaml` (for example `uncertain` or `excluded`) are always skipped. To build a single pack's selection instead of the whole catalogue:
+
+```bash
+ofc build --pack general-fiction
+```
+
 ## Current status
 
 The project is in its initial scaffolding phase. No books are included yet.
