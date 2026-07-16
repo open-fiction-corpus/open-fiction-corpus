@@ -68,7 +68,7 @@ A work is considered **added** only when:
 | Candidate | P2 | The Portrait of a Lady | Henry James | Psychological and social complexity; potentially overrepresented high-formality prose |
 | Candidate | P2 | The Custom of the Country | Edith Wharton | Social ambition and character-driven satire |
 
-## Mystery, suspense, and adventure candidates
+## Mystery, suspense, pulp, and adventure candidates
 
 | Status | Priority | Work | Author | Notes |
 |---|---:|---|---|---|
@@ -76,6 +76,10 @@ A work is considered **added** only when:
 | Candidate | P1 | The Lodger | Marie Belloc Lowndes | Psychological suspense and domestic dread |
 | Candidate | P1 | The Thirty-Nine Steps | John Buchan | Pursuit structure and economical action |
 | Candidate | P1 | The Riddle of the Sands | Erskine Childers | Investigation, technical detail, slow-building threat |
+| Candidate | P1 | Tarzan of the Apes | Edgar Rice Burroughs | Pulp pacing, spatially clear action, survival, chapter hooks; requires historical-content flags |
+| Candidate | P1 | Jungle Tales of Tarzan | Edgar Rice Burroughs | Multiple complete pulp-adventure arcs; requires historical-content flags |
+| Candidate | P2 | The Return of Tarzan | Edgar Rice Burroughs | Sequel continuity and extended adventure structure; avoid over-weighting Burroughs |
+| Rights review | P1 | Around the World in Eighty Days | Jules Verne | Strong clock-driven quest; select and document an exact public-domain English translation |
 | Candidate | P2 | The Mystery of the Yellow Room | Gaston Leroux | Translation must be selected and cleared |
 | Candidate | P2 | Trent's Last Case | E. C. Bentley | Detective convention and reversal |
 
@@ -89,6 +93,11 @@ A work is considered **added** only when:
 | Candidate | P1 | Alice's Adventures in Wonderland | Lewis Carroll | Wordplay, absurdity, episodic fantasy |
 | Candidate | P1 | The Wind in the Willows | Kenneth Grahame | Pastoral fantasy, friendship, tonal range |
 | Candidate | P1 | The House on the Borderland | William Hope Hodgson | Weird fantasy, cosmic horror, isolation |
+| Rights review | P1 | The Hour of the Dragon | Robert E. Howard | Sword-and-sorcery novel; verify original Howard text rather than a later edited collection |
+| Rights review | P1 | Red Nails | Robert E. Howard | Complete Conan novella; catalogue the original publication text separately |
+| Rights review | P1 | Queen of the Black Coast | Robert E. Howard | Strong atmosphere, action, and tragic arc; exclude later completions and pastiches |
+| Rights review | P1 | Beyond the Black River | Robert E. Howard | Frontier fantasy and escalating external threat; verify textual provenance |
+| Rights review | P2 | The People of the Black Circle | Robert E. Howard | Longer sword-and-sorcery adventure; verify original publication version |
 | Candidate | P2 | The King of Elfland's Daughter | Lord Dunsany | Rights and jurisdiction review required before redistribution |
 | Candidate | P2 | Lud-in-the-Mist | Hope Mirrlees | Rights and jurisdiction review required before redistribution |
 
@@ -101,6 +110,10 @@ A work is considered **added** only when:
 | Candidate | P1 | A Princess of Mars | Edgar Rice Burroughs | Adventure pacing and planetary romance |
 | Candidate | P1 | The Iron Heel | Jack London | Political speculation and framed narrative |
 | Candidate | P1 | Last and First Men | Olaf Stapledon | Large-scale speculative history; less useful for scene-level prose |
+| Rights review | P1 | Twenty Thousand Leagues Under the Seas | Jules Verne | Scientific adventure and sustained travel structure; exact translation may be abridged or altered |
+| Rights review | P1 | Journey to the Center of the Earth | Jules Verne | Expedition structure and escalating discovery; avoid the heavily rewritten anonymous 1871 English version |
+| Rights review | P1 | The Mysterious Island | Jules Verne | Ensemble survival, engineering, and long-form problem solving; translation quality requires review |
+| Rights review | P2 | From the Earth to the Moon | Jules Verne | Compact scientific-adventure premise; exact translation must be recorded |
 | Candidate | P2 | We | Yevgeny Zamyatin | Translation must be selected and cleared |
 
 ## Horror and gothic candidates
@@ -123,6 +136,16 @@ A work is considered **added** only when:
 | Candidate | P1 | The Conjure Woman | Charles W. Chesnutt | Framed storytelling, dialect, history, social critique |
 | Candidate | P2 | Winesburg, Ohio | Sherwood Anderson | Linked stories, interiority, recurring setting |
 | Candidate | P2 | Selected Kate Chopin Stories | Kate Chopin | Edition and selection must be recorded precisely |
+
+## Valuable modern prose currently blocked by jurisdiction
+
+These works are editorially valuable but should not be redistributed in the global corpus until the project can verify that the selected text is public domain in every jurisdiction targeted by the release. A work being public domain in the United States is not enough for the default globally downloadable dataset.
+
+| Status | Priority | Work | Author | Reason for deferral |
+|---|---:|---|---|---|
+| Deferred | P1 | In Our Time | Ernest Hemingway | Excellent short-form economy and implication, but Hemingway's works remain protected under the ordinary EU term through 31 December 2031 |
+| Deferred | P1 | The Sun Also Rises | Ernest Hemingway | Dialogue, restraint, subtext, and scene compression; revisit for global release on or after 1 January 2032 |
+| Deferred | P1 | A Farewell to Arms | Ernest Hemingway | Public domain in the United States, but not yet suitable for an EU-hosted global corpus |
 
 ## Foundational classics and premodern literature
 
