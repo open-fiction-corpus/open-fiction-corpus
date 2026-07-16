@@ -10,11 +10,12 @@ name: Release dataset
 #   2. Set the repository variable HF_DATASET_REPO to the dataset id,
 #      e.g. your-hf-username/open-fiction-corpus.
 #   3. Configure auth, preferring trusted publishing: in the HF dataset's
-#      settings, register this GitHub repository and workflow as a trusted
-#      publisher (OIDC; verify the current steps at
-#      https://huggingface.co/docs/hub/trusted-publishing). Until that is
-#      configured, a narrowly scoped token in the HF_TOKEN secret works as
-#      a fallback.
+#      Settings -> Trusted Publishers, add a GitHub Actions publisher with
+#      claims pinned to this repository and workflow (release.yml). Do NOT
+#      pin the branch claim: release- and tag-triggered runs do not carry a
+#      branch ref, so a branch-pinned publisher would reject them. Until
+#      trusted publishing is configured, a narrowly scoped token in the
+#      HF_TOKEN secret works as a fallback.
 
 on:
   release:
@@ -98,32 +99,23 @@ jobs:
       - name: Publish to Hugging Face
         if: ${{ github.event_name == 'release' || inputs.dry_run == false }}
         env:
+          # Fallback auth only; leave the secret unset when trusted
+          # publishing is configured.
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_DATASET_REPO: ${{ vars.HF_DATASET_REPO }}
+          # Trusted publishing: on GitHub Actions the hf CLI
+          # (huggingface_hub >= 1.19.0) performs the OIDC token exchange
+          # automatically when HF_OIDC_RESOURCE is set. The resource needs
+          # the datasets/ prefix; the upload target does not.
+          HF_OIDC_RESOURCE: datasets/${{ vars.HF_DATASET_REPO }}
           RELEASE_VERSION: ${{ github.event.release.tag_name || github.ref_name }}
         run: |
           if [ -z "$HF_DATASET_REPO" ]; then
             echo "Repository variable HF_DATASET_REPO is not set; cannot publish." >&2
             exit 1
           fi
-          pip install -U huggingface_hub
-          python - <<'EOF'
-          import os
-
-          from huggingface_hub import HfApi
-
-          # With trusted publishing configured on the Hugging Face side,
-          # recent huggingface_hub versions authenticate via the GitHub OIDC
-          # token and HF_TOKEN can stay unset. Otherwise HF_TOKEN is used.
-          api = HfApi(token=os.environ.get("HF_TOKEN") or None)
-          api.upload_folder(
-              folder_path="dist/release",
-              repo_id=os.environ["HF_DATASET_REPO"],
-              repo_type="dataset",
-              commit_message=(
-                  f"Release {os.environ['RELEASE_VERSION']} "
-                  f"from catalogue commit {os.environ['GITHUB_SHA']}"
-              ),
-          )
-          print("Uploaded release to", os.environ["HF_DATASET_REPO"])
-          EOF
+          curl -LsSf https://hf.co/cli/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+          hf upload "$HF_DATASET_REPO" dist/release . \
+            --repo-type dataset \
+            --commit-message "Release $RELEASE_VERSION from catalogue commit $GITHUB_SHA"

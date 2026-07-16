@@ -69,7 +69,7 @@ Every work passed a per-work rights review before release. The catalogue records
 
 {{COMPOSITION_SUMMARY}} <!-- e.g. "This release contains N works: N novels, N short-story collections; N% women-authored; genre breakdown ..." — the work IDs per file are in release/build-manifest.json -->
 
-Human-authored fiction only; every work's `content.origin` is recorded, and AI-generated or AI-assisted text is excluded from release packs.
+Release packs restrict `content.origin` to `human`, so AI-generated works are excluded. Each work also records `content.ai_assistance` (`none`, `proofreading`, `substantive`, or `unknown`); packs do not currently filter on that field, so downstream users who need stricter guarantees should filter rows on it themselves.
 
 ## Intended use
 
