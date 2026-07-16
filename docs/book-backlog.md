@@ -134,8 +134,6 @@ A work is considered **added** only when:
 | Rights review | P1 | The Mysterious Island | Jules Verne | Ensemble survival, engineering, and long-form problem solving; translation quality requires review |
 | Rights review | P2 | From the Earth to the Moon | Jules Verne | Compact scientific-adventure premise; exact translation must be recorded |
 | Candidate | P2 | We | Yevgeny Zamyatin | Translation must be selected and cleared |
-| Candidate | P2 | Animal Farm | George Orwell | Fable compression and allegory; public domain in life+70 jurisdictions (EU/UK) since 2021 but **still copyrighted in the US until 2041** — EU-scoped release only |
-| Candidate | P2 | Nineteen Eighty-Four | George Orwell | Dystopian worldbuilding and controlled tone; same split status — **US copyright runs until 2044** |
 
 ## Horror and gothic candidates
 
@@ -171,6 +169,8 @@ The usual screen: European and UK copyright runs for 70 years after the author's
 | Deferred | P1 | In Our Time | Ernest Hemingway | Excellent short-form economy and implication, but Hemingway's works remain protected under the ordinary EU term through 31 December 2031 |
 | Deferred | P1 | The Sun Also Rises | Ernest Hemingway | Dialogue, restraint, subtext, and scene compression; revisit for global release on or after 1 January 2032 |
 | Deferred | P1 | A Farewell to Arms | Ernest Hemingway | Public domain in the United States, but not yet suitable for an EU-hosted global corpus |
+| Deferred | P1 | Animal Farm | George Orwell | Fable compression and allegory; public domain in life+70 jurisdictions (EU/UK) since 2021, but enters the US public domain on 1 January 2041; the default corpus is globally downloadable, so defer unless the project adopts an explicit jurisdiction-scoped pack and hosting policy |
+| Deferred | P1 | Nineteen Eighty-Four | George Orwell | Dystopian worldbuilding and controlled tone; same split status — enters the US public domain on 1 January 2045 |
 | Deferred | P1 | Passing; Quicksand | Nella Larsen | US public domain (published 1928–29), but the author died in 1964, so EU-protected until 2035 |
 | Deferred | P1 | A Room with a View; Howards End | E. M. Forster | Author died 1970; EU-protected until 2041 despite early works being US public domain |
 | Deferred | P1 | Early Jeeves and Blandings books | P. G. Wodehouse | Author died 1975; EU-protected until 2046; pre-1931 works are US public domain only |
