@@ -2,12 +2,9 @@
 
 The GitHub repository is the source of truth for catalogue metadata, build code, policy, and review history. The Hugging Face dataset repository stores generated release artifacts containing the actual cleaned corpus.
 
-## Create the dataset repository
+## The dataset repository
 
-1. Create or sign in to a Hugging Face account.
-2. From the profile menu, choose **New Dataset**.
-3. Create a public dataset repository, preferably named `open-fiction-corpus`.
-4. Create a Dataset Card (`README.md`) describing provenance, rights limitations, corpus composition, intended use, and known limitations. Start from [`docs/dataset-card-template.md`](dataset-card-template.md).
+The project's dataset repository is [`open-fiction-corpus/corpus`](https://huggingface.co/datasets/open-fiction-corpus/corpus), owned by the `open-fiction-corpus` organization. Its Dataset Card (`README.md`) describes provenance, rights limitations, corpus composition, intended use, and known limitations; it is maintained from [`docs/dataset-card-template.md`](dataset-card-template.md) and must be updated with each release.
 
 Do not upload books manually until the build and rights-review process is working with a small test release.
 
@@ -27,7 +24,7 @@ Use a dedicated, narrowly scoped token for local publishing. Never commit a toke
 After creating a small release under `dist/`, upload it with:
 
 ```bash
-hf upload YOUR-HF-USERNAME/open-fiction-corpus ./dist . --repo-type dataset
+hf upload open-fiction-corpus/corpus ./dist . --repo-type dataset
 ```
 
 Hugging Face also supports uploads through its web interface and Python `HfApi.upload_folder()` method.

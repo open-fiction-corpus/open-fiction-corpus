@@ -8,7 +8,7 @@ name: Release dataset
 #   1. Create the Hugging Face dataset repository and its dataset card
 #      (see docs/hugging-face.md and docs/dataset-card-template.md).
 #   2. Set the repository variable HF_DATASET_REPO to the dataset id,
-#      e.g. your-hf-username/open-fiction-corpus.
+#      open-fiction-corpus/corpus.
 #   3. Configure auth, preferring trusted publishing: in the HF dataset's
 #      Settings -> Trusted Publishers, add a GitHub Actions publisher with
 #      claims pinned to this repository and workflow (release.yml). Do NOT
