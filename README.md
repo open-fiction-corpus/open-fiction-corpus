@@ -38,7 +38,7 @@ This repository contains the **catalogue, schemas, cleaning rules, validation to
 python -m venv .venv
 # Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
-pip install -e "[dev]"
+pip install -e ".[dev]"
 ofc validate
 ```
 
