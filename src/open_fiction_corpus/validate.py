@@ -47,7 +47,7 @@ def _string_set(value: object) -> set[str] | None:
     return set(value)
 
 
-def validate_repository(root: Path) -> bool:
+def collect_errors(root: Path) -> list[str]:
     root = root.resolve()
     errors: list[str] = []
 
@@ -198,11 +198,18 @@ def validate_repository(root: Path) -> bool:
             if unknown:
                 errors.append(f"{pack_path}: unknown quality flags: {sorted(unknown)}")
 
+    return errors
+
+
+def validate_repository(root: Path) -> bool:
+    root = root.resolve()
+    errors = collect_errors(root)
     if errors:
         print("Validation failed:")
         for error in errors:
             print(f"- {error}")
         return False
 
-    print(f"Validation passed: {len(manifest_paths)} work manifest(s).")
+    manifest_count = len(list((root / "catalog" / "works").glob("*.yaml")))
+    print(f"Validation passed: {manifest_count} work manifest(s).")
     return True
