@@ -107,10 +107,14 @@
       }
     },
     "contributor": {
-      "allOf": [
-        {"$ref": "#/$defs/person"},
-        {"type": "object", "required": ["role"], "properties": {"role": {"enum": ["translator", "editor", "illustrator", "introducer", "other"]}}}
-      ]
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "role"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "birth_year": {"type": ["integer", "null"]},
+        "death_year": {"type": ["integer", "null"]},
+        "role": {"enum": ["translator", "editor", "illustrator", "introducer", "other"]}
+      }
     }
   }
 }
