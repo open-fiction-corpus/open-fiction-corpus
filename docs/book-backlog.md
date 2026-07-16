@@ -65,6 +65,18 @@ A work is considered **added** only when:
 | Candidate | P1 | Daddy-Long-Legs | Jean Webster | Epistolary voice and comic intimacy |
 | Candidate | P1 | The Shuttle | Frances Hodgson Burnett | Social conflict, family dynamics, transatlantic setting |
 | Candidate | P1 | The Scarlet Pimpernel | Baroness Orczy | Romance, disguise, adventure, dramatic reversals |
+| Candidate | P1 | Wuthering Heights | Emily Brontë | Nested narration, obsessive intensity, gothic realism |
+| Candidate | P1 | Adventures of Huckleberry Finn | Mark Twain | Vernacular first-person voice; period racial language needs an editorial note, not silent alteration |
+| Candidate | P1 | Tess of the d'Urbervilles | Thomas Hardy | Tragic arc, rural realism, atmospheric description |
+| Candidate | P1 | The Awakening | Kate Chopin | Interior emancipation narrative and sensory prose; pairs with the story collection already listed |
+| Candidate | P1 | My Ántonia | Willa Cather | Retrospective narration, landscape writing, immigrant experience |
+| Candidate | P1 | Main Street | Sinclair Lewis | Small-town satire and social observation; realism counterweight to gothic-heavy lists |
+| Candidate | P1 | The Good Soldier | Ford Madox Ford | Unreliable narrator and non-chronological revelation |
+| Candidate | P1 | Three Men in a Boat | Jerome K. Jerome | Sustained comic prose; comedy is underrepresented per the guardrails below |
+| Candidate | P1 | The Sport of the Gods | Paul Laurence Dunbar | Early Black American urban fiction and social critique |
+| Candidate | P2 | Sons and Lovers | D. H. Lawrence | Family entanglement and psychological realism |
+| Candidate | P2 | The Diary of a Nobody | George and Weedon Grossmith | Comic first-person mundane voice |
+| Candidate | P2 | The Life and Death of Harriett Frean | May Sinclair | Compressed psychological portrait of a whole life |
 | Candidate | P2 | The Portrait of a Lady | Henry James | Psychological and social complexity; potentially overrepresented high-formality prose |
 | Candidate | P2 | The Custom of the Country | Edith Wharton | Social ambition and character-driven satire |
 
@@ -76,6 +88,12 @@ A work is considered **added** only when:
 | Candidate | P1 | The Lodger | Marie Belloc Lowndes | Psychological suspense and domestic dread |
 | Candidate | P1 | The Thirty-Nine Steps | John Buchan | Pursuit structure and economical action |
 | Candidate | P1 | The Riddle of the Sands | Erskine Childers | Investigation, technical detail, slow-building threat |
+| Candidate | P1 | Treasure Island | Robert Louis Stevenson | Adventure pacing, first-person voice, iconic quest structure |
+| Candidate | P1 | The Call of the Wild | Jack London | Lean action prose and nonhuman viewpoint |
+| Candidate | P1 | Scaramouche | Rafael Sabatini | Swashbuckling revenge arc, wit, dramatic reversals |
+| Candidate | P1 | Kim | Rudyard Kipling | Espionage-adventure and sensory density; colonial framing needs an editorial note |
+| Candidate | P2 | King Solomon's Mines | H. Rider Haggard | Expedition adventure template; colonial-era framing needs review |
+| Candidate | P2 | Riders of the Purple Sage | Zane Grey | Western genre coverage currently absent from the backlog |
 | Candidate | P2 | The Mystery of the Yellow Room | Gaston Leroux | Translation must be selected and cleared |
 | Candidate | P2 | Trent's Last Case | E. C. Bentley | Detective convention and reversal |
 
@@ -89,6 +107,7 @@ A work is considered **added** only when:
 | Candidate | P1 | Alice's Adventures in Wonderland | Lewis Carroll | Wordplay, absurdity, episodic fantasy |
 | Candidate | P1 | The Wind in the Willows | Kenneth Grahame | Pastoral fantasy, friendship, tonal range |
 | Candidate | P1 | The House on the Borderland | William Hope Hodgson | Weird fantasy, cosmic horror, isolation |
+| Candidate | P2 | A Voyage to Arcturus | David Lindsay | Philosophical weird fantasy; author died 1945, so life+70 has expired |
 | Candidate | P2 | The King of Elfland's Daughter | Lord Dunsany | Rights and jurisdiction review required before redistribution |
 | Candidate | P2 | Lud-in-the-Mist | Hope Mirrlees | Rights and jurisdiction review required before redistribution |
 
@@ -102,11 +121,15 @@ A work is considered **added** only when:
 | Candidate | P1 | The Iron Heel | Jack London | Political speculation and framed narrative |
 | Candidate | P1 | Last and First Men | Olaf Stapledon | Large-scale speculative history; less useful for scene-level prose |
 | Candidate | P2 | We | Yevgeny Zamyatin | Translation must be selected and cleared |
+| Candidate | P2 | Animal Farm | George Orwell | Fable compression and allegory; public domain in life+70 jurisdictions (EU/UK) since 2021 but **still copyrighted in the US until 2041** — EU-scoped release only |
+| Candidate | P2 | Nineteen Eighty-Four | George Orwell | Dystopian worldbuilding and controlled tone; same split status — **US copyright runs until 2044** |
 
 ## Horror and gothic candidates
 
 | Status | Priority | Work | Author | Notes |
 |---|---:|---|---|---|
+| Candidate | P1 | Strange Case of Dr Jekyll and Mr Hyde | Robert Louis Stevenson | Dual-narrative gothic compression and testimony structure |
+| Candidate | P1 | The Picture of Dorian Gray | Oscar Wilde | Epigrammatic dialogue and gothic decadence; record which edition (1890 magazine vs 1891 book) |
 | Candidate | P1 | The Turn of the Screw | Henry James | Ambiguity, psychological tension, framed narration |
 | Candidate | P1 | The Great God Pan | Arthur Machen | Compact supernatural escalation |
 | Candidate | P1 | The King in Yellow | Robert W. Chambers | Weird fiction, linked stories, atmosphere |
@@ -146,6 +169,19 @@ A sensible initial ceiling would be:
 | Candidate | Heritage | The Arabian Nights / One Thousand and One Nights | Anonymous / multiple traditions | Edition, translation, omissions, and colonial-era framing vary substantially | Treat each translation as a distinct work; defer until editorial policy is ready |
 | Candidate | Heritage | The Mabinogion | Anonymous / medieval Welsh sources | Translation must be selected and cleared | Valuable for mythic and episodic fantasy heritage |
 | Candidate | Heritage | The Nibelungenlied | Anonymous | Translation and verse/prose form must be recorded | Heritage pack |
+
+## Screened out for now: not yet public domain in life+70 jurisdictions
+
+European (and UK) copyright generally runs for 70 years after the author's death, so as of 2026 only authors who died in **1955 or earlier** are public domain there. Everything added to the candidate tables above passes that screen. The authors below are frequently suggested but do **not** pass it yet — recorded here so contributors do not repeat the investigation. Note the asymmetry with the US, where pre-1931 *publications* are public domain regardless of the author's death date.
+
+| Status | Work / author | Died | Why deferred |
+|---|---|---:|---|
+| Deferred | Zuleika Dobson — Max Beerbohm | 1956 | Enters EU/UK public domain on 1 January 2027 — revisit next year |
+| Deferred | Thomas Mann (Buddenbrooks, The Magic Mountain) | 1955 | German originals entered EU public domain on 1 January 2026, but English **translations** carry their own, still-active copyrights; defer until the translation-rights workflow exists |
+| Deferred | Passing, Quicksand — Nella Larsen | 1964 | US public domain (published 1928–29) but EU-protected until 2035 |
+| Deferred | E. M. Forster (A Room with a View, Howards End) | 1970 | EU-protected until 2041 despite early works being US public domain |
+| Deferred | P. G. Wodehouse (early Jeeves and Blandings books) | 1975 | EU-protected until 2046; pre-1931 works are US public domain only |
+| Deferred | Agatha Christie (The Mysterious Affair at Styles etc.) | 1976 | EU-protected until 2047; pre-1931 works are US public domain only |
 
 ## Corpus-balance guardrails
 
