@@ -1,0 +1,64 @@
+id: h-g-wells-the-time-machine-en
+title: The Time Machine
+language: en
+form: novella
+
+authors:
+  - name: H. G. Wells
+    birth_year: 1866
+    death_year: 1946
+
+contributors: []
+
+publication:
+  original_year: 1895
+  edition_year: null
+
+source:
+  provider: gutenberg
+  identifier: "35"
+  url: https://www.gutenberg.org/ebooks/35
+  revision: unpinned
+  format: txt
+
+rights:
+  status: public-domain
+  verified_jurisdictions: [US, EU, UK]
+  unverified_jurisdictions: []
+  evidence:
+    - First published in 1895 (Heinemann, London); pre-1930 first publication
+      places the work in the United States public domain.
+    - H. G. Wells died on 13 August 1946, so life+70 protection expired on
+      1 January 2017 in the EU and the UK.
+  licence: null
+  notes: Original English text, no translation or later editorial material.
+    The Project Gutenberg transcription (ebook 35) carries no separately
+    protectable contribution.
+
+classification:
+  primary_genre: science-fiction
+  genres: [science-fiction, adventure]
+  subgenres: [time-travel, scientific-romance]
+  audience: [adult]
+  pov: [first-person]
+  tense: [past]
+  style_tags: [frame-narrative]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: []
+  reviewed_by: []
+  review_notes: Pilot work; cleaned text not yet fetched or human-reviewed.
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 30000
+  source_sha256: null

@@ -91,6 +91,7 @@
       "properties": {
         "extractor": {"type": "string"},
         "cleaner": {"type": "string"},
+        "modernizer": {"type": "string"},
         "expected_min_words": {"type": "integer", "minimum": 1},
         "source_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
       }

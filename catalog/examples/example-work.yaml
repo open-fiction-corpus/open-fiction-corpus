@@ -55,5 +55,6 @@ quality:
 processing:
   extractor: plain_text_v1
   cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
   expected_min_words: 30000
   source_sha256: null

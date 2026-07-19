@@ -42,11 +42,13 @@ pip install -e ".[dev]"
 ofc validate
 ```
 
-To test the build pipeline, place a cleaned UTF-8 novel at:
+To fetch and clean a catalogued work into the ignored `workspace/` directory:
 
-```text
-workspace/clean/<work-id>.txt
+```bash
+ofc prepare h-g-wells-the-time-machine-en
 ```
+
+This downloads the pinned source, strips platform boilerplate, unwraps hard-wrapped paragraphs, applies the deliberate spelling-modernisation rules from `schema/modernization-rules.yaml`, and applies any work-specific corrections from `overrides/` — see [the cleaning guide](docs/cleaning-guide.md). Alternatively, place a cleaned UTF-8 novel at `workspace/clean/<work-id>.txt` yourself.
 
 Then run:
 
@@ -62,7 +64,7 @@ ofc build --pack general-fiction
 
 ## Current status
 
-The project is in its initial scaffolding phase. No books are included yet.
+The project is in its initial scaffolding phase. The first pilot work, *The Time Machine*, is moving through the pipeline end to end; no dataset has been released yet.
 
 The planned reading list and processing status are tracked in the **[Book Backlog](docs/book-backlog.md)**. Book suggestions are open now; see **[Suggesting a book](docs/suggesting-a-book.md)** for a nontechnical contribution guide.
 
