@@ -503,11 +503,16 @@ def prepare_work(root: Path, work_id: str, *, skip_fetch: bool = False) -> Path:
     # Atomic replace: an interrupted run can never leave a truncated build
     # input behind, and any previously valid clean file survives until the
     # new one is fully written.
+    # Canonical byte representation: explicit UTF-8 with LF newlines (the
+    # cleaner normalises line endings), written as bytes so no platform
+    # text-mode translation can make the file differ from the hashed and
+    # released value.
+    clean_bytes = text.encode("utf-8")
     temporary = clean_path.with_name(clean_path.name + ".tmp")
-    temporary.write_text(text, encoding="utf-8")
+    temporary.write_bytes(clean_bytes)
     temporary.replace(clean_path)
 
-    clean_digest = _sha256(text.encode("utf-8"))
+    clean_digest = _sha256(clean_bytes)
     print(f"Prepared {work_id}: {words} words -> {clean_path}")
     print(f"Clean text sha256 (pin as quality.reviewed_text_sha256): {clean_digest}")
     reviewed = manifest["quality"].get("reviewed_text_sha256")

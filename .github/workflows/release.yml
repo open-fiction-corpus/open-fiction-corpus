@@ -45,19 +45,25 @@ jobs:
       - run: pytest
       - run: ofc validate
 
-      # Fetch and clean every catalogued work through the manifest-driven
-      # pipeline: approved origins only, hash verification before writing,
-      # provenance sidecars, versioned extractors/cleaners/modernisers.
-      # The rights and release-readiness gates inside `ofc build` decide
-      # what actually enters the exports.
-      - name: Prepare source texts
+      # Fetch and clean only the works the build will actually release:
+      # the same unconditional rights and release-readiness gates select
+      # the preparation plan, so a non-releasable or unfetchable catalogue
+      # entry can never block an unrelated release, and the workflow makes
+      # exactly one upstream request per released work.
+      - name: Prepare release-selected source texts
         run: |
           python - <<'EOF'
-          import pathlib
-          import subprocess
+          from pathlib import Path
 
-          for path in sorted(pathlib.Path("catalog/works").glob("*.yaml")):
-              subprocess.run(["ofc", "prepare", path.stem], check=True)
+          from open_fiction_corpus.build import releasable_work_ids
+          from open_fiction_corpus.prepare import prepare_work
+
+          root = Path(".")
+          selected = releasable_work_ids(root)
+          if not selected:
+              print("No release-ready works to prepare.")
+          for work_id in selected:
+              prepare_work(root, work_id)
           EOF
 
       - name: Build whole-catalogue export

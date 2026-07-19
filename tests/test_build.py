@@ -164,6 +164,42 @@ def test_pack_caps_works_per_author(tmp_path: Path) -> None:
     assert ids == sorted(ids)
 
 
+def test_releasable_work_ids_ignores_blocked_and_broken_works(tmp_path: Path) -> None:
+    from open_fiction_corpus.build import releasable_work_ids
+
+    ready = make_manifest("ready-book-en")
+    blocked = make_manifest(
+        "blocked-book-en",
+        **{"rights.status": "uncertain", "source.provider": "no-such-provider"},
+    )
+    root = make_root(tmp_path, [(ready, "ready text ships"), (blocked, "never used")])
+
+    assert releasable_work_ids(root) == ["ready-book-en"]
+
+
+def test_release_preparation_is_not_blocked_by_unfetchable_works(tmp_path: Path) -> None:
+    from test_prepare import GUTENBERG_FILE, GUTENBERG_SHA256, _write_raw
+
+    from open_fiction_corpus.build import releasable_work_ids
+    from open_fiction_corpus.prepare import prepare_work
+
+    ready = make_manifest(
+        "ready-book-en", **{"processing.source_sha256": GUTENBERG_SHA256}
+    )
+    # Non-releasable AND unfetchable: must never enter the preparation plan.
+    blocked = make_manifest(
+        "blocked-book-en",
+        **{"rights.status": "uncertain", "source.provider": "no-such-provider"},
+    )
+    root = make_root(tmp_path, [(ready, "reviewed text"), (blocked, "never used")])
+    _write_raw(root, ready, GUTENBERG_FILE)
+
+    for work_id in releasable_work_ids(root):
+        prepare_work(root, work_id, skip_fetch=True)
+
+    assert (root / "workspace" / "clean" / "ready-book-en.txt").exists()
+
+
 def test_unknown_pack_name_raises(tmp_path: Path) -> None:
     root = make_root(tmp_path, [(make_manifest("some-book-en"), "words")])
     with pytest.raises(FileNotFoundError):

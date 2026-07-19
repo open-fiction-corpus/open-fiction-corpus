@@ -158,6 +158,11 @@ def test_prepare_work_end_to_end(tmp_path: Path, capsys: pytest.CaptureFixture) 
     assert '"Today," she replied, "our connection ends."' in text
     output = capsys.readouterr().out
     assert "Modernised 'to-day': 1 replacement(s)" in output
+    # The printed hash is exactly the hash of the file bytes (LF newlines,
+    # no platform text-mode translation), which is what the build verifies.
+    file_bytes = clean_path.read_bytes()
+    assert b"\r" not in file_bytes
+    assert hashlib.sha256(file_bytes).hexdigest() in output
 
 
 def test_prepare_work_applies_overrides(tmp_path: Path) -> None:

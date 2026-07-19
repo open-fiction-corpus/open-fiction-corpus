@@ -110,6 +110,26 @@ def _release_readiness_problems(manifest: dict[str, Any]) -> list[str]:
     return problems
 
 
+def releasable_work_ids(root: Path) -> list[str]:
+    """Work ids that pass the same rights and readiness gates as the build.
+
+    Release preparation fetches only these works, so a non-releasable,
+    unpinned, or unfetchable catalogue entry can never block an unrelated
+    release.
+    """
+    root = root.resolve()
+    releasable = _releasable_statuses(root)
+    selected = []
+    for path in sorted((root / "catalog" / "works").glob("*.yaml")):
+        manifest = _load_yaml(path)
+        if manifest["rights"]["status"] not in releasable:
+            continue
+        if _release_readiness_problems(manifest):
+            continue
+        selected.append(manifest["id"])
+    return selected
+
+
 def _dataset_row(manifest: dict[str, Any], text: str) -> dict[str, Any]:
     return {
         "id": manifest["id"],
@@ -199,8 +219,10 @@ def build_dataset(
                     raise FileNotFoundError(
                         f"Missing cleaned text for {manifest['id']}: {text_path}"
                     )
+                # The released row text is exactly the decoded file content,
+                # so the reviewed hash covers the released value literally.
                 text_bytes = text_path.read_bytes()
-                text = text_bytes.decode("utf-8").strip()
+                text = text_bytes.decode("utf-8")
                 if not allow_unreviewed:
                     reviewed = manifest["quality"].get("reviewed_text_sha256")
                     digest = hashlib.sha256(text_bytes).hexdigest()

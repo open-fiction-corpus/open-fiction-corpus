@@ -1,18 +1,21 @@
 name: Prepare work
 
-# Fetches, extracts, cleans, and modernises one catalogued work, then
-# uploads the cleaned text and the raw-source provenance sidecar as a
-# workflow artifact for human review. Run it from the Actions tab.
+# Fetches, extracts, cleans, and modernises one catalogued work, printing
+# the hashes needed for pinning. Run it from the Actions tab.
 #
-# Use this to finish a work without a local checkout:
-#   1. Run with the work id. For an unpinned source the log prints the
-#      SHA-256 to record in processing.source_sha256, and the sidecar in
-#      the artifact records provider, identifier, URL, and digest.
-#   2. Download the artifact for the rights inspection (no third-party
-#      material) and the quality spot-check (ends, chapters, samples).
-#   3. Commit the pin and review results to the manifest.
+# This repository is public, and workflow artifacts are downloadable by
+# anyone with read access - so this workflow NEVER uploads book text. Works
+# under preparation are often not yet releasable, and a public artifact
+# would be a redistribution path that bypasses the rights gate. Only the
+# provenance sidecar (provider, identifier, URL, digest - metadata, no
+# text) is uploaded.
 #
-# Nothing is committed and nothing is published by this workflow.
+# The log prints the raw source SHA-256 (pin as processing.source_sha256)
+# and the cleaned text SHA-256 (pin as quality.reviewed_text_sha256 after
+# review). The rights inspection of the raw artifact and the quality
+# review of the cleaned text require the texts themselves: run
+# `ofc prepare <work-id>` locally for those - both files land under the
+# ignored workspace/ directory.
 
 on:
   workflow_dispatch:
@@ -40,11 +43,9 @@ jobs:
         env:
           WORK_ID: ${{ inputs.work_id }}
         run: ofc prepare "$WORK_ID"
-      - name: Upload prepared text and provenance for review
+      - name: Upload provenance metadata (never book text)
         uses: actions/upload-artifact@v4
         with:
-          name: prepared-${{ inputs.work_id }}
-          path: |
-            workspace/clean/${{ inputs.work_id }}.txt
-            workspace/raw/${{ inputs.work_id }}/*.provenance.json
+          name: provenance-${{ inputs.work_id }}
+          path: workspace/raw/${{ inputs.work_id }}/*.provenance.json
           if-no-files-found: error
