@@ -119,6 +119,20 @@ def collect_errors(root: Path) -> list[str]:
                 if isinstance(value, str) and not _is_absolute_http_url(value):
                     errors.append(f"{path}: source.{field} must be an absolute http(s) URL")
 
+            download_url = source.get("download_url")
+            # Providers with a fetch adapter need the exact artifact named up
+            # front, so a manifest ofc prepare would reject fails validation.
+            if source.get("provider") == "gutenberg" and not isinstance(download_url, str):
+                errors.append(
+                    f"{path}: source.download_url is required for provider 'gutenberg'"
+                )
+            if (
+                isinstance(download_url, str)
+                and _is_absolute_http_url(download_url)
+                and not urlsplit(download_url).path.rpartition("/")[2]
+            ):
+                errors.append(f"{path}: source.download_url must end in a file name")
+
         classification = manifest.get("classification")
         if isinstance(classification, dict):
             work_genres = _string_set(classification.get("genres"))

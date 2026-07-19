@@ -291,6 +291,70 @@ def test_overrides_are_validated_by_repository_validation(tmp_path: Path) -> Non
     assert "no work manifest with id 'no-such-work'" in joined
 
 
+def test_validate_requires_download_url_for_gutenberg(tmp_path: Path) -> None:
+    from open_fiction_corpus.validate import collect_errors
+
+    missing = make_manifest(
+        "gutenberg-book-en",
+        **{"source.provider": "gutenberg", "source.download_url": None},
+    )
+    del missing["source"]["download_url"]
+    trailing_slash = make_manifest(
+        "slash-book-en", **{"source.download_url": "https://example.invalid/dir/"}
+    )
+    root = make_root(tmp_path, [(missing, None), (trailing_slash, None)])
+
+    joined = "\n".join(collect_errors(root))
+    assert "source.download_url is required for provider 'gutenberg'" in joined
+    assert "source.download_url must end in a file name" in joined
+
+
+def test_fetch_rejects_download_url_without_file_name(tmp_path: Path) -> None:
+    manifest = make_manifest(
+        "example-work",
+        **{
+            "source.provider": "gutenberg",
+            "source.download_url": "https://example.invalid/dir/",
+        },
+    )
+    root = make_root(tmp_path, [(manifest, None)])
+    with pytest.raises(ValueError, match="must end in a file name"):
+        fetch_source(root, manifest)
+
+
+def test_failed_prepare_preserves_existing_clean_text(tmp_path: Path) -> None:
+    manifest = make_manifest(
+        "example-work",
+        **{
+            "processing.extractor": "gutenberg_txt_v1",
+            "processing.source_sha256": GUTENBERG_SHA256,
+        },
+    )
+    root = make_root(tmp_path, [(manifest, "previously valid clean text")])
+    raw_dir = root / "workspace" / "raw" / "example-work"
+    raw_dir.mkdir(parents=True)
+    (raw_dir / "pg999.txt").write_text(GUTENBERG_FILE, encoding="utf-8")
+    overrides_dir = root / "overrides"
+    overrides_dir.mkdir()
+    (overrides_dir / "example-work.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "corrections": [
+                    {"find": "not present", "replace": "x", "count": 1, "note": "n"}
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    clean_path = root / "workspace" / "clean" / "example-work.txt"
+    with pytest.raises(ValueError, match="matched 0"):
+        prepare_work(root, "example-work", skip_fetch=True)
+
+    assert clean_path.read_text(encoding="utf-8") == "previously valid clean text"
+    assert list((root / "workspace" / "clean").glob("*.tmp")) == []
+
+
 def test_time_machine_manifest_is_catalogued() -> None:
     path = REPO_ROOT / "catalog" / "works" / "h-g-wells-the-time-machine-en.yaml"
     manifest = yaml.safe_load(path.read_text(encoding="utf-8"))

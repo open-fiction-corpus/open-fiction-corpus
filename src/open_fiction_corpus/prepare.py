@@ -13,6 +13,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any, Callable
+from urllib.parse import urlsplit
 
 import yaml
 
@@ -49,6 +50,11 @@ def fetch_source(root: Path, manifest: dict[str, Any]) -> Path:
         raise ValueError(
             f"{manifest['id']}: source.download_url must name the exact artifact to fetch"
         )
+    basename = urlsplit(url).path.rpartition("/")[2]
+    if not basename:
+        raise ValueError(
+            f"{manifest['id']}: source.download_url must end in a file name: {url}"
+        )
 
     request = urllib.request.Request(url, headers={"User-Agent": _USER_AGENT})
     try:
@@ -67,7 +73,7 @@ def fetch_source(root: Path, manifest: dict[str, Any]) -> Path:
 
     raw_dir = root / "workspace" / "raw" / manifest["id"]
     raw_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = raw_dir / url.rsplit("/", 1)[-1]
+    raw_path = raw_dir / basename
     temporary = raw_path.with_name(raw_path.name + ".tmp")
     temporary.write_bytes(data)
     temporary.replace(raw_path)
@@ -260,6 +266,11 @@ def prepare_work(root: Path, work_id: str, *, skip_fetch: bool = False) -> Path:
     clean_dir = root / "workspace" / "clean"
     clean_dir.mkdir(parents=True, exist_ok=True)
     clean_path = clean_dir / f"{work_id}.txt"
-    clean_path.write_text(text, encoding="utf-8")
+    # Atomic replace: an interrupted run can never leave a truncated build
+    # input behind, and any previously valid clean file survives until the
+    # new one is fully written.
+    temporary = clean_path.with_name(clean_path.name + ".tmp")
+    temporary.write_text(text, encoding="utf-8")
+    temporary.replace(clean_path)
     print(f"Prepared {work_id}: {words} words -> {clean_path}")
     return clean_path
