@@ -150,3 +150,24 @@ def test_validate_repository_reports_failure(tmp_path: Path, capsys) -> None:
     captured = capsys.readouterr()
     assert "Validation failed:" in captured.out
     assert "unknown rights status" in captured.out
+
+
+def test_pack_work_id_lists_are_validated(tmp_path: Path) -> None:
+    root = make_root(tmp_path, [(make_manifest("known-book-en"), None)])
+    pack = {
+        "name": "sampler",
+        "description": "Hand-curated test pack.",
+        "version": "0.1.0",
+        "filters": {"language": "en"},
+        "include_works": ["known-book-en", "ghost-book-en"],
+        "exclude_works": ["known-book-en"],
+    }
+    (root / "packs" / "sampler.yaml").write_text(
+        yaml.safe_dump(pack, sort_keys=False), encoding="utf-8"
+    )
+
+    errors = joined_errors(root)
+    assert "include_works lists unknown work ids: ['ghost-book-en']" in errors
+    assert (
+        "work ids in both include_works and exclude_works: ['known-book-en']" in errors
+    )

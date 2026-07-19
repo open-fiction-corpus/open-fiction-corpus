@@ -272,6 +272,23 @@ def collect_errors(root: Path) -> list[str]:
             if unknown:
                 errors.append(f"{pack_path}: unknown quality flags: {sorted(unknown)}")
 
+        include_works = _string_set(pack.get("include_works"))
+        exclude_works = _string_set(pack.get("exclude_works"))
+        for field, listed in (("include_works", include_works), ("exclude_works", exclude_works)):
+            if listed is not None:
+                unknown = listed - set(seen_ids)
+                if unknown:
+                    errors.append(
+                        f"{pack_path}: {field} lists unknown work ids: {sorted(unknown)}"
+                    )
+        if include_works and exclude_works:
+            contradictory = include_works & exclude_works
+            if contradictory:
+                errors.append(
+                    f"{pack_path}: work ids in both include_works and "
+                    f"exclude_works: {sorted(contradictory)}"
+                )
+
     return errors
 
 

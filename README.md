@@ -62,6 +62,8 @@ Works whose rights status is not marked `releasable` in `schema/rights-statuses.
 ofc build --pack general-fiction
 ```
 
+Packs select works by criteria (language, form, genres, quality status, origin, excluded quality flags, per-author cap) and can also pin membership by work id: `exclude_works` always removes the listed works, and when `include_works` is present only the listed works are eligible — useful for hand-curated datasets. Id lists can only narrow a pack; the rights and release-readiness gates always apply first.
+
 ## Current status
 
 The project is in its initial scaffolding phase. The first pilot work, *The Time Machine*, is moving through the pipeline end to end; no dataset has been released yet.

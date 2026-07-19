@@ -45,6 +45,16 @@ def _find_pack(root: Path, name: str) -> dict[str, Any]:
 
 
 def _pack_selects(pack: dict[str, Any], manifest: dict[str, Any]) -> bool:
+    # Hand-picked membership: exclude_works always removes a work, and when
+    # include_works is present only listed works are eligible. Both operate
+    # after the unconditional rights and release-readiness gates, so id
+    # lists can only ever narrow a pack, never reintroduce a blocked work.
+    work_id = manifest["id"]
+    if work_id in set(pack.get("exclude_works", [])):
+        return False
+    include_works = pack.get("include_works")
+    if include_works is not None and work_id not in include_works:
+        return False
     filters = pack.get("filters", {})
     language = filters.get("language")
     if language and manifest["language"] != language:

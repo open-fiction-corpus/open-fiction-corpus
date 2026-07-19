@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any
 
 import pytest
+import yaml
 from helpers import make_manifest, make_root
 
 from open_fiction_corpus.build import build_dataset
@@ -100,6 +101,51 @@ def test_pack_excludes_flagged_works(tmp_path: Path) -> None:
 
     ids = [row["id"] for row in read_rows(root, "general-fiction.jsonl.gz")]
     assert ids == ["clean-book-en"]
+
+
+def _write_pack(root: Path, name: str, **extra: Any) -> None:
+    pack = {
+        "name": name,
+        "description": "Hand-curated test pack.",
+        "version": "0.1.0",
+        "filters": {"language": "en"},
+        **extra,
+    }
+    (root / "packs" / f"{name}.yaml").write_text(
+        yaml.safe_dump(pack, sort_keys=False), encoding="utf-8"
+    )
+
+
+def test_pack_exclude_works_always_removes_listed_ids(tmp_path: Path) -> None:
+    kept = make_manifest("kept-book-en")
+    dropped = make_manifest("dropped-book-en")
+    root = make_root(tmp_path, [(kept, "kept text words"), (dropped, "dropped text words")])
+    _write_pack(root, "sampler", exclude_works=["dropped-book-en"])
+
+    build_dataset(root, pack="sampler")
+
+    assert [row["id"] for row in read_rows(root, "sampler.jsonl.gz")] == ["kept-book-en"]
+
+
+def test_pack_include_works_is_an_allowlist(tmp_path: Path) -> None:
+    picked = make_manifest("picked-book-en")
+    other = make_manifest("other-book-en")
+    root = make_root(tmp_path, [(picked, "picked text words"), (other, "other text words")])
+    _write_pack(root, "sampler", include_works=["picked-book-en"])
+
+    build_dataset(root, pack="sampler")
+
+    assert [row["id"] for row in read_rows(root, "sampler.jsonl.gz")] == ["picked-book-en"]
+
+
+def test_pack_include_works_cannot_reintroduce_gated_works(tmp_path: Path) -> None:
+    blocked = make_manifest("blocked-book-en", **{"rights.status": "uncertain"})
+    root = make_root(tmp_path, [(blocked, "blocked text never ships")])
+    _write_pack(root, "sampler", include_works=["blocked-book-en"])
+
+    build_dataset(root, pack="sampler")
+
+    assert read_rows(root, "sampler.jsonl.gz") == []
 
 
 def test_pack_caps_works_per_author(tmp_path: Path) -> None:
