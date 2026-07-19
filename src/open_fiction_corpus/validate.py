@@ -11,6 +11,7 @@ from jsonschema import Draft202012Validator
 from .prepare import (
     APPROVED_SOURCE_HOSTS,
     CLEANERS,
+    EXTRACTOR_FORMATS,
     EXTRACTORS,
     MODERNIZERS,
     PROVIDER_EXTRACTORS,
@@ -175,6 +176,17 @@ def collect_errors(root: Path) -> list[str]:
                     errors.append(
                         f"{path}: provider '{provider}' requires an extractor "
                         f"from {sorted(compatible)}"
+                    )
+                consumable = EXTRACTOR_FORMATS.get(extractor_name)
+                source_format = source.get("format")
+                if (
+                    consumable is not None
+                    and isinstance(source_format, str)
+                    and source_format not in consumable
+                ):
+                    errors.append(
+                        f"{path}: extractor '{extractor_name}' cannot consume "
+                        f"source format '{source_format}'; supports {sorted(consumable)}"
                     )
 
         classification = manifest.get("classification")

@@ -164,6 +164,25 @@ def test_pack_caps_works_per_author(tmp_path: Path) -> None:
     assert ids == sorted(ids)
 
 
+def test_release_gate_requires_supported_fetch_adapter(tmp_path: Path) -> None:
+    """A fully reviewed, pinned work from an adapterless provider is
+    consistently excluded by both the planner and the build - it can
+    neither abort release preparation nor fail the build on missing text."""
+    from open_fiction_corpus.build import releasable_work_ids
+
+    ready = make_manifest("ready-book-en")
+    manual = make_manifest("manual-book-en", **{"source.provider": "manual-scan"})
+    root = make_root(
+        tmp_path, [(ready, "ready text ships"), (manual, "manually acquired text")]
+    )
+
+    assert releasable_work_ids(root) == ["ready-book-en"]
+
+    build_dataset(root)
+
+    assert [row["id"] for row in read_rows(root)] == ["ready-book-en"]
+
+
 def test_releasable_work_ids_ignores_blocked_and_broken_works(tmp_path: Path) -> None:
     from open_fiction_corpus.build import releasable_work_ids
 

@@ -22,11 +22,17 @@ def make_manifest(work_id: str, **overrides: Any) -> dict[str, Any]:
 
     Overrides use dotted keys, e.g. make_manifest("x", **{"rights.status": "uncertain"}).
     expected_min_words defaults to 3 so tests can use short texts, and the
-    manifest defaults to release-ready (human-reviewed, pinned, hashed) so
-    build tests pass the release-readiness gate unless a test opts out.
+    manifest defaults to release-ready: human-reviewed, pinned, hashed, and
+    a fully valid gutenberg source (release readiness requires a provider
+    with a fetch adapter). Tests opt out via overrides.
     """
     manifest = copy.deepcopy(BASE_MANIFEST)
     manifest["id"] = work_id
+    manifest["source"]["provider"] = "gutenberg"
+    manifest["source"]["identifier"] = "999"
+    manifest["source"]["url"] = "https://www.gutenberg.org/ebooks/999"
+    manifest["source"]["download_url"] = "https://www.gutenberg.org/cache/epub/999/pg999.txt"
+    manifest["processing"]["extractor"] = "gutenberg_txt_v1"
     manifest["processing"]["expected_min_words"] = 3
     manifest["processing"]["source_sha256"] = "0" * 64
     manifest["quality"]["status"] = "human-reviewed"

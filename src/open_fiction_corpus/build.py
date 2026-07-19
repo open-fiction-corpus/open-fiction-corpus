@@ -10,6 +10,7 @@ from typing import Any
 
 import yaml
 
+from .prepare import APPROVED_SOURCE_HOSTS
 from .validate import validate_repository
 
 
@@ -107,6 +108,12 @@ def _release_readiness_problems(manifest: dict[str, Any]) -> list[str]:
         problems.append("processing.source_sha256 is not recorded")
     if not quality.get("reviewed_text_sha256"):
         problems.append("quality.reviewed_text_sha256 is not recorded")
+    # Source acquisition is a release invariant: CI releases re-fetch every
+    # released work, so a provider without a fetch adapter cannot be
+    # release-ready even with everything else pinned and reviewed.
+    provider = manifest["source"]["provider"]
+    if provider not in APPROVED_SOURCE_HOSTS:
+        problems.append(f"source provider '{provider}' has no fetch adapter")
     return problems
 
 

@@ -45,6 +45,15 @@ PROVIDER_EXTRACTORS: dict[str, frozenset[str]] = {
     "gutenberg": frozenset({"gutenberg_txt_v1"}),
 }
 
+# Source formats each extractor can actually consume. prepare_work decodes
+# the raw artifact as UTF-8 text before extraction, so only plain-text
+# formats are consumable until binary/markup extractors exist. Enforced by
+# both ofc validate and prepare_work.
+EXTRACTOR_FORMATS: dict[str, frozenset[str]] = {
+    "gutenberg_txt_v1": frozenset({"txt"}),
+    "plain_text_v1": frozenset({"txt", "markdown"}),
+}
+
 
 def is_approved_download_url(url: str, hosts: frozenset[str]) -> bool:
     """True only for https URLs on an approved host at the default port 443.
@@ -426,6 +435,13 @@ def prepare_work(root: Path, work_id: str, *, skip_fetch: bool = False) -> Path:
         raise ValueError(
             f"{work_id}: provider '{provider}' requires an extractor from "
             f"{sorted(compatible)}, got '{processing['extractor']}'"
+        )
+    source_format = manifest["source"].get("format")
+    consumable = EXTRACTOR_FORMATS[processing["extractor"]]
+    if source_format not in consumable:
+        raise ValueError(
+            f"{work_id}: extractor '{processing['extractor']}' cannot consume "
+            f"source format {source_format!r}; supports {sorted(consumable)}"
         )
     # Provider-specific source validation runs before the fetch/skip split,
     # so --skip-fetch cannot prepare text from a manifest the fetch path

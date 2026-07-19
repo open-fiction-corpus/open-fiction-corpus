@@ -499,6 +499,31 @@ def test_gutenberg_binding_requires_exact_landing_page_and_txt(tmp_path: Path) -
         assert error is not None and expected in error, (change, error)
 
 
+def test_extractor_format_compatibility_is_enforced(tmp_path: Path) -> None:
+    from open_fiction_corpus.validate import collect_errors
+
+    # A non-Gutenberg provider escapes the Gutenberg binding, but the
+    # extractor still cannot consume a binary EPUB.
+    manifest = make_manifest(
+        "epub-book-en",
+        **{
+            "source.provider": "manual-scan",
+            "source.format": "epub",
+            "processing.extractor": "plain_text_v1",
+        },
+    )
+    root = make_root(tmp_path, [(manifest, None)])
+
+    joined = "\n".join(collect_errors(root))
+    assert "cannot consume source format 'epub'" in joined
+
+    raw_dir = root / "workspace" / "raw" / "epub-book-en"
+    raw_dir.mkdir(parents=True)
+    (raw_dir / "epub-book-en.epub").write_text("fake", encoding="utf-8")
+    with pytest.raises(ValueError, match="cannot consume source format"):
+        prepare_work(root, "epub-book-en", skip_fetch=True)
+
+
 def test_prepare_rejects_provider_incompatible_extractor(tmp_path: Path) -> None:
     manifest = make_manifest(
         "example-work",
@@ -584,7 +609,11 @@ def test_validate_requires_download_url_for_gutenberg(tmp_path: Path) -> None:
     )
     del missing["source"]["download_url"]
     trailing_slash = make_manifest(
-        "slash-book-en", **{"source.download_url": "https://example.invalid/dir/"}
+        "slash-book-en",
+        **{
+            "source.provider": "manual-scan",
+            "source.download_url": "https://example.invalid/dir/",
+        },
     )
     unapproved = make_manifest(
         "unapproved-book-en",
