@@ -82,10 +82,8 @@ jobs:
           EOF
 
       - name: Assemble release directory
-        env:
-          # The commit's own timestamp makes the build manifest and its
-          # checksum reproducible from the tagged revision alone.
-          COMMIT_ISO: ${{ github.event.head_commit.timestamp }}
+        # The commit's own timestamp makes the build manifest and its
+        # checksum reproducible from the tagged revision alone.
         run: >
           python scripts/assemble_release.py
           --version "${{ github.event.release.tag_name || github.ref_name }}"
