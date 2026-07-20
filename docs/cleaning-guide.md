@@ -22,6 +22,8 @@ Automatic rules belong in versioned cleaners and modernisers. Work-specific corr
 
 ## Running the pipeline
 
+After preparation, a human completes the [review checklist](review-checklist.md) — the rights and quality judgments that move a work from `candidate` to release-ready.
+
 `ofc prepare <work-id>` downloads the exact artifact named by the manifest's `source.download_url` into `workspace/raw/<work-id>/`, verifies its SHA-256 against `processing.source_sha256` before anything is written (and again on `--skip-fetch` runs, together with the provenance sidecar and the same provider-specific source validation the fetch path applies), then applies the manifest's extractor, cleaner, moderniser, and overrides, writing the canonical text to `workspace/clean/<work-id>.txt` and printing its SHA-256. After human review, that hash is pinned as `quality.reviewed_text_sha256`; the release build refuses any cleaned text that no longer matches it, so regenerated output always requires re-review. The clean file is written as explicit UTF-8 bytes with LF newlines, and the released dataset row contains byte-for-byte that reviewed file content. Neither workspace directory is ever committed.
 
 ## Source access policy
