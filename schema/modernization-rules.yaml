@@ -1,0 +1,25 @@
+# Whole-word spelling rules applied by the modernize_spelling_v1 pipeline step.
+#
+# Modernisation is deliberate project policy, never a silent cleaning side
+# effect: works opt in through processing.modernizer in their manifest, every
+# rule lives in this reviewed file, replacements preserve case, and
+# `ofc prepare` reports a per-rule replacement count for audit.
+#
+# Keep rules strictly to archaic spellings of words whose modern form is
+# unambiguous. Never add grammar, vocabulary, dialect, punctuation, or
+# multi-word rules (e.g. "any one" -> "anyone" is unsafe: "any one of them"
+# is correct modern English).
+rules:
+  to-day: today
+  to-morrow: tomorrow
+  to-night: tonight
+  connexion: connection
+  connexions: connections
+  reflexion: reflection
+  reflexions: reflections
+  inflexion: inflection
+  inflexions: inflections
+  shew: show
+  shews: shows
+  shewed: showed
+  shewn: shown

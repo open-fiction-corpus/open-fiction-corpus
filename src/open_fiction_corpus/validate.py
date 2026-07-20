@@ -8,6 +8,17 @@ from urllib.parse import urlsplit
 import yaml
 from jsonschema import Draft202012Validator
 
+from .prepare import (
+    APPROVED_SOURCE_HOSTS,
+    CLEANERS,
+    EXTRACTOR_FORMATS,
+    EXTRACTORS,
+    MODERNIZERS,
+    PROVIDER_EXTRACTORS,
+    gutenberg_artifact_error,
+    is_approved_download_url,
+)
+
 
 def _load_yaml(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
@@ -53,14 +64,17 @@ def collect_errors(root: Path) -> list[str]:
 
     schema_path = root / "schema" / "work.schema.json"
     pack_schema_path = root / "schema" / "pack.schema.json"
+    overrides_schema_path = root / "schema" / "overrides.schema.json"
     genres_path = root / "schema" / "genres.yaml"
     rights_path = root / "schema" / "rights-statuses.yaml"
     flags_path = root / "schema" / "quality-flags.yaml"
 
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
     pack_schema = json.loads(pack_schema_path.read_text(encoding="utf-8"))
+    overrides_schema = json.loads(overrides_schema_path.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema)
     pack_validator = Draft202012Validator(pack_schema)
+    overrides_validator = Draft202012Validator(overrides_schema)
     genres_doc = _load_yaml(genres_path)
     rights_doc = _load_yaml(rights_path)
     flags_doc = _load_yaml(flags_path)
@@ -111,9 +125,69 @@ def collect_errors(root: Path) -> list[str]:
 
         source = manifest.get("source")
         if isinstance(source, dict):
-            source_url = source.get("url")
-            if isinstance(source_url, str) and not _is_absolute_http_url(source_url):
-                errors.append(f"{path}: source.url must be an absolute http(s) URL")
+            for field in ("url", "download_url"):
+                value = source.get(field)
+                if isinstance(value, str) and not _is_absolute_http_url(value):
+                    errors.append(f"{path}: source.{field} must be an absolute http(s) URL")
+
+            download_url = source.get("download_url")
+            provider = source.get("provider")
+            # Providers with a fetch adapter need the exact artifact named up
+            # front, so a manifest ofc prepare would reject fails validation.
+            if provider in APPROVED_SOURCE_HOSTS and not isinstance(download_url, str):
+                errors.append(
+                    f"{path}: source.download_url is required for provider '{provider}'"
+                )
+            if isinstance(download_url, str) and _is_absolute_http_url(download_url):
+                if not urlsplit(download_url).path.rpartition("/")[2]:
+                    errors.append(f"{path}: source.download_url must end in a file name")
+                approved = APPROVED_SOURCE_HOSTS.get(provider)
+                if approved is not None and not is_approved_download_url(
+                    download_url, approved
+                ):
+                    errors.append(
+                        f"{path}: source.download_url must use https on an "
+                        f"approved '{provider}' host {sorted(approved)} on port 443"
+                    )
+            if provider == "gutenberg":
+                binding_error = gutenberg_artifact_error(source)
+                if binding_error:
+                    errors.append(f"{path}: {binding_error}")
+
+            processing = manifest.get("processing")
+            if isinstance(processing, dict):
+                for field, registry in (
+                    ("extractor", EXTRACTORS),
+                    ("cleaner", CLEANERS),
+                    ("modernizer", MODERNIZERS),
+                ):
+                    name = processing.get(field)
+                    if isinstance(name, str) and name not in registry:
+                        errors.append(
+                            f"{path}: unknown {field} {name!r}; known: {sorted(registry)}"
+                        )
+                compatible = PROVIDER_EXTRACTORS.get(provider)
+                extractor_name = processing.get("extractor")
+                if (
+                    compatible is not None
+                    and isinstance(extractor_name, str)
+                    and extractor_name not in compatible
+                ):
+                    errors.append(
+                        f"{path}: provider '{provider}' requires an extractor "
+                        f"from {sorted(compatible)}"
+                    )
+                consumable = EXTRACTOR_FORMATS.get(extractor_name)
+                source_format = source.get("format")
+                if (
+                    consumable is not None
+                    and isinstance(source_format, str)
+                    and source_format not in consumable
+                ):
+                    errors.append(
+                        f"{path}: extractor '{extractor_name}' cannot consume "
+                        f"source format '{source_format}'; supports {sorted(consumable)}"
+                    )
 
         classification = manifest.get("classification")
         if isinstance(classification, dict):
@@ -147,6 +221,18 @@ def collect_errors(root: Path) -> list[str]:
                 unknown_flags = work_flags - quality_flags
                 if unknown_flags:
                     errors.append(f"{path}: unknown quality flags: {sorted(unknown_flags)}")
+
+    for overrides_path in sorted((root / "overrides").glob("*.yaml")):
+        try:
+            overrides = _load_yaml(overrides_path)
+        except Exception as exc:
+            errors.append(f"{overrides_path}: cannot parse YAML: {exc}")
+            continue
+        _append_schema_errors(errors, overrides_path, overrides_validator, overrides)
+        if overrides_path.stem not in seen_ids:
+            errors.append(
+                f"{overrides_path}: no work manifest with id '{overrides_path.stem}'"
+            )
 
     seen_pack_names: dict[str, Path] = {}
     for pack_path in sorted((root / "packs").rglob("*.yaml")):
@@ -197,6 +283,23 @@ def collect_errors(root: Path) -> list[str]:
             unknown = excluded_flags - quality_flags
             if unknown:
                 errors.append(f"{pack_path}: unknown quality flags: {sorted(unknown)}")
+
+        include_works = _string_set(pack.get("include_works"))
+        exclude_works = _string_set(pack.get("exclude_works"))
+        for field, listed in (("include_works", include_works), ("exclude_works", exclude_works)):
+            if listed is not None:
+                unknown = listed - set(seen_ids)
+                if unknown:
+                    errors.append(
+                        f"{pack_path}: {field} lists unknown work ids: {sorted(unknown)}"
+                    )
+        if include_works and exclude_works:
+            contradictory = include_works & exclude_works
+            if contradictory:
+                errors.append(
+                    f"{pack_path}: work ids in both include_works and "
+                    f"exclude_works: {sorted(contradictory)}"
+                )
 
     return errors
 

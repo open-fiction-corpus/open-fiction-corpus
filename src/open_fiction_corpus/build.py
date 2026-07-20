@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import gzip
+import hashlib
+import io
 import json
 import os
 import tempfile
@@ -9,6 +11,7 @@ from typing import Any
 
 import yaml
 
+from .prepare import APPROVED_SOURCE_HOSTS
 from .validate import validate_repository
 
 
@@ -44,6 +47,16 @@ def _find_pack(root: Path, name: str) -> dict[str, Any]:
 
 
 def _pack_selects(pack: dict[str, Any], manifest: dict[str, Any]) -> bool:
+    # Hand-picked membership: exclude_works always removes a work, and when
+    # include_works is present only listed works are eligible. Both operate
+    # after the unconditional rights and release-readiness gates, so id
+    # lists can only ever narrow a pack, never reintroduce a blocked work.
+    work_id = manifest["id"]
+    if work_id in set(pack.get("exclude_works", [])):
+        return False
+    include_works = pack.get("include_works")
+    if include_works is not None and work_id not in include_works:
+        return False
     filters = pack.get("filters", {})
     language = filters.get("language")
     if language and manifest["language"] != language:
@@ -83,6 +96,48 @@ def _apply_author_cap(
     return selected
 
 
+def _release_readiness_problems(manifest: dict[str, Any]) -> list[str]:
+    problems = []
+    quality = manifest["quality"]
+    if quality["status"] != "human-reviewed":
+        problems.append(f"quality status is '{quality['status']}', not 'human-reviewed'")
+    if not quality.get("reviewed_by"):
+        problems.append("quality.reviewed_by records no reviewer")
+    if manifest["source"]["revision"] == "unpinned":
+        problems.append("source.revision is unpinned")
+    if not manifest.get("processing", {}).get("source_sha256"):
+        problems.append("processing.source_sha256 is not recorded")
+    if not quality.get("reviewed_text_sha256"):
+        problems.append("quality.reviewed_text_sha256 is not recorded")
+    # Source acquisition is a release invariant: CI releases re-fetch every
+    # released work, so a provider without a fetch adapter cannot be
+    # release-ready even with everything else pinned and reviewed.
+    provider = manifest["source"]["provider"]
+    if provider not in APPROVED_SOURCE_HOSTS:
+        problems.append(f"source provider '{provider}' has no fetch adapter")
+    return problems
+
+
+def releasable_work_ids(root: Path) -> list[str]:
+    """Work ids that pass the same rights and readiness gates as the build.
+
+    Release preparation fetches only these works, so a non-releasable,
+    unpinned, or unfetchable catalogue entry can never block an unrelated
+    release.
+    """
+    root = root.resolve()
+    releasable = _releasable_statuses(root)
+    selected = []
+    for path in sorted((root / "catalog" / "works").glob("*.yaml")):
+        manifest = _load_yaml(path)
+        if manifest["rights"]["status"] not in releasable:
+            continue
+        if _release_readiness_problems(manifest):
+            continue
+        selected.append(manifest["id"])
+    return selected
+
+
 def _dataset_row(manifest: dict[str, Any], text: str) -> dict[str, Any]:
     return {
         "id": manifest["id"],
@@ -103,7 +158,11 @@ def _dataset_row(manifest: dict[str, Any], text: str) -> dict[str, Any]:
 
 
 def build_dataset(
-    root: Path, *, pack: str | None = None, allow_missing_text: bool = False
+    root: Path,
+    *,
+    pack: str | None = None,
+    allow_missing_text: bool = False,
+    allow_unreviewed: bool = False,
 ) -> None:
     root = root.resolve()
     if not validate_repository(root):
@@ -124,6 +183,23 @@ def build_dataset(
             continue
         gated.append(manifest)
 
+    # The release-readiness gate keeps unreviewed or unpinned works out of
+    # every default build, including the release workflow's whole-catalogue
+    # build. Development builds can opt out explicitly.
+    if not allow_unreviewed:
+        ready = []
+        for manifest in gated:
+            problems = _release_readiness_problems(manifest)
+            if problems:
+                print(
+                    f"Skipping {manifest['id']}: not release-ready "
+                    f"({'; '.join(problems)}). Use --allow-unreviewed for "
+                    "development builds."
+                )
+                continue
+            ready.append(manifest)
+        gated = ready
+
     if pack is not None:
         pack_doc = _find_pack(root, pack)
         gated = [manifest for manifest in gated if _pack_selects(pack_doc, manifest)]
@@ -142,7 +218,14 @@ def build_dataset(
 
     written = 0
     try:
-        with gzip.open(temporary_path, "wt", encoding="utf-8", newline="\n") as output:
+        # Deterministic gzip: no stored filename and a fixed mtime, so two
+        # builds from identical inputs produce byte-identical output and the
+        # release checksum is reproducible from the tagged revision.
+        with open(temporary_path, "wb") as raw_output, gzip.GzipFile(
+            fileobj=raw_output, mode="wb", filename="", mtime=0
+        ) as gzip_output, io.TextIOWrapper(
+            gzip_output, encoding="utf-8", newline="\n"
+        ) as output:
             for manifest in gated:
                 text_path = root / "workspace" / "clean" / f"{manifest['id']}.txt"
                 if not text_path.exists():
@@ -151,7 +234,19 @@ def build_dataset(
                     raise FileNotFoundError(
                         f"Missing cleaned text for {manifest['id']}: {text_path}"
                     )
-                text = text_path.read_text(encoding="utf-8").strip()
+                # The released row text is exactly the decoded file content,
+                # so the reviewed hash covers the released value literally.
+                text_bytes = text_path.read_bytes()
+                text = text_bytes.decode("utf-8")
+                if not allow_unreviewed:
+                    reviewed = manifest["quality"].get("reviewed_text_sha256")
+                    digest = hashlib.sha256(text_bytes).hexdigest()
+                    if digest != reviewed:
+                        raise ValueError(
+                            f"{manifest['id']}: cleaned text sha256 {digest} does not "
+                            f"match quality.reviewed_text_sha256 {reviewed}; the text "
+                            "changed after review and must be re-reviewed and repinned"
+                        )
                 minimum = manifest.get("processing", {}).get("expected_min_words")
                 if minimum and len(text.split()) < minimum:
                     raise ValueError(

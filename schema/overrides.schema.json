@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-fiction-corpus.example/schema/overrides.schema.json",
+  "title": "Open Fiction Corpus work-specific cleaning overrides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["corrections"],
+  "properties": {
+    "corrections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["find", "replace", "count", "note"],
+        "properties": {
+          "find": {"type": "string", "minLength": 1},
+          "replace": {"type": "string"},
+          "count": {"type": "integer", "minimum": 1},
+          "note": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

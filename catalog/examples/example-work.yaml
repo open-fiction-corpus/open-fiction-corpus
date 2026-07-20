@@ -19,6 +19,7 @@ source:
   provider: example-provider
   identifier: example-work-123
   url: https://example.invalid/work/123
+  download_url: https://example.invalid/work/123/plain.txt
   revision: pinned-revision-or-commit
   format: txt
 
@@ -51,9 +52,11 @@ quality:
   flags: []
   reviewed_by: []
   review_notes: Not yet reviewed.
+  reviewed_text_sha256: null
 
 processing:
   extractor: plain_text_v1
   cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
   expected_min_words: 30000
   source_sha256: null

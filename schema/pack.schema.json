@@ -51,6 +51,17 @@
       "uniqueItems": true,
       "items": {"type": "string"}
     },
+    "include_works": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+    },
+    "exclude_works": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+    },
     "selection": {
       "type": "object",
       "additionalProperties": false,

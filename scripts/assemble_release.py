@@ -5,8 +5,15 @@ the release layout documented in docs/hugging-face.md, and writes a build
 manifest and checksums so every release is traceable to an exact catalogue
 commit.
 
+The output is byte-reproducible: `ofc build` writes gzip with no stored
+filename and a fixed mtime, and the build timestamp comes from an explicit
+input (--built-at or SOURCE_DATE_EPOCH) rather than the wall clock, so the
+same version/commit/inputs reproduce identical archives, manifest, and
+checksums.
+
 Usage:
-    python scripts/assemble_release.py --version v0.1.0 --commit <sha>
+    python scripts/assemble_release.py --version v0.1.0 --commit <sha> \
+        --built-at 2026-07-20T00:00:00+00:00
 """
 
 from __future__ import annotations
@@ -16,6 +23,7 @@ import datetime
 import gzip
 import hashlib
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -26,13 +34,36 @@ def row_ids(path: Path) -> list[str]:
         return [json.loads(line)["id"] for line in handle]
 
 
+def _built_at(explicit: str | None) -> str:
+    """A reproducible build timestamp from an explicit input, never wall clock.
+
+    Priority: --built-at, then SOURCE_DATE_EPOCH, so the checksummed manifest
+    is recreatable from the tagged revision and release inputs alone.
+    """
+    if explicit is not None:
+        return explicit
+    epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    if epoch is not None:
+        moment = datetime.datetime.fromtimestamp(int(epoch), datetime.UTC)
+        return moment.isoformat(timespec="seconds")
+    raise SystemExit(
+        "error: pass --built-at or set SOURCE_DATE_EPOCH so the release is "
+        "reproducible; wall-clock time would make checksums nondeterministic"
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", required=True, help="Release version, e.g. v0.1.0")
     parser.add_argument("--commit", required=True, help="Catalogue commit SHA")
+    parser.add_argument(
+        "--built-at",
+        help="Reproducible ISO build timestamp; defaults to SOURCE_DATE_EPOCH",
+    )
     parser.add_argument("--dist", type=Path, default=Path("dist"))
     parser.add_argument("--output", type=Path, default=Path("dist/release"))
     args = parser.parse_args()
+    built_at = _built_at(args.built_at)
 
     books = args.dist / "books.jsonl.gz"
     if not books.exists():
@@ -62,7 +93,7 @@ def main() -> int:
     manifest = {
         "version": args.version,
         "catalogue_commit": args.commit,
-        "built_at": datetime.datetime.now(datetime.UTC).isoformat(timespec="seconds"),
+        "built_at": built_at,
         "files": files,
     }
     manifest_path = args.output / "release" / "build-manifest.json"

@@ -1,0 +1,92 @@
+id: h-g-wells-the-time-machine-en
+title: The Time Machine
+language: en
+form: novella
+
+authors:
+  - name: H. G. Wells
+    birth_year: 1866
+    death_year: 1946
+
+contributors: []
+
+publication:
+  original_year: 1895
+  edition_year: null
+
+source:
+  provider: gutenberg
+  identifier: "35"
+  url: https://www.gutenberg.org/ebooks/35
+  download_url: https://www.gutenberg.org/cache/epub/35/pg35.txt
+  revision: unpinned
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - The work was first published in 1895 (Henry Holt, New York, 7 May;
+      Heinemann, London, 29 May); pre-1930 first publication places it in
+      the United States public domain, and Project Gutenberg distributes
+      ebook 35 with a US public-domain clearance.
+    - H. G. Wells died on 13 August 1946, so life+70 protection expired on
+      1 January 2017 in the UK and EU member states, with one identified
+      Article 10 (Directive 2006/116/EC) exception - Spain's transitional
+      80-year post-mortem term (1879 Act, authors deceased before
+      7 December 1987, held applicable to foreign authors by the Spanish
+      Supreme Court) protects the work in Spain until 1 January 2027.
+    - All known textual lineages of the work (1895 Holt, 1895 Heinemann,
+      the 1894-95 serials, and Wells's own 1924 Atlantic Edition revision,
+      which the named chapters of ebook 35 suggest) are authored by Wells
+      alone and were published before 1930, so the US and life+70
+      conclusions hold regardless of which lineage(s) the Gutenberg
+      transcription follows.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file, so no separate transcription right is expected once the
+      artifact inspection below confirms its contents.
+  licence: null
+  notes: The rights analysis is complete except for one check that
+    requires the pinned artifact - inspect pg35.txt to confirm it contains
+    only Wells's text plus removable Gutenberg boilerplate, with no
+    third-party introductions, notes, or annotations. The status stays
+    uncertain until that inspection is recorded. Because releases are
+    globally accessible and the build has no jurisdiction-scoped
+    distribution, the work must remain non-releasable until 1 January 2027
+    (expiry of the Spanish 80-year term) unless an enforceable regional
+    distribution mechanism is implemented first; a dataset-card notice is
+    not sufficient. Gutenberg boilerplate and platform metadata are
+    removed during extraction.
+
+classification:
+  primary_genre: science-fiction
+  genres: [science-fiction, adventure]
+  subgenres: [time-travel, scientific-romance]
+  audience: [adult]
+  pov: [first-person]
+  tense: [past]
+  style_tags: [frame-narrative]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Pilot work; cleaned text not yet fetched or human-reviewed,
+    and the exact source transcription is not yet rights-cleared for EU/UK.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 30000
+  source_sha256: null

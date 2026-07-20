@@ -1,0 +1,51 @@
+name: Prepare work
+
+# Fetches, extracts, cleans, and modernises one catalogued work, printing
+# the hashes needed for pinning. Run it from the Actions tab.
+#
+# This repository is public, and workflow artifacts are downloadable by
+# anyone with read access - so this workflow NEVER uploads book text. Works
+# under preparation are often not yet releasable, and a public artifact
+# would be a redistribution path that bypasses the rights gate. Only the
+# provenance sidecar (provider, identifier, URL, digest - metadata, no
+# text) is uploaded.
+#
+# The log prints the raw source SHA-256 (pin as processing.source_sha256)
+# and the cleaned text SHA-256 (pin as quality.reviewed_text_sha256 after
+# review). The rights inspection of the raw artifact and the quality
+# review of the cleaned text require the texts themselves: run
+# `ofc prepare <work-id>` locally for those - both files land under the
+# ignored workspace/ directory.
+
+on:
+  workflow_dispatch:
+    inputs:
+      work_id:
+        description: Work id (manifest filename without .yaml)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e .
+      - run: ofc validate
+      - name: Prepare the work
+        env:
+          WORK_ID: ${{ inputs.work_id }}
+        run: ofc prepare "$WORK_ID"
+      - name: Upload provenance metadata (never book text)
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-${{ inputs.work_id }}
+          path: workspace/raw/${{ inputs.work_id }}/*.provenance.json
+          if-no-files-found: error

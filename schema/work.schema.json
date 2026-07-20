@@ -36,6 +36,7 @@
         "provider": {"type": "string", "minLength": 1},
         "identifier": {"type": "string", "minLength": 1},
         "url": {"type": "string", "format": "uri"},
+        "download_url": {"type": "string", "format": "uri"},
         "revision": {"type": "string", "minLength": 1},
         "format": {"enum": ["txt", "xhtml", "html", "epub", "markdown"]}
       }
@@ -82,7 +83,8 @@
         "status": {"enum": ["candidate", "automatically-validated", "human-reviewed", "rejected"]},
         "flags": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
         "reviewed_by": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
-        "review_notes": {"type": "string"}
+        "review_notes": {"type": "string"},
+        "reviewed_text_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
       }
     },
     "processing": {
@@ -91,6 +93,7 @@
       "properties": {
         "extractor": {"type": "string"},
         "cleaner": {"type": "string"},
+        "modernizer": {"type": "string"},
         "expected_min_words": {"type": "integer", "minimum": 1},
         "source_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
       }

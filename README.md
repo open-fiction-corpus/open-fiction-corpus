@@ -42,11 +42,13 @@ pip install -e ".[dev]"
 ofc validate
 ```
 
-To test the build pipeline, place a cleaned UTF-8 novel at:
+To fetch and clean a catalogued work into the ignored `workspace/` directory:
 
-```text
-workspace/clean/<work-id>.txt
+```bash
+ofc prepare h-g-wells-the-time-machine-en
 ```
+
+This downloads the pinned source, strips platform boilerplate, unwraps hard-wrapped paragraphs, applies the deliberate spelling-modernisation rules from `schema/modernization-rules.yaml`, and applies any work-specific corrections from `overrides/` — see [the cleaning guide](docs/cleaning-guide.md). Alternatively, place a cleaned UTF-8 novel at `workspace/clean/<work-id>.txt` yourself.
 
 Then run:
 
@@ -54,15 +56,17 @@ Then run:
 ofc build
 ```
 
-Works whose rights status is not marked `releasable` in `schema/rights-statuses.yaml` (for example `uncertain` or `excluded`) are always skipped. To build a single pack's selection instead of the whole catalogue:
+Works whose rights status is not marked `releasable` in `schema/rights-statuses.yaml` (for example `uncertain` or `excluded`) are always skipped. Works that are not yet release-ready — quality status below `human-reviewed`, no recorded reviewer, an unpinned source revision, a missing source hash, or no reviewed-text hash — are also skipped, and the build refuses to ship a cleaned text whose hash no longer matches the `quality.reviewed_text_sha256` the reviewer pinned; pass `--allow-unreviewed` for local development builds only. To build a single pack's selection instead of the whole catalogue:
 
 ```bash
 ofc build --pack general-fiction
 ```
 
+Packs select works by criteria (language, form, genres, quality status, origin, excluded quality flags, per-author cap) and can also pin membership by work id: `exclude_works` always removes the listed works, and when `include_works` is present only the listed works are eligible — useful for hand-curated datasets. Id lists can only narrow a pack; the rights and release-readiness gates always apply first.
+
 ## Current status
 
-The project is in its initial scaffolding phase. No books are included yet.
+The project is in its initial scaffolding phase. The first pilot work, *The Time Machine*, is moving through the pipeline end to end; no dataset has been released yet.
 
 The planned reading list and processing status are tracked in the **[Book Backlog](docs/book-backlog.md)**. Book suggestions are open now; see **[Suggesting a book](docs/suggesting-a-book.md)** for a nontechnical contribution guide.
 

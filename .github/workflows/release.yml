@@ -45,12 +45,29 @@ jobs:
       - run: pytest
       - run: ofc validate
 
-      # TODO(source adapters): fetch the pinned upstream sources and produce
-      # cleaned texts under workspace/clean/ before building. Until adapters
-      # exist, the build tolerates missing texts and the guard below refuses
-      # to publish a release with zero rows.
+      # Fetch and clean only the works the build will actually release:
+      # the same unconditional rights and release-readiness gates select
+      # the preparation plan, so a non-releasable or unfetchable catalogue
+      # entry can never block an unrelated release, and the workflow makes
+      # exactly one upstream request per released work.
+      - name: Prepare release-selected source texts
+        run: |
+          python - <<'EOF'
+          from pathlib import Path
+
+          from open_fiction_corpus.build import releasable_work_ids
+          from open_fiction_corpus.prepare import prepare_work
+
+          root = Path(".")
+          selected = releasable_work_ids(root)
+          if not selected:
+              print("No release-ready works to prepare.")
+          for work_id in selected:
+              prepare_work(root, work_id)
+          EOF
+
       - name: Build whole-catalogue export
-        run: ofc build --allow-missing-text
+        run: ofc build
 
       - name: Build pack exports
         run: |
@@ -61,17 +78,17 @@ jobs:
 
           for path in sorted(pathlib.Path("packs").rglob("*.yaml")):
               name = yaml.safe_load(path.read_text(encoding="utf-8"))["name"]
-              subprocess.run(
-                  ["ofc", "build", "--pack", name, "--allow-missing-text"],
-                  check=True,
-              )
+              subprocess.run(["ofc", "build", "--pack", name], check=True)
           EOF
 
       - name: Assemble release directory
+        # The commit's own timestamp makes the build manifest and its
+        # checksum reproducible from the tagged revision alone.
         run: >
           python scripts/assemble_release.py
           --version "${{ github.event.release.tag_name || github.ref_name }}"
           --commit "${{ github.sha }}"
+          --built-at "$(git show -s --format=%cI ${{ github.sha }})"
 
       - name: Refuse to publish an empty dataset
         if: ${{ github.event_name == 'release' || inputs.dry_run == false }}
