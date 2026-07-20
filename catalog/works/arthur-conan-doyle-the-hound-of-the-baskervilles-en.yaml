@@ -1,0 +1,95 @@
+id: arthur-conan-doyle-the-hound-of-the-baskervilles-en
+title: The Hound of the Baskervilles
+language: en
+form: novel
+
+authors:
+  - name: Arthur Conan Doyle
+    birth_year: 1859
+    death_year: 1930
+
+contributors:
+  # Project Gutenberg transcription/production credits from the ebook 2852
+  # metadata and the pg2852.txt header. Recorded for provenance; a faithful
+  # transcription with trivial corrections is not separately rights-bearing
+  # (see rights.evidence).
+  - name: Shreevatsa R
+    role: other
+  - name: David Widger
+    role: other
+
+publication:
+  original_year: 1902
+  edition_year: null
+
+source:
+  provider: gutenberg
+  identifier: "2852"
+  url: https://www.gutenberg.org/ebooks/2852
+  download_url: https://www.gutenberg.org/cache/epub/2852/pg2852.txt
+  revision: unpinned
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - The work was first published in 1901-1902 (serialised in The Strand
+      Magazine, August 1901 to April 1902; book edition George Newnes,
+      London, March 1902); pre-1930 first publication places it in the
+      United States public domain, and Project Gutenberg distributes ebook
+      2852 with a US public-domain clearance. The Conan Doyle estate's US
+      copyright claims concerned only the final Sherlock Holmes stories
+      published 1923-1927, not this 1902 novel.
+    - Arthur Conan Doyle died on 7 July 1930, so life+70 protection expired
+      on 1 January 2001 in the UK and EU member states. Spain's transitional
+      80-year post-mortem term (1879 Act, authors deceased before 7 December
+      1987) expired on 1 January 2011, so unlike a 1946-death author there
+      is no outstanding Article 10 (Directive 2006/116/EC) exception.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file, so no separate transcription right is expected once the
+      artifact inspection below confirms its contents.
+  licence: null
+  notes: The underlying 1902 work is public domain in every reviewed
+    jurisdiction, including Spain. The status stays uncertain only until the
+    exact Gutenberg transcription (ebook 2852) is inspected to confirm it
+    contains solely Doyle's text plus removable Gutenberg boilerplate, with
+    no third-party introductions, notes, or annotations; on a clean
+    inspection it flips to public-domain with US, UK, and EU all verified
+    (no jurisdiction carve-out). Gutenberg boilerplate and platform metadata
+    are removed during extraction.
+
+classification:
+  primary_genre: mystery
+  genres: [mystery]
+  subgenres: [detective]
+  audience: [adult]
+  pov: [first-person]
+  tense: [past]
+  style_tags: [dialogue-heavy]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Second pilot work; cleaned text not yet fetched or
+    human-reviewed. Unlike The Time Machine this work is public domain in
+    all reviewed jurisdictions, so it is the intended first public release
+    once prepared and reviewed.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 55000
+  source_sha256: null

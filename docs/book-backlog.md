@@ -40,12 +40,12 @@ A work is considered **added** only when:
 | Candidate | P0 | The Autobiography of an Ex-Colored Man | James Weldon Johnson | Identity, social observation, direct first-person narration |
 | Candidate | P0 | The Enchanted April | Elizabeth von Arnim | Warm ensemble fiction, transformation, comic observation |
 | Candidate | P0 | The Moonstone | Wilkie Collins | Clue construction, testimony, multiple narrators |
-| Candidate | P0 | The Hound of the Baskervilles | Arthur Conan Doyle | Investigation, atmosphere, action, deduction |
+| In progress | P0 | [The Hound of the Baskervilles](../catalog/works/arthur-conan-doyle-the-hound-of-the-baskervilles-en.yaml) | Arthur Conan Doyle | Investigation, atmosphere, action, deduction |
 | Candidate | P0 | The Innocence of Father Brown | G. K. Chesterton | Compact mysteries, reversals, moral reasoning |
 | Candidate | P0 | The Leavenworth Case | Anna Katharine Green | Early detective structure and clue handling |
 | Candidate | P0 | Frankenstein | Mary Shelley | Framed narration, moral conflict, speculative gothic |
 | Candidate | P0 | Dracula | Bram Stoker | Epistolary structure, suspense, ensemble threat response |
-| Candidate | P0 | The Time Machine | H. G. Wells | Compact speculative exposition and adventure pacing |
+| In progress | P0 | [The Time Machine](../catalog/works/h-g-wells-the-time-machine-en.yaml) | H. G. Wells | Compact speculative exposition and adventure pacing (parked non-releasable until 2027; see rights notes) |
 | Candidate | P0 | The War of the Worlds | H. G. Wells | Crisis escalation, observation, survival narrative |
 | Candidate | P0 | Phantastes | George MacDonald | Dreamlike fantasy imagery and symbolic journey |
 | Candidate | P0 | The Wonderful Wizard of Oz | L. Frank Baum | Clear quest structure and accessible fantasy narration |
