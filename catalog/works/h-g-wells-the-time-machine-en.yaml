@@ -19,7 +19,7 @@ source:
   identifier: "35"
   url: https://www.gutenberg.org/ebooks/35
   download_url: https://www.gutenberg.org/cache/epub/35/pg35.txt
-  revision: unpinned
+  revision: "2026-06-16"
   format: txt
 
 rights:
@@ -89,4 +89,4 @@ processing:
   cleaner: fiction_clean_v1
   modernizer: modernize_spelling_v1
   expected_min_words: 30000
-  source_sha256: null
+  source_sha256: 2892e919000e17c83e1dac51b30f4675db50536b644d7579fe8a89bb399a9bdc

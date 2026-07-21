@@ -27,7 +27,7 @@ source:
   identifier: "2852"
   url: https://www.gutenberg.org/ebooks/2852
   download_url: https://www.gutenberg.org/cache/epub/2852/pg2852.txt
-  revision: unpinned
+  revision: "2025-08-04"
   format: txt
 
 rights:
@@ -92,4 +92,4 @@ processing:
   cleaner: fiction_clean_v1
   modernizer: modernize_spelling_v1
   expected_min_words: 55000
-  source_sha256: null
+  source_sha256: f7c8c68729d32a5f6a04a5a9ad73d184176e66a6c76b3992c41c1ab47b427d98
