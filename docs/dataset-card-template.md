@@ -20,6 +20,7 @@ tags:
   - novels
   - long-form
   - continued-pretraining
+  - markdown-lite
 size_categories:
   - {{SIZE_CATEGORY}} # e.g. n<1K — one row is one complete work
 ---
@@ -58,6 +59,8 @@ The catalogue, schemas, cleaning rules, and build code live in the GitHub reposi
 | `text` | The complete cleaned text of the work |
 
 The text contains **no model-specific BOS/EOS strings** and is not pre-tokenized. Training code should append the selected tokenizer's real EOS token and create context windows itself, without crossing document boundaries unless the framework supports document-aware packing.
+
+**Text format: `markdown-lite`.** The only markdown syntax used in `text` is underscore-delimited italics (`_word_`), carried over verbatim from the source transcription's emphasis convention — no other markdown (headings, bold, links, lists) is meaningful. Square brackets in the text are original content (an author's alternate chapter subtitle, an inline footnote from the print edition) and are never corpus-generated placeholders. See [dataset-format.md](https://github.com/{{GITHUB_OWNER}}/open-fiction-corpus/blob/main/docs/dataset-format.md#text-formatting-conventions-text_format-markdown-lite) for the full convention.
 
 ## Provenance and rights
 

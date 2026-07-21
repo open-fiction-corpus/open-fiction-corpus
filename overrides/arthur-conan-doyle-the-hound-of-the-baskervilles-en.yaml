@@ -1,0 +1,11 @@
+corrections:
+  - find: "Contents\n\n\nChapter 1 Mr. Sherlock Holmes Chapter 2 The Curse of the Baskervilles Chapter 3 The Problem Chapter 4 Sir Henry Baskerville Chapter 5 Three Broken Threads Chapter 6 Baskerville Hall Chapter 7 The Stapletons of Merripit House Chapter 8 First Report of Dr. Watson Chapter 9 The Light upon the Moor [Second Report of Dr. Watson] Chapter 10 Extract from the Diary of Dr. Watson Chapter 11 The Man on the Tor Chapter 12 Death on the Moor Chapter 13 Fixing the Nets Chapter 14 The Hound of the Baskervilles Chapter 15 A Retrospection\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Removes the generated table of contents (per docs/cleaning-guide.md,
+      "generated tables of contents" are normally stripped). The cleaner
+      unwraps it into one run-on line since it has no paragraph structure of
+      its own; left in place it would train a model to open a novel with a
+      chapter index. The dedication to Robinson is kept as Doyle's own front
+      matter.

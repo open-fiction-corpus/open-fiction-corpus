@@ -1,0 +1,18 @@
+corrections:
+  - find: "CONTENTS\n\nI Introduction II The Machine III The Time Traveller Returns IV Time Travelling V In the Golden Age VI The Sunset of Mankind VII A Sudden Shock VIII Explanation IX The Morlocks X When Night Came XI The Palace of Green Porcelain XII In the Darkness XIII The Trap of the White Sphinx XIV The Further Vision XV The Time Traveller’s Return XVI After the Story Epilogue\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Removes the generated table of contents (per docs/cleaning-guide.md,
+      "generated tables of contents" are normally stripped). The cleaner
+      unwraps it into one run-on line since it has no paragraph structure of
+      its own; left in place it would train a model to open a novel with a
+      chapter index.
+  - find: "‘area‘"
+    replace: "‘area’"
+    count: 1
+    note: >-
+      Gutenberg transcription typo: both quotation marks around 'area' are
+      left single quotation marks (U+2018) instead of an opening/closing
+      pair. Corrects the second mark to a right single quotation mark
+      (U+2019) to match standard pairing; the word itself is unchanged.
