@@ -8,6 +8,8 @@ Normally remove platform boilerplate, navigation, publisher advertising, scannin
 
 Do not silently modernise spelling, grammar, punctuation, or vocabulary. Do not paraphrase. Do not use an LLM to rewrite or 'improve' source prose.
 
+Punctuation is normally preserved exactly as transcribed, including stylistic choices (dashes standing in for unnamed people, spaced-out emphasis, and similar). The one narrow exception is unambiguous typographic *variants* of the same mark — for example an edition rendering an ellipsis as a spaced `. . .` in one place and the single `…` character everywhere else. Normalizing those is allowed, but only through the same auditable, per-work mechanisms as any other correction (a versioned rule or an `overrides/<work-id>.yaml` entry with a `note` that says so plainly), never silently and never by rewriting wording. The corpus's own convention is `…` (U+2026), not `. . .` or `...`.
+
 ## Spelling modernisation
 
 Archaic spellings are modernised deliberately, never as a silent cleaning side effect. A work opts in through `processing.modernizer` in its manifest; the versioned moderniser applies only the whole-word rules reviewed into [`schema/modernization-rules.yaml`](../schema/modernization-rules.yaml) (for example `to-day` → `today`, `connexion` → `connection`), preserves case, and reports a per-rule replacement count when `ofc prepare` runs. Grammar, vocabulary, dialect, punctuation, and multi-word phrases are never modernised. A work processed without a moderniser keeps its original spellings.

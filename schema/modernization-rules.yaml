@@ -6,9 +6,15 @@
 # `ofc prepare` reports a per-rule replacement count for audit.
 #
 # Keep rules strictly to archaic spellings of words whose modern form is
-# unambiguous. Never add grammar, vocabulary, dialect, punctuation, or
+# unambiguous, including de-ligatured Latin/Greek loanwords (æ -> ae,
+# œ -> oe). Never add grammar, vocabulary, dialect, punctuation, or
 # multi-word rules (e.g. "any one" -> "anyone" is unsafe: "any one of them"
 # is correct modern English).
+#
+# Keys and replacements are always lowercase, matched case-insensitively:
+# _match_case() derives the output casing from what actually matched, so a
+# capitalised replacement here would force that capitalisation onto lowercase
+# matches too.
 rules:
   to-day: today
   to-morrow: tomorrow
@@ -23,10 +29,10 @@ rules:
   shews: shows
   shewed: showed
   shewn: shown
-  Linnæan: Linnaean
-  Palæontological: Palaeontological
-  Palæontology: Palaeontology
-  Phœnician: Phoenician
+  linnæan: linnaean
+  palæontological: palaeontological
+  palæontology: palaeontology
+  phœnician: phoenician
   antennæ: antennae
   gynæceum: gynaeceum
   manœuvring: manoeuvring

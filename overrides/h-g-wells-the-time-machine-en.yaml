@@ -20,8 +20,7 @@ corrections:
     replace: "that … very clear"
     count: 1
     note: >-
-      Transcription artifact, not a deliberate punctuation choice: this is
-      the only spaced-period ellipsis in the text; the other 4 ellipses all
-      use the single ellipsis character (…). Normalised to match so the
-      corpus doesn't teach two visually similar but distinct token
-      sequences for the same mark.
+      Deliberate corpus typography normalization. The source edition uses a
+      spaced-period ellipsis here, but the corpus represents ellipses
+      consistently with the single Unicode ellipsis character (U+2026). The
+      wording and rhetorical pause are unchanged.
