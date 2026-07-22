@@ -17,12 +17,18 @@ corrections:
       titles. This reprint edition's back matter is not part of Stoker's
       novel; the story itself ends cleanly at "JONATHAN HARKER." / "THE
       END", which is kept.
-  - find: "Bram Stoker\n\n[Illustration: colophon]\n\nNEW YORK"
-    replace: "Bram Stoker\n\nNEW YORK"
+  - find: "Bram Stoker\n\n[Illustration: colophon]\n\nNEW YORK\n\nGROSSET & DUNLAP\n\n_Publishers_\n\nCopyright, 1897, in the United States of America, according to Act of Congress, by Bram Stoker\n\n[_All rights reserved._]\n\nPRINTED IN THE UNITED STATES AT THE COUNTRY LIFE PRESS, GARDEN CITY, N.Y.\n\n\n"
+    replace: "Bram Stoker\n\n\n"
     count: 1
     note: >-
-      Strips a leftover [Illustration: colophon] marker (the publisher's
-      logo on the title page) per docs/review-checklist.md's "no leftover
-      ... [Illustration] markers" requirement. The surrounding publisher
-      title-page text (name, city, copyright notice) is kept as ordinary
-      bibliographic front matter, not third-party apparatus.
+      Strips the Grosset & Dunlap reprint's title-page matter after the
+      author byline: a leftover [Illustration: colophon] marker (the
+      publisher's logo), the publisher/city imprint, and — the actual
+      catch, a caught mistake on the first pass — a "Copyright, 1897 ...
+      Act of Congress" notice and "[All rights reserved.]" plus the
+      printer's imprint. docs/review-checklist.md is explicit that the
+      text must start with "the actual work ... no licence text"; a
+      copyright/rights-reserved notice is exactly that, not part of
+      Stoker's novel, regardless of how public-domain the underlying work
+      is. Stoker's own dedication ("TO / MY DEAR FRIEND / HOMMY-BEG",
+      i.e. Hall Caine) immediately follows and is kept.
