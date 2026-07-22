@@ -1,0 +1,28 @@
+corrections:
+  - find: "Contents\n\nCHAPTER I. Jonathan Harker’s Journal CHAPTER II. Jonathan Harker’s Journal CHAPTER III. Jonathan Harker’s Journal CHAPTER IV. Jonathan Harker’s Journal CHAPTER V. Letters—Lucy and Mina CHAPTER VI. Mina Murray’s Journal CHAPTER VII. Cutting from “The Dailygraph,” 8 August CHAPTER VIII. Mina Murray’s Journal CHAPTER IX. Mina Murray’s Journal CHAPTER X. Mina Murray’s Journal CHAPTER XI. Lucy Westenra’s Diary CHAPTER XII. Dr. Seward’s Diary CHAPTER XIII. Dr. Seward’s Diary CHAPTER XIV. Mina Harker’s Journal CHAPTER XV. Dr. Seward’s Diary CHAPTER XVI. Dr. Seward’s Diary CHAPTER XVII. Dr. Seward’s Diary CHAPTER XVIII. Dr. Seward’s Diary CHAPTER XIX. Jonathan Harker’s Journal CHAPTER XX. Jonathan Harker’s Journal CHAPTER XXI. Dr. Seward’s Diary CHAPTER XXII. Jonathan Harker’s Journal CHAPTER XXIII. Dr. Seward’s Diary CHAPTER XXIV. Dr. Seward’s Phonograph Diary, spoken by Van Helsing CHAPTER XXV. Dr. Seward’s Diary CHAPTER XXVI. Dr. Seward’s Diary CHAPTER XXVII. Mina Harker’s Journal\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Removes the generated table of contents (per docs/cleaning-guide.md,
+      "generated tables of contents" are normally stripped), same pattern as
+      #17. Stops immediately before "How these papers have been placed in
+      sequence..." — that short framing note IS part of Stoker's original
+      text (an epistolary-format disclaimer that appears in early editions
+      immediately before Chapter I) and must not be removed with it.
+  - find: "\n\n* * * * *\n\n_There’s More to Follow!_\n\nMore stories of the sort you like; more, probably, by the author of this one; more than 500 titles all told by writers of world-wide reputation, in the Authors’ Alphabetical List which you will find on the _reverse side_ of the wrapper of this book. Look it over before you lay it aside. There are books here you are sure to want--some, possibly, that you have _always_ wanted.\n\nIt is a _selected_ list; every book in it has achieved a certain measure of _success_.\n\nThe Grosset & Dunlap list is not only the greatest Index of Good Fiction available, it represents in addition a generally accepted Standard of Value. It will pay you to\n\n_Look on the Other Side of the Wrapper!_\n\n_In case the wrapper is lost write to the publishers for a complete catalog_\n\n* * * * *\n\nDETECTIVE STORIES BY J. S. FLETCHER\n\nMay be had wherever books are sold. Ask for Grosset & Dunlap’s list\n\n\nTHE SECRET OF THE BARBICAN\n\nTHE ANNEXATION SOCIETY\n\nTHE WOLVES AND THE LAMB\n\nGREEN INK\n\nTHE KING versus WARGRAVE\n\nTHE LOST MR. LINTHWAITE\n\nTHE MILL OF MANY WINDOWS\n\nTHE HEAVEN-KISSED HILL\n\nTHE MIDDLE TEMPLE MURDER\n\nRAVENSDENE COURT\n\nTHE RAYNER-SLADE AMALGAMATION\n\nTHE SAFETY PIN\n\nTHE SECRET WAY\n\nTHE VALLEY OF HEADSTRONG MEN\n\n_Ask for Complete free list of G. & D. Popular Copyrighted Fiction_\n\nGROSSET & DUNLAP, _Publishers_, NEW YORK\n"
+    replace: "\n"
+    count: 1
+    note: >-
+      Removes trailing Grosset & Dunlap publisher advertising for unrelated
+      titles. This reprint edition's back matter is not part of Stoker's
+      novel; the story itself ends cleanly at "JONATHAN HARKER." / "THE
+      END", which is kept.
+  - find: "Bram Stoker\n\n[Illustration: colophon]\n\nNEW YORK"
+    replace: "Bram Stoker\n\nNEW YORK"
+    count: 1
+    note: >-
+      Strips a leftover [Illustration: colophon] marker (the publisher's
+      logo on the title page) per docs/review-checklist.md's "no leftover
+      ... [Illustration] markers" requirement. The surrounding publisher
+      title-page text (name, city, copyright notice) is kept as ordinary
+      bibliographic front matter, not third-party apparatus.
