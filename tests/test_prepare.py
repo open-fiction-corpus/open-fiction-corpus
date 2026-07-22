@@ -200,6 +200,50 @@ def test_prepare_work_applies_overrides(tmp_path: Path) -> None:
     assert "to-morrow" in text
 
 
+def test_prepare_work_warns_on_double_hyphen(
+    tmp_path: Path, capsys: pytest.CaptureFixture
+) -> None:
+    text = GUTENBERG_FILE.replace(
+        "in torrents upon the roof of the old house.",
+        "in torrents--a violent, drumming rain--upon the roof of the old house.",
+    )
+    manifest = make_manifest(
+        "example-work",
+        **{
+            "processing.extractor": "gutenberg_txt_v1",
+            "processing.modernizer": None,
+            "processing.source_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+        },
+    )
+    root = make_root(tmp_path, [(manifest, None)])
+    _write_raw(root, manifest, text=text)
+
+    prepare_work(root, "example-work", skip_fetch=True)
+
+    output = capsys.readouterr().out
+    assert "Warning: 2 occurrence(s) of '--' found" in output
+
+
+def test_prepare_work_no_double_hyphen_warning_when_absent(
+    tmp_path: Path, capsys: pytest.CaptureFixture
+) -> None:
+    manifest = make_manifest(
+        "example-work",
+        **{
+            "processing.extractor": "gutenberg_txt_v1",
+            "processing.modernizer": None,
+            "processing.source_sha256": GUTENBERG_SHA256,
+        },
+    )
+    root = make_root(tmp_path, [(manifest, None)])
+    _write_raw(root, manifest)
+
+    prepare_work(root, "example-work", skip_fetch=True)
+
+    output = capsys.readouterr().out
+    assert "occurrence(s) of '--'" not in output
+
+
 def test_prepare_work_rejects_unknown_extractor(tmp_path: Path) -> None:
     manifest = make_manifest(
         "example-work",

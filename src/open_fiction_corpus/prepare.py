@@ -513,6 +513,18 @@ def prepare_work(root: Path, work_id: str, *, skip_fetch: bool = False) -> Path:
     if minimum and words < minimum:
         print(f"Warning: {words} words is below expected_min_words {minimum}")
 
+    # Older (pre-Unicode) Gutenberg transcriptions sometimes render em/en
+    # dashes as plain ASCII '--' throughout. Flag it for human review rather
+    # than fixing it here: whether it is that transcription-era substitution
+    # (an override candidate, see docs/cleaning-guide.md) or something else
+    # entirely is a judgement call, not something to guess automatically.
+    if "--" in text:
+        print(
+            f"Warning: {text.count('--')} occurrence(s) of '--' found; check whether "
+            "this transcription uses ASCII '--' in place of an em dash (see "
+            "docs/cleaning-guide.md's punctuation-normalisation note)."
+        )
+
     clean_dir = root / "workspace" / "clean"
     clean_dir.mkdir(parents=True, exist_ok=True)
     clean_path = clean_dir / f"{work_id}.txt"

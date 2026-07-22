@@ -1,0 +1,100 @@
+corrections:
+  - find: "Contents\n\nCHAPTER I. Jonathan Harker’s Journal CHAPTER II. Jonathan Harker’s Journal CHAPTER III. Jonathan Harker’s Journal CHAPTER IV. Jonathan Harker’s Journal CHAPTER V. Letters—Lucy and Mina CHAPTER VI. Mina Murray’s Journal CHAPTER VII. Cutting from “The Dailygraph,” 8 August CHAPTER VIII. Mina Murray’s Journal CHAPTER IX. Mina Murray’s Journal CHAPTER X. Mina Murray’s Journal CHAPTER XI. Lucy Westenra’s Diary CHAPTER XII. Dr. Seward’s Diary CHAPTER XIII. Dr. Seward’s Diary CHAPTER XIV. Mina Harker’s Journal CHAPTER XV. Dr. Seward’s Diary CHAPTER XVI. Dr. Seward’s Diary CHAPTER XVII. Dr. Seward’s Diary CHAPTER XVIII. Dr. Seward’s Diary CHAPTER XIX. Jonathan Harker’s Journal CHAPTER XX. Jonathan Harker’s Journal CHAPTER XXI. Dr. Seward’s Diary CHAPTER XXII. Jonathan Harker’s Journal CHAPTER XXIII. Dr. Seward’s Diary CHAPTER XXIV. Dr. Seward’s Phonograph Diary, spoken by Van Helsing CHAPTER XXV. Dr. Seward’s Diary CHAPTER XXVI. Dr. Seward’s Diary CHAPTER XXVII. Mina Harker’s Journal\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Removes the generated table of contents (per docs/cleaning-guide.md,
+      "generated tables of contents" are normally stripped), same pattern as
+      #17. Stops immediately before "How these papers have been placed in
+      sequence..." — that short framing note IS part of Stoker's original
+      text (an epistolary-format disclaimer that appears in early editions
+      immediately before Chapter I) and must not be removed with it.
+  - find: "\n\n* * * * *\n\n_There’s More to Follow!_\n\nMore stories of the sort you like; more, probably, by the author of this one; more than 500 titles all told by writers of world-wide reputation, in the Authors’ Alphabetical List which you will find on the _reverse side_ of the wrapper of this book. Look it over before you lay it aside. There are books here you are sure to want--some, possibly, that you have _always_ wanted.\n\nIt is a _selected_ list; every book in it has achieved a certain measure of _success_.\n\nThe Grosset & Dunlap list is not only the greatest Index of Good Fiction available, it represents in addition a generally accepted Standard of Value. It will pay you to\n\n_Look on the Other Side of the Wrapper!_\n\n_In case the wrapper is lost write to the publishers for a complete catalog_\n\n* * * * *\n\nDETECTIVE STORIES BY J. S. FLETCHER\n\nMay be had wherever books are sold. Ask for Grosset & Dunlap’s list\n\n\nTHE SECRET OF THE BARBICAN\n\nTHE ANNEXATION SOCIETY\n\nTHE WOLVES AND THE LAMB\n\nGREEN INK\n\nTHE KING versus WARGRAVE\n\nTHE LOST MR. LINTHWAITE\n\nTHE MILL OF MANY WINDOWS\n\nTHE HEAVEN-KISSED HILL\n\nTHE MIDDLE TEMPLE MURDER\n\nRAVENSDENE COURT\n\nTHE RAYNER-SLADE AMALGAMATION\n\nTHE SAFETY PIN\n\nTHE SECRET WAY\n\nTHE VALLEY OF HEADSTRONG MEN\n\n_Ask for Complete free list of G. & D. Popular Copyrighted Fiction_\n\nGROSSET & DUNLAP, _Publishers_, NEW YORK\n"
+    replace: "\n"
+    count: 1
+    note: >-
+      Removes trailing Grosset & Dunlap publisher advertising for unrelated
+      titles. This reprint edition's back matter is not part of Stoker's
+      novel; the story itself ends cleanly at "JONATHAN HARKER." / "THE
+      END", which is kept.
+  - find: "Bram Stoker\n\n[Illustration: colophon]\n\nNEW YORK\n\nGROSSET & DUNLAP\n\n_Publishers_\n\nCopyright, 1897, in the United States of America, according to Act of Congress, by Bram Stoker\n\n[_All rights reserved._]\n\nPRINTED IN THE UNITED STATES AT THE COUNTRY LIFE PRESS, GARDEN CITY, N.Y.\n\n\n"
+    replace: "Bram Stoker\n\n\n"
+    count: 1
+    note: >-
+      Strips the Grosset & Dunlap reprint's title-page matter after the
+      author byline: a leftover [Illustration: colophon] marker (the
+      publisher's logo), the publisher/city imprint, and — the actual
+      catch, a caught mistake on the first pass — a "Copyright, 1897 ...
+      Act of Congress" notice and "[All rights reserved.]" plus the
+      printer's imprint. docs/review-checklist.md is explicit that the
+      text must start with "the actual work ... no licence text"; a
+      copyright/rights-reserved notice is exactly that, not part of
+      Stoker's novel, regardless of how public-domain the underlying work
+      is. Stoker's own dedication ("TO / MY DEAR FRIEND / HOMMY-BEG",
+      i.e. Hall Caine) immediately follows and is kept.
+  - find: "--"
+    replace: "—"
+    count: 1460
+    note: >-
+      This 1995-era transcription renders every em dash as plain ASCII
+      "--"; confirmed zero real em dash (U+2014) characters exist anywhere
+      in the raw text. Not an authorial or period-typesetting choice, just
+      a limitation of the transcription's character encoding — per
+      docs/cleaning-guide.md's punctuation-normalisation carve-out, this
+      is an unambiguous typographic variant of the same mark, same
+      category as the Time Machine's stray ". . ." fix in #17. Genuine
+      hyphenated words (e.g. "Buda-Pesth", "old-fashioned") use a single
+      hyphen and are unaffected; four-hyphen runs (the doubled
+      redaction-dash device, as in "his----!") correctly become "——",
+      matching the same device's native-Unicode form already used
+      elsewhere in the corpus (e.g. the Time Machine's "Where's——?").
+      Archaic place-name spellings in this text (Buda-Pesth, Bistritz,
+      Klausenburgh, Szekely, Tokay) are deliberately left untouched —
+      that's vocabulary/period usage, not a spelling or punctuation
+      variant, and outside the scope of this or any modernisation rule.
+  - find: "C_{2}HCl_{3}O. H_{2}O"
+    replace: "C₂HCl₃O. H₂O"
+    count: 1
+    note: >-
+      Dr. Seward names chloral hydrate; the Gutenberg transcription uses
+      plain-text subscript markup (_{n}) here, the same convention as
+      superscripts like M^{rs} seen in other Gutenberg editions - not
+      italics. Left as-is it would falsely register as an unpaired
+      underscore under the corpus's markdown-lite emphasis convention
+      (docs/dataset-format.md). Converted to real Unicode subscript
+      digits instead.
+  - find: "_“We are, dear Sirs,\n\n“Faithfully yours,\n\n“SAMUEL F. BILLINGTON & SON.”_"
+    replace: "_“We are, dear Sirs,_\n\n_“Faithfully yours,_\n\n_“SAMUEL F. BILLINGTON & SON.”_"
+    count: 1
+    note: >-
+      The only italic span in the whole text (out of ~485 underscore
+      pairs, verified by pairing every underscore in the document) that
+      crosses a paragraph break - one opening underscore before "We are"
+      and the closing one two paragraphs later, after "SON.\"". Standard
+      Markdown emphasis can't span a blank line, which conflicts with the
+      corpus's own markdown-lite contract. Re-wraps each paragraph of the
+      letter's sign-off individually so the italics survive without
+      redistributing across paragraph boundaries; no wording changed.
+  - find: "...."
+    replace: ".…"
+    count: 63
+    note: >-
+      Every one of these terminal four-dot runs is a sentence-ending
+      period followed by a trailing-off ellipsis (verified: all 63 end a
+      paragraph on what would otherwise be a bare "."), distinct in
+      meaning from the mid-sentence three-dot form below - this
+      normalizes only the encoding (ASCII periods to the corpus's U+2026
+      convention, per docs/cleaning-guide.md) while keeping that
+      distinction intact, rather than collapsing both forms into one
+      character. Must run before the three-dot rule so it isn't
+      double-matched.
+  - find: "..."
+    replace: "…"
+    count: 15
+    note: >-
+      The three-dot form is used either mid-sentence for hesitation
+      ("the ... the ... the ... Vampire") or after "!"/"?", which already
+      supplies its own terminal punctuation - never as a sentence-ending
+      period. Normalizes the encoding only; the semantic distinction from
+      the four-dot form above is preserved (that one becomes ".…", this
+      one becomes "…" alone).

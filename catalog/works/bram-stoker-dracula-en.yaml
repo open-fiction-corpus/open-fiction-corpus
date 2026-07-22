@@ -1,0 +1,99 @@
+id: bram-stoker-dracula-en
+title: Dracula
+language: en
+form: novel
+
+authors:
+  - name: Bram Stoker
+    birth_year: 1847
+    death_year: 1912
+
+contributors:
+  # Project Gutenberg transcription/production credits from the ebook 345
+  # metadata and the pg345.txt header. Recorded for provenance; a faithful
+  # transcription with trivial corrections is not separately rights-bearing
+  # (see rights.evidence).
+  - name: Chuck Greif
+    role: other
+  - name: The Online Distributed Proofreading Team
+    role: other
+
+publication:
+  original_year: 1897
+  edition_year: null
+
+source:
+  provider: gutenberg
+  identifier: "345"
+  url: https://www.gutenberg.org/ebooks/345
+  download_url: https://www.gutenberg.org/cache/epub/345/pg345.txt
+  revision: "2025-09-24"
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - The work was first published on 26 May 1897, London, Archibald
+      Constable and Company; pre-1930 first publication places it in the
+      United States public domain, and Project Gutenberg distributes ebook
+      345 with a US public-domain clearance.
+    - Bram Stoker died on 20 April 1912, so life+70 protection expired on
+      1 January 1983 in the UK and EU member states. Spain's transitional
+      80-year post-mortem term (1879 Act, authors deceased before 7 December
+      1987) expired on 1 January 1993, so there is no outstanding Article 10
+      (Directive 2006/116/EC) exception.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
+  licence: null
+  notes: The underlying 1897 work is public domain in every reviewed
+    jurisdiction. The exact Gutenberg transcription (ebook 345) has been
+    inspected and contains solely Stoker's text plus removable Gutenberg
+    boilerplate and Grosset & Dunlap publisher front/back matter (a title
+    page with copyright notice, and several pages of advertising for
+    unrelated titles) - no third-party introductions, notes, or
+    annotations; that publisher matter is excluded during extraction, the
+    same as Gutenberg boilerplate. The remaining gate before flipping to
+    public-domain (with US, UK, and EU all verified, no jurisdiction
+    carve-out) is the second maintainer sanity-check of this rights
+    section, per docs/review-checklist.md.
+
+classification:
+  primary_genre: horror
+  genres: [horror]
+  subgenres: [gothic-horror]
+  audience: [adult]
+  pov: [first-person]
+  tense: [past]
+  style_tags: [epistolary, multiple-narrators]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Prepared from the pinned Gutenberg artifact (#21); word
+    count 160,899 against expected_min_words 150000, all 27 chapters
+    verified present and in order, modernisation counts checked as
+    proportional for the length, and several interior passages sampled
+    (including Van Helsing's dialect, kept untouched). Automated and
+    preliminary content checks are complete; awaiting the maintainer's
+    full human read-through, reviewed_by, and reviewed_text_sha256.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 150000
+  source_sha256: 96cd16eacdbfebae8fdda5591f66e0cc8ee76be18e0cd1aca02bc00615782d28
