@@ -279,10 +279,90 @@ _GUTENBERG_CREDIT = re.compile(
 # example in any prepared work nests deeper than that, so a single level of
 # nesting is all this matches; a genuinely deeper case would simply be left
 # in place (failing safe, visibly, rather than over-matching into real
-# prose). Consumes its own trailing blank-line run too, so the cleaner sees
-# the two real paragraphs it was sandwiched between as directly adjacent,
-# and reconstructs a normal single paragraph gap between them on its own.
-_ILLUSTRATION_MARKER = re.compile(r"\[Illustration\b(?:[^\[\]]|\[[^\[\]]*\])*\]\n*")
+# prose).
+_ILLUSTRATION_MARKER = re.compile(r"\[Illustration\b(?:[^\[\]]|\[[^\[\]]*\])*\]")
+
+# Closing punctuation that can trail a sentence-terminal mark (a closing
+# quote or bracket after a "." etc.), so it still counts as sentence-final.
+_TRAILING_CLOSERS = "\"'’”)]"
+
+# A bare chapter-heading line (some editions omit the trailing period some
+# of this corpus's other chapters use) is a structural boundary in its own
+# right, not an unfinished sentence, even though it has no terminal
+# punctuation of its own - e.g. this edition's "CHAPTER XIII" heading is
+# immediately followed by its own illustration marker before the chapter's
+# first paragraph starts.
+_CHAPTER_HEADING_LINE = re.compile(r"(?i)^[ \t]*chapter\s+[ivxlcdm]+\.?[ \t]*$")
+
+
+def _ends_sentence(text: str) -> bool:
+    """Whether `text` ends at a sentence/paragraph boundary, not mid-sentence."""
+    stripped = text.rstrip()
+    if not stripped:
+        return True
+    char = stripped[-1]
+    if char in ".!?:":
+        return True
+    if char in _TRAILING_CLOSERS and len(stripped) >= 2 and stripped[-2] in ".!?:":
+        return True
+    if _CHAPTER_HEADING_LINE.match(stripped.rsplit("\n", 1)[-1]):
+        return True
+    return False
+
+
+def _strip_illustration_markers(body: str) -> str:
+    """Remove Gutenberg "[Illustration ...]" markers, closing the gap left behind.
+
+    Gutenberg wraps every illustration marker in blank lines, even when the
+    illustration was placed in the middle of a sentence rather than between
+    two paragraphs (confirmed in practice: an edition can interrupt "...the
+    idea of his" / "[Illustration: ...]" / "being gone to London..." even
+    though that is one continuous sentence). Blindly dropping the marker and
+    only its own trailing newline, as an earlier version of this function
+    did, leaves the leading blank-line gap in place and manufactures a false
+    paragraph break out of thin air.
+
+    So each marker (or run of consecutive markers) is judged by the text
+    immediately preceding its surrounding whitespace: if that text ends at a
+    sentence boundary, the gap is a real paragraph break and is preserved
+    (marker and its whitespace removed, same as before); otherwise the
+    marker genuinely sits inside a sentence, so it - and *all* of its
+    surrounding whitespace - is replaced with a single space, joining the
+    sentence back into one continuous run of prose for the cleaner to
+    unwrap normally.
+    """
+    out = []
+    pos = 0
+    for match in _ILLUSTRATION_MARKER.finditer(body):
+        if match.start() < pos:
+            continue  # already consumed as part of a preceding marker's span
+
+        lead_start = match.start()
+        while lead_start > pos and body[lead_start - 1] in " \t\n":
+            lead_start -= 1
+
+        # Swallow a run of consecutive markers (with only whitespace between
+        # them) as a single unit, deciding once for the whole span.
+        trail_end = match.end()
+        while True:
+            probe = trail_end
+            while probe < len(body) and body[probe] in " \t\n":
+                probe += 1
+            next_marker = _ILLUSTRATION_MARKER.match(body, probe)
+            if next_marker is None:
+                break
+            trail_end = next_marker.end()
+        while trail_end < len(body) and body[trail_end] in " \t\n":
+            trail_end += 1
+
+        out.append(body[pos:lead_start])
+        if _ends_sentence(body[:lead_start]):
+            out.append(body[lead_start : match.start()])  # preserve the paragraph gap
+        else:
+            out.append(" ")
+        pos = trail_end
+    out.append(body[pos:])
+    return "".join(out)
 
 
 def extract_gutenberg_txt(raw_text: str) -> str:
@@ -312,7 +392,7 @@ def extract_gutenberg_txt(raw_text: str) -> str:
     # chapter heading illustrated as part of its artwork) is a work-specific
     # exception for overrides to restore, not something this general step
     # can know to special-case.
-    body = _ILLUSTRATION_MARKER.sub("", body)
+    body = _strip_illustration_markers(body)
     return body
 
 

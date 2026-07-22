@@ -48,16 +48,19 @@ rights:
     - A faithful transcription with trivial corrections does not meet the
       EU originality threshold for separate protection, and the UK
       typographical-arrangement right does not subsist in a plain-text
-      file, so no separate transcription right is expected once the
-      artifact inspection below confirms its contents.
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
   licence: null
   notes: The underlying 1868 work is public domain in every reviewed
-    jurisdiction. The status stays uncertain only until the exact
-    Gutenberg transcription (ebook 155) is inspected to confirm it
-    contains solely Collins's text plus removable Gutenberg boilerplate,
-    with no third-party introductions, notes, or annotations; on a clean
-    inspection it flips to public-domain with US, UK, and EU all verified
-    (no jurisdiction carve-out).
+    jurisdiction. The exact Gutenberg transcription (ebook 155) has been
+    inspected and contains solely Collins's text plus removable Gutenberg
+    boilerplate and a generated table of contents (excluded, see
+    overrides) - no third-party introductions, notes, or annotations
+    remain. The remaining gate before flipping to public-domain (with US,
+    UK, and EU all verified, no jurisdiction carve-out) is the second
+    maintainer sanity-check of this rights section, per
+    docs/review-checklist.md.
 
 classification:
   primary_genre: mystery
@@ -78,8 +81,18 @@ quality:
   status: candidate
   flags: [uncertain-rights]
   reviewed_by: []
-  review_notes: Backlog pick (#23); cleaned text not yet fetched or
-    human-reviewed.
+  review_notes: Backlog pick (#23). Prepared from the pinned Gutenberg
+    artifact; word count 194,788 against expected_min_words 180000. The
+    Moonstone's real structure - a Prologue, then "The Story" told across
+    First through Eighth Periods/Narratives by different narrators, then
+    an Epilogue - is verified present and in order in the body itself;
+    only the front-loaded generated table of contents duplicating that
+    index is removed (see overrides). The text starts with the actual
+    work - title and author, then the Prologue - with no other front
+    matter; no illustration markers are present in this transcription.
+    Automated and preliminary content checks are complete; awaiting the
+    maintainer's full human read-through, reviewed_by, and
+    reviewed_text_sha256.
   reviewed_text_sha256: null
 
 processing:

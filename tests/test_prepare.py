@@ -157,6 +157,61 @@ def test_extract_leaves_unclosed_illustration_marker_in_place() -> None:
     assert "[Illustration: never closed" in body
 
 
+def test_extract_joins_illustration_placed_mid_sentence() -> None:
+    # Gutenberg wraps markers in blank lines even when they interrupt one
+    # sentence rather than sitting between two paragraphs (confirmed against
+    # a real edition: "...the idea of his" / marker / "being gone to
+    # London..."). Since neither side ends at a sentence boundary, the gap
+    # must be closed with a single space, not preserved as a paragraph break.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "She amused herself by starting the idea of his\n\n"
+            '[Illustration:\n\n"When the Party entered"\n\n'
+            "[_Copyright 1894 by Example Press._]]\n\n"
+            "being gone to London only to get a large party for the ball."
+        )
+    )
+    assert body == (
+        "She amused herself by starting the idea of his being gone to "
+        "London only to get a large party for the ball."
+    )
+
+
+def test_extract_preserves_break_after_bare_chapter_heading() -> None:
+    # A chapter heading with no trailing period (some editions omit it) has
+    # no sentence-terminal punctuation of its own, but it is still a
+    # structural boundary, not a fragment to be joined with what follows.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "He continued to apologize for about a quarter of an hour.\n\n"
+            "[Illustration]\n\nCHAPTER XIV\n\n[Illustration]\n\n"
+            "During dinner, Mr. Bennet scarcely spoke at all."
+        )
+    )
+    assert body == (
+        "He continued to apologize for about a quarter of an hour.\n\n"
+        "CHAPTER XIV\n\n"
+        "During dinner, Mr. Bennet scarcely spoke at all."
+    )
+
+
+def test_extract_preserves_paragraph_break_around_illustration() -> None:
+    # Sanity check alongside the mid-sentence case above: when the marker
+    # really does sit between two sentences, the paragraph break is kept,
+    # not collapsed into a joining space.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "He hurried home with the great intelligence.\n\n"
+            "[Illustration: “The gentlemen accompanied him.”]\n\n"
+            "On the following morning he hastened to Rosings."
+        )
+    )
+    assert body == (
+        "He hurried home with the great intelligence.\n\n"
+        "On the following morning he hastened to Rosings."
+    )
+
+
 def test_clean_unwraps_paragraphs_and_keeps_section_gaps() -> None:
     text = "A heading\n\n\nFirst line\nsecond line.\n\nNext  paragraph\r\nhere.\n"
     cleaned = clean_fiction(text)

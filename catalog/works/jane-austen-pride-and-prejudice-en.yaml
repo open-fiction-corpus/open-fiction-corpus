@@ -67,21 +67,25 @@ rights:
     - A faithful transcription with trivial corrections does not meet the
       EU originality threshold for separate protection, and the UK
       typographical-arrangement right does not subsist in a plain-text
-      file, so no separate transcription right is expected once the
-      artifact inspection below confirms its contents.
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
   licence: null
   notes: The underlying 1813 work is public domain in every reviewed
-    jurisdiction. The status stays uncertain only until the exact
-    Gutenberg transcription (ebook 1342) is inspected to confirm the
-    Saintsbury preface and Thomson illustrations are fully excludable and
-    that no other third-party introductions, notes, or annotations
-    remain; on a clean inspection it flips to public-domain with US, UK,
-    and EU all verified (no jurisdiction carve-out). An alternate
-    Gutenberg edition (#42671) was considered and rejected, since its
-    metadata lists an editor, R. W. Chapman, suggesting the transcribed
-    wording may follow Chapman's 1923 scholarly collation (Chapman died
-    1960, not yet public domain in the UK/EU) rather than a plain
-    reprint - a harder problem to exclude than an isolable preface block.
+    jurisdiction. The exact Gutenberg transcription (ebook 1342) has been
+    inspected and contains solely Austen's text plus the Saintsbury
+    preface and Thomson illustrations (both excluded during extraction,
+    see rights.evidence above) and a generated List of Illustrations
+    (also excluded) - no third-party introductions, notes, or annotations
+    remain. The remaining gate before flipping to public-domain (with US,
+    UK, and EU all verified, no jurisdiction carve-out) is the second
+    maintainer sanity-check of this rights section, per
+    docs/review-checklist.md. An alternate Gutenberg edition (#42671) was
+    considered and rejected, since its metadata lists an editor, R. W.
+    Chapman, suggesting the transcribed wording may follow Chapman's 1923
+    scholarly collation (Chapman died 1960, not yet public domain in the
+    UK/EU) rather than a plain reprint - a harder problem to exclude than
+    an isolable preface block.
 
 classification:
   primary_genre: romance
@@ -108,11 +112,19 @@ quality:
     George Allen" stamp), previously flagged here as unsolved, are now
     handled generally - gutenberg_txt_v1 strips "[Illustration ...]"
     markup as part of extraction, not as a per-work override, so this
-    benefits any future illustrated Gutenberg edition too. The
-    Saintsbury preface, publisher imprint/copyright, and List of
-    Illustrations index are excluded (see overrides); the ASCII
-    em-dash substitution and one mis-cased chapter heading are fixed;
-    all 61 chapters verified present and in order. Not yet
+    benefits any future illustrated Gutenberg edition too. That general
+    step also now tells a marker sitting between two paragraphs apart
+    from one Gutenberg happened to wrap in blank lines despite it
+    falling mid-sentence, joining the latter with a single space instead
+    of manufacturing a false paragraph break; verified against all 7
+    mid-sentence placements this edition contains, plus zero regression
+    on the illustration-free books already in the corpus. The Saintsbury
+    preface, publisher imprint/copyright, and List of Illustrations
+    index are excluded (see overrides); the ASCII em-dash substitution
+    and three mis-cased or missing-period chapter headings (XLVI, XIII,
+    XIV) are fixed; four archaic spellings unique to this edition
+    (manœuvre, develope, ancle, ancles) are modernised via the shared
+    rules file; all 61 chapters verified present and in order. Not yet
     human-reviewed.
   reviewed_text_sha256: null
 

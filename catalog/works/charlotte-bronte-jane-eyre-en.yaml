@@ -45,16 +45,21 @@ rights:
     - A faithful transcription with trivial corrections does not meet the
       EU originality threshold for separate protection, and the UK
       typographical-arrangement right does not subsist in a plain-text
-      file, so no separate transcription right is expected once the
-      artifact inspection below confirms its contents.
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
   licence: null
   notes: The underlying 1847 work is public domain in every reviewed
-    jurisdiction. The status stays uncertain only until the exact
-    Gutenberg transcription (ebook 1260) is inspected to confirm it
-    contains solely Brontë's text plus removable Gutenberg boilerplate,
-    with no third-party introductions, notes, or annotations; on a clean
-    inspection it flips to public-domain with US, UK, and EU all verified
-    (no jurisdiction carve-out).
+    jurisdiction. The exact Gutenberg transcription (ebook 1260) has been
+    inspected and contains solely Brontë's text (her own dedication to
+    Thackeray and second-edition preface are hers, not third-party
+    apparatus, and are kept) plus removable Gutenberg boilerplate and
+    this 1897 Service & Paton edition's publisher imprint and
+    illustrations-copyright notice (excluded, see overrides) - no
+    third-party introductions, notes, or annotations remain. The
+    remaining gate before flipping to public-domain (with US, UK, and EU
+    all verified, no jurisdiction carve-out) is the second maintainer
+    sanity-check of this rights section, per docs/review-checklist.md.
 
 classification:
   primary_genre: romance
@@ -75,8 +80,17 @@ quality:
   status: candidate
   flags: [uncertain-rights]
   reviewed_by: []
-  review_notes: Backlog pick (#19); cleaned text not yet fetched or
-    human-reviewed.
+  review_notes: Backlog pick (#19). Prepared from the pinned Gutenberg
+    artifact; word count 185,364 against expected_min_words 180000, all
+    38 chapters verified present and in order (the last, "CHAPTER
+    XXXVIII—CONCLUSION", correctly carries its dual heading from the
+    source). The text starts with the actual work - title, Brontë's
+    dedication to Thackeray, her second-edition preface - with the 1897
+    Service & Paton edition's publisher imprint and illustrations-
+    copyright notice excluded (see overrides); no illustration markers
+    are present in this transcription. Automated and preliminary content
+    checks are complete; awaiting the maintainer's full human
+    read-through, reviewed_by, and reviewed_text_sha256.
   reviewed_text_sha256: null
 
 processing:

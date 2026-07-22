@@ -6,10 +6,7 @@ corrections:
     by Jane Austen,
 
 
-    with a Preface by George Saintsbury and Illustrations by Hugh Thomson
-
-
-    Ruskin 156. Charing House. Cross Road.
+    with a Preface by George Saintsbury and Illustrations by Hugh Thomson Ruskin 156. Charing House. Cross Road.
 
 
     London George Allen.
@@ -68,11 +65,7 @@ corrections:
     _And, after all, what is the good of seeking for the reason of charm?--it is there. There were better sense in the sad mechanic exercise of determining the reason of its absence where it is not. In the novels of the last hundred years there are vast numbers of young ladies with whom it might be a pleasure to fall in love; there are at least five with whom, as it seems to me, no man of taste and spirit can help doing so. Their names are, in chronological order, Elizabeth Bennet, Diana Vernon, Argemone Lavington, Beatrix Esmond, and Barbara Grant. I should have been most in love with Beatrix and Argemone; I should, I think, for mere occasional companionship, have preferred Diana and Barbara. But to live with and to marry, I do not know that any one of the four can come into competition with Elizabeth._
 
 
-    _GEORGE SAINTSBURY._
-
-
-
-    PAGE
+    _GEORGE SAINTSBURY._ PAGE
 
 
     Frontispiece iv
@@ -375,12 +368,8 @@ corrections:
     Heading to Chapter LXI. 472
 
 
-    The End 476
-
-
-
-    '
-  note: 'Strips the 1894 George Allen "Peacock edition"''s remaining front matter after the general [Illustration ...] stripper (added to gutenberg_txt_v1) already removed the decorative brackets themselves: title-page byline/imprint, printer''s colophon, George Saintsbury''s full critical preface (third-party editorial apparatus - independently public domain, Saintsbury died 1933, but excluded per docs/review-checklist.md, same as the alternate edition considered in rights.evidence), and the generated List of Illustrations (a page-number index, same category as a generated table of contents per docs/cleaning-guide.md). This block ended with "Chapter I"''s heading, which was itself illustrated decoration in this edition and so was removed by the general stripper along with everything else in this span; replaced with a plain "CHAPTER I." heading matching every other chapter (II onward all use plain "CHAPTER N." headings) rather than left missing, since it''s the only marker for the chapter boundary. Austen''s own text - "It is a truth universally acknowledged..." - is unaffected; nothing of hers is in this removed block. Austen published P&P anonymously with no dedication or preface of her own.'
+    The End 476 '
+  note: 'Strips the 1894 George Allen "Peacock edition"''s remaining front matter after the general [Illustration ...] stripper (added to gutenberg_txt_v1) already removed the decorative brackets themselves: title-page byline/imprint, printer''s colophon, George Saintsbury''s full critical preface (third-party editorial apparatus - independently public domain, Saintsbury died 1933, but excluded per docs/review-checklist.md, same as the alternate edition considered in rights.evidence), and the generated List of Illustrations (a page-number index, same category as a generated table of contents per docs/cleaning-guide.md). This block ended with "Chapter I"''s heading, which was itself illustrated decoration in this edition and so was removed by the general stripper along with everything else in this span; replaced with a plain "CHAPTER I." heading matching every other chapter (II onward all use plain "CHAPTER N." headings) rather than left missing, since it''s the only marker for the chapter boundary. Austen''s own text - "It is a truth universally acknowledged..." - is unaffected; nothing of hers is in this removed block. Austen published P&P anonymously with no dedication or preface of her own. (Three of this block''s own internal illustration/decoration gaps - after "Hugh Thomson" on the title page, after the frontispiece illustration, and after the List of Illustrations'' final page number before the illustrated "Chapter I" marker - are now joined with a single space rather than left as blank-line gaps, since the general illustration stripper correctly reads none of them as real paragraph boundaries; the whole block is discarded here regardless, so this only affects the exact text of the `find` string below, not the corpus output.)'
   replace: 'CHAPTER I.
 
 
@@ -408,6 +397,14 @@ corrections:
   find: Chapter XLVI.
   note: 'Transcription inconsistency, not a missing chapter: this heading was the only one of 61 rendered in mixed case ("Chapter") rather than the "CHAPTER" style used by every other regular chapter heading in this edition (Chapter I''s heading was illustrated decoration, handled separately above and unrelated to this). Verified the chapter''s actual content is present and complete - it opens "Elizabeth had been a good deal disappointed in not finding a letter from Jane...", the unmistakable, correct start of chapter 46 in every edition - a case-sensitive search for "^CHAPTER" simply missed this one heading, it was never actually missing from the source. Normalizing the case only, no wording changed.'
   replace: CHAPTER XLVI.
+- count: 1
+  find: CHAPTER XIII
+  replace: CHAPTER XIII.
+  note: 'Transcription inconsistency, same category as the Chapter XLVI case-fix above: this heading is the only one of 61 (besides Chapter XIV, fixed separately below) missing the trailing period every other "CHAPTER N." heading in this edition uses. Verified the chapter itself is present and complete - it opens "“I hope, my dear,” said Mr. Bennet to his wife...", the correct start of chapter 13. Adds the missing period only, no wording changed.'
+- count: 1
+  find: CHAPTER XIV
+  replace: CHAPTER XIV.
+  note: 'Same transcription inconsistency as Chapter XIII above: missing the trailing period every other chapter heading in this edition uses. Verified the chapter itself is present and complete - it opens "During dinner, Mr. Bennet scarcely spoke at all...", the correct start of chapter 14. Adds the missing period only, no wording changed.'
 - count: 3
   find: '/* NIND '
   note: 'Gutenberg plain-text typesetting-instruction markup specific to this transcription (not seen in any other prepared work): NIND marks a paragraph that should not be indented, used here for letter-opening salutations ("My dear friend," etc.). Markup only, no literary meaning per docs/cleaning-guide.md; the salutation text itself is kept.'
