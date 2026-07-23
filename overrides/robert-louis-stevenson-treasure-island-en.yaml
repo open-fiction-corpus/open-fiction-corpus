@@ -48,7 +48,7 @@ corrections:
 
 
     '
-  note: 'Removes the generated table of contents (per docs/cleaning-guide.md, "generated tables of contents" are normally stripped), same pattern as #17/#31/#32. Also drops the redundant second "TREASURE ISLAND" title repeat immediately before it - the title already appears once at the very start of the body, alongside the author byline; PART ONE itself is the real sectional heading marking where the story proper begins.'
+  note: 'Removes the generated table of contents (per docs/cleaning-guide.md, "generated tables of contents" are normally stripped), same pattern as #17/#31/#32. Also drops the redundant second "TREASURE ISLAND" title repeat that immediately follows the ToC, right before "PART ONE" - the title already appears once at the very start of the body, alongside the author byline; PART ONE itself is the real sectional heading marking where the story proper begins.'
 - count: 1
   find: 'If sailor tales to sailor tunes, Storm and adventure, heat and cold, If schooners, islands, and maroons, And buccaneers, and buried gold, And all the old romance, retold Exactly in the ancient way, Can please, as me they pleased of old, The wiser youngsters of today:'
   replace: "If sailor tales to sailor tunes,\n    Storm and adventure, heat and cold,\nIf schooners, islands, and maroons,\n    And buccaneers, and buried gold,\nAnd all the old romance, retold\n    Exactly in the ancient way,\nCan please, as me they pleased of old,\n    The wiser youngsters of today:"
@@ -60,11 +60,11 @@ corrections:
 - count: 2
   find: “Fifteen men on the dead man’s chest-- Yo-ho-ho, and a bottle of rum!”
   replace: "“Fifteen men on the dead man’s chest--\n    Yo-ho-ho, and a bottle of rum!”"
-  note: One of the pirate sea-song's 2 verbatim two-line recurrences (6 total appearances in the novel; the other 4 are covered by sibling corrections in this file, and 2 more already sit as correctly separated dialogue and need no fix). Restores the line break, flattened by fiction_clean_v1's prose-only line-unwrapping. No wording changed.
+  note: 'The pirate sea-song appears 6 times total in the novel: 2 in this verbatim two-line form (fixed here), 2 in a four-line form (fixed by the sibling correction below), and 2 already sitting as correctly separated dialogue that needed no fix. Restores the line break, flattened by fiction_clean_v1''s prose-only line-unwrapping. No wording changed.'
 - count: 2
   find: “Fifteen men on the dead man’s chest-- Yo-ho-ho, and a bottle of rum! Drink and the devil had done for the rest-- Yo-ho-ho, and a bottle of rum!”
   replace: "“Fifteen men on the dead man’s chest--\n    Yo-ho-ho, and a bottle of rum!\nDrink and the devil had done for the rest--\n    Yo-ho-ho, and a bottle of rum!”"
-  note: One of the pirate sea-song's 2 verbatim four-line recurrences (6 total appearances in the novel; the other 4 are covered by sibling corrections in this file, and 2 more already sit as correctly separated dialogue and need no fix). Restores the line breaks, flattened by fiction_clean_v1's prose- only line-unwrapping. No wording changed.
+  note: 'The pirate sea-song appears 6 times total in the novel: 2 in this verbatim four-line form (fixed here), 2 in a two-line form (fixed by the sibling correction above), and 2 already sitting as correctly separated dialogue that needed no fix. Restores the line breaks, flattened by fiction_clean_v1''s prose-only line-unwrapping. No wording changed.'
 - count: 427
   find: --
   replace: —

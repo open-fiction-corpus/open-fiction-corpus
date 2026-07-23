@@ -22,14 +22,14 @@ contributors:
 
 publication:
   original_year: 1883
-  edition_year: null
+  edition_year: 1915
 
 source:
   provider: gutenberg
   identifier: "120"
   url: https://www.gutenberg.org/ebooks/120
   download_url: https://www.gutenberg.org/cache/epub/120/pg120.txt
-  revision: "2026-07-23"
+  revision: "2025-04-01"
   format: txt
 
 rights:
@@ -64,9 +64,14 @@ rights:
     exact Gutenberg transcription (ebook 120) has been inspected and
     contains solely Stevenson's own text (his dedication "To S.L.O." and
     the verse dedication "To the Hesitating Purchaser" are his own, kept)
-    plus removable Gutenberg boilerplate - no generated table of
-    contents, no third-party introductions, notes, or annotations, no
-    illustration markers or leaked captions. The remaining gate before
+    plus removable Gutenberg boilerplate - a generated table of contents
+    is present and excluded (see overrides), but there are no
+    third-party introductions, notes, or annotations, no illustration
+    markers, and no leaked captions. An alternate Gutenberg edition
+    (#27780, a 2002 Gramercy Books reprint) was considered and rejected -
+    it carries a separately copyrighted 1986 foreword and modern
+    publisher matter that would need excluding, a harder problem than
+    this edition's plain generated ToC. The remaining gate before
     flipping rights.status to public-domain and moving UK/EU into
     verified_jurisdictions is the second maintainer sanity-check, per
     docs/review-checklist.md.
@@ -75,7 +80,7 @@ classification:
   primary_genre: adventure
   genres: [adventure]
   subgenres: [sea-adventure, quest]
-  audience: [adult]
+  audience: [middle-grade]
   pov: [first-person]
   tense: [past]
   style_tags: [coming-of-age]
@@ -91,13 +96,17 @@ quality:
   flags: [uncertain-rights]
   reviewed_by: []
   review_notes: Backlog pick (#29). Prepared from the pinned Gutenberg
-    artifact; word count 68,014 against expected_min_words 65000. This
-    transcription needs no edition decision (only one Gutenberg edition
-    exists) and no third-party matter excluded - the text starts with
-    Stevenson's own dedication and verse address to the reader and ends
-    cleanly on the novel's real final line. A generated table of
-    contents (found on closer inspection, despite an earlier scan
-    missing it) is removed via override, along with the ASCII em-dash
+    artifact (ebook 120, the Louis Rhead 1915 Harper &amp; Brothers
+    illustrated edition, per Gutenberg's own catalogue attribution);
+    word count 68,014 against expected_min_words 65000. A second
+    Gutenberg edition (#27780, a 2002 Gramercy Books reprint) was
+    considered and rejected - it carries a separately copyrighted 1986
+    foreword and modern publisher matter this edition avoids. No
+    third-party matter needed excluding from (#120) itself - the text
+    starts with Stevenson's own dedication and verse address to the
+    reader and ends cleanly on the novel's real final line. A generated
+    table of contents (found on closer inspection, despite an earlier
+    scan missing it) is removed via override, along with the ASCII em-dash
     substitution (427 instances; one already-correct real em dash, a
     deliberate redacted-year device, is left untouched). Two verse
     passages have their line breaks restored (fiction_clean_v1 is
