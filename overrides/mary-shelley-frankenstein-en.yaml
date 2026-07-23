@@ -1,0 +1,84 @@
+corrections:
+- count: 1
+  find: "FRANKENSTEIN:\n\nOR,\n\nTHE MODERN PROMETHEUS.\n\nBY MARY W. SHELLEY.\n\nAUTHOR OF THE LAST MAN, PERKIN WARBECK, &c. &c.\n\n[Transcriber's Note: This text was produced from a photo-reprint of the 1831 edition.]\n\n\nREVISED, CORRECTED, AND ILLUSTRATED WITH A NEW INTRODUCTION, BY THE AUTHOR.\n\nLONDON: HENRY COLBURN AND RICHARD BENTLEY, NEW BURLINGTON STREET: BELL AND BRADFUTE, EDINBURGH; AND CUMMING, DUBLIN. 1831.\n\n\nINTRODUCTION.\n\n\n"
+  replace: "FRANKENSTEIN:\n\nOR,\n\nTHE MODERN PROMETHEUS.\n\nBY MARY W. SHELLEY.\n\nINTRODUCTION.\n\n\n"
+  note: >-
+    Strips the "AUTHOR OF THE LAST MAN, PERKIN WARBECK, &c. &c." credit
+    line, a transcriber's note about the source photo-reprint, and the
+    publisher/edition imprint - none of it is Shelley's own text, per
+    docs/review-checklist.md's requirement that the text start with the
+    actual work and no licence/production text. The title and byline
+    ("FRANKENSTEIN: OR, THE MODERN PROMETHEUS." / "BY MARY W. SHELLEY.")
+    are kept at the very start of the body, same pattern as Treasure
+    Island (#34) and Oz (#36) - an earlier version of this correction
+    dropped them too, caught in review and fixed. Mary Shelley's own 1831
+    Introduction immediately follows and is kept in full.
+- count: 1
+  find: "PREFACE.\n\n\nThe event on which this fiction is founded, has been supposed, by Dr. Darwin, and some of the physiological writers of Germany, as not of impossible occurrence. I shall not be supposed as according the remotest degree of serious faith to such an imagination; yet, in assuming it as the basis of a work of fancy, I have not considered myself as merely weaving a series of supernatural terrors. The event on which the interest of the story depends is exempt from the disadvantages of a mere tale of spectres or enchantment. It was recommended by the novelty of the situations which it developes; and, however impossible as a physical fact, affords a point of view to the imagination for the delineating of human passions more comprehensive and commanding than any which the ordinary relations of existing events can yield.\n\nI have thus endeavoured to preserve the truth of the elementary principles of human nature, while I have not scrupled to innovate upon their combinations. The Iliad, the tragic poetry of Greece,--Shakspeare, in the Tempest, and Midsummer Night's Dream,--and most especially Milton, in Paradise Lost, conform to this rule; and the most humble novelist, who seeks to confer or receive amusement from his labours, may, without presumption, apply to prose fiction a licence, or rather a rule, from the adoption of which so many exquisite combinations of human feeling have resulted in the highest specimens of poetry.\n\nThe circumstance on which my story rests was suggested in casual conversation. It was commenced partly as a source of amusement, and partly as an expedient for exercising any untried resources of mind. Other motives were mingled with these, as the work proceeded. I am by no means indifferent to the manner in which whatever moral tendencies exist in the sentiments or characters it contains shall affect the reader; yet my chief concern in this respect has been limited to the avoiding the enervating effects of the novels of the present day, and to the exhibition of the amiableness of domestic affection, and the excellence of universal virtue. The opinions which naturally spring from the character and situation of the hero are by no means to be conceived as existing always in my own conviction; nor is any inference justly to be drawn from the following pages as prejudicing any philosophical doctrine of whatever kind.\n\nIt is a subject also of additional interest to the author, that this story was begun in the majestic region where the scene is principally laid, and in society which cannot cease to be regretted. I passed the summer of 1816 in the environs of Geneva. The season was cold and rainy, and in the evenings we crowded around a blazing wood fire, and occasionally amused ourselves with some German stories of ghosts, which happened to fall into our hands. These tales excited in us a playful desire of imitation. Two other friends (a tale from the pen of one of whom would be far more acceptable to the public than any thing I can ever hope to produce) and myself agreed to write each a story, founded on some supernatural occurrence.\n\nThe weather, however, suddenly became serene; and my two friends left me on a journey among the Alps, and lost, in the magnificent scenes which they present, all memory of their ghostly visions. The following tale is the only one which has been completed.\n\nMarlow, September, 1817.\n\n\nFRANKENSTEIN;\n\nOR,\n\nTHE MODERN PROMETHEUS.\n\n\n"
+  replace: ""
+  note: >-
+    Excludes Percy Bysshe Shelley's 1817 preface - Mary Shelley's own
+    Introduction (kept, see above) explicitly identifies him as its author ("As
+    far as I can recollect, it was entirely written by him"), so this is third-
+    party editorial apparatus by her own account, not her text, same category as
+    George Saintsbury's preface excluded from Pride and Prejudice - regardless
+    of the fact that Percy Shelley's work is independently public domain too
+    (see rights.evidence). Also drops the redundant second "FRANKENSTEIN; OR,
+    THE MODERN PROMETHEUS." title repeat immediately after the preface - the
+    title already appears once at the very start of the body. The source's own
+    "LETTER I." heading immediately follows this removed block and is left
+    untouched (replace is empty, not a re-typed heading), so the real heading
+    marking where the novel proper begins is not duplicated.
+- count: 1
+  find: "\n\n\nLONDON: Printed by A. & R Spottiswoode, New-Street-Square.\n\n[Transcriber's Note: Possible printer errors corrected: Line 2863: \"I do no not fear to die\" to \"I do now not fear to die\" Line 6375: \"fulfil the wishes of you parents\" to \"your parents\"]\n"
+  replace: "\n"
+  note: >-
+    Strips the printer's colophon and a transcriber's note listing 2 corrected
+    printer errors, both after "THE END." (kept) - neither is part of the novel,
+    same pattern as Dracula's colophon in #31.
+- count: 1
+  find: "\"Like one who, on a lonely road, Doth walk in fear and dread, And, having once turned round, walks on, And turns no more his head; Because he knows a frightful fiend Doth close behind him tread.\"[1]"
+  replace: "\"Like one who, on a lonely road,\nDoth walk in fear and dread,\nAnd, having once turned round, walks on,\nAnd turns no more his head;\nBecause he knows a frightful fiend\nDoth close behind him tread.\"[1]"
+  note: >-
+    Restores the line breaks (1 of 3 verse passages in this novel) of the
+    Coleridge quotation (footnoted as "Ancient Mariner") in ch. 5, flattened
+    by fiction_clean_v1's prose-only line-unwrapping (see
+    docs/cleaning-guide.md). No wording changed.
+- count: 1
+  find: "We rest; a dream has power to poison sleep. We rise; one wand'ring thought pollutes the day. We feel, conceive, or reason; laugh or weep, Embrace fond woe, or cast our cares away; It is the same: for, be it joy or sorrow, The path of its departure still is free. Man's yesterday may ne'er be like his morrow; Nought may endure but mutability!"
+  replace: "We rest; a dream has power to poison sleep.\nWe rise; one wand'ring thought pollutes the day.\nWe feel, conceive, or reason; laugh or weep,\nEmbrace fond woe, or cast our cares away;\nIt is the same: for, be it joy or sorrow,\nThe path of its departure still is free.\nMan's yesterday may ne'er be like his morrow;\nNought may endure but mutability!"
+  note: >-
+    Restores the line breaks (2 of 3 verse passages) of the unattributed
+    "Mutability" quotation (Percy Bysshe Shelley's poem of that name) in ch.
+    10, flattened by fiction_clean_v1's prose-only line-unwrapping. No
+    wording changed.
+- count: 1
+  find: "----\"The sounding cataract Haunted him like a passion: the tall rock, The mountain, and the deep and gloomy wood, Their colours and their forms, were then to him An appetite; a feeling, and a love, That had no need of a remoter charm, By thought supplied, or any interest Unborrow'd from the eye\"[3]"
+  replace: "----\"The sounding cataract\nHaunted him like a passion: the tall rock,\nThe mountain, and the deep and gloomy wood,\nTheir colours and their forms, were then to him\nAn appetite; a feeling, and a love,\nThat had no need of a remoter charm,\nBy thought supplied, or any interest\nUnborrow'd from the eye\"[3]"
+  note: >-
+    Restores the line breaks (3 of 3 verse passages) of the Wordsworth
+    quotation (Tintern Abbey, footnoted as such) in ch. 18, flattened by
+    fiction_clean_v1's prose-only line-unwrapping; unlike the doubled-dash
+    device elsewhere in the text ("my friend, my benefactor----", a
+    trailing-off in dialogue), the leading "----" here is a period
+    convention marking an excerpted quotation that begins mid-line of its
+    source poem, not a redaction. Left in ASCII form here deliberately,
+    same reasoning as Treasure Island's dedication poem: this correction
+    runs before the em-dash rule below, so the general rule normalises it
+    afterward like every other instance in the text. No wording changed.
+- count: 202
+  find: "--"
+  replace: "—"
+  note: >-
+    This transcription renders every em dash as plain ASCII "--"; confirmed zero
+    real em dash (U+2014) characters exist anywhere in the extracted body (the
+    only two in the raw file sit in Gutenberg's license boilerplate, outside the
+    *** START OF/END OF *** markers and never reach this text) - per
+    docs/cleaning-guide.md's punctuation-normalisation carve-out, this is an
+    unambiguous typographic variant of the same mark, same category as Dracula's
+    (#31) and P&P's (#32) identical case. Two four-hyphen runs correctly become
+    "——": one the doubled redaction-dash device ("my friend, my
+    benefactor----"), the other the excerpted-quotation marker before the
+    Wordsworth quote (see the correction above) - both are simply the same
+    doubled-em-dash character in this encoding, regardless of which narrative
+    role each is playing.

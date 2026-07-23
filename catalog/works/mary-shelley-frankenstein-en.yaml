@@ -1,0 +1,149 @@
+id: mary-shelley-frankenstein-en
+title: "Frankenstein; or, The Modern Prometheus"
+language: en
+form: novel
+
+authors:
+  - name: Mary Wollstonecraft Shelley
+    birth_year: 1797
+    death_year: 1851
+
+contributors:
+  # Project Gutenberg transcription/production credits from the ebook 42324
+  # metadata and the pg42324.txt header. Recorded for provenance; a
+  # faithful transcription with trivial corrections is not separately
+  # rights-bearing (see rights.evidence). Percy Bysshe Shelley's 1817
+  # preface is recorded separately below as rights-relevant edition
+  # apparatus, excluded from the cleaned text (see overrides).
+  - name: Greg Weeks
+    role: other
+  - name: Mary Meehan
+    role: other
+  - name: The Online Distributed Proofreading Team
+    role: other
+  - name: Percy Bysshe Shelley
+    role: introducer
+    birth_year: 1792
+    death_year: 1822
+
+publication:
+  original_year: 1818
+  edition_year: 1831
+
+source:
+  provider: gutenberg
+  identifier: "42324"
+  url: https://www.gutenberg.org/ebooks/42324
+  download_url: https://www.gutenberg.org/cache/epub/42324/pg42324.txt
+  revision: "2024-10-23"
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - The work was first published anonymously 1 January 1818, London, in
+      three volumes; this transcription reproduces the revised 1831
+      single-volume edition (Henry Colburn and Richard Bentley), "REVISED,
+      CORRECTED, AND ILLUSTRATED WITH A NEW INTRODUCTION, BY THE AUTHOR."
+      Pre-1930 first publication (either edition) places it in the United
+      States public domain, and Project Gutenberg distributes ebook 42324
+      with a US public-domain clearance.
+    - Mary Shelley died 1 February 1851, so life+70 protection expired on
+      1 January 1922 in the UK and EU member states. Spain's transitional
+      80-year post-mortem term (1879 Act, authors deceased before 7
+      December 1987) expired on 1 January 1932, so there is no outstanding
+      Article 10 (Directive 2006/116/EC) exception.
+    - This edition's front matter includes two distinct pieces, not one.
+      Mary Shelley's own 1831 Introduction (her account of the novel's
+      origin, signed "M. W. S.") is her own text and is kept. The
+      following Preface, dated "Marlow, September, 1817," is not - her
+      Introduction explicitly identifies its author a few lines earlier
+      ("From this declaration I must except the preface. As far as I can
+      recollect, it was entirely written by him," referring to her
+      husband Percy Bysshe Shelley) - and is excluded during extraction,
+      same category as George Saintsbury's preface excluded from Pride
+      and Prejudice. Percy Bysshe Shelley died 23 July 1822, so this
+      exclusion is a curation decision about whose text this is, not a
+      rights one - his work independently clears every jurisdiction too
+      (UK/EU life+70 expired 1892; Spain's transitional term expired
+      1902).
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material once the Preface above is excluded, so no
+      separate transcription right is expected for the inspected
+      plain-text artifact.
+  licence: null
+  notes: The underlying 1818/1831 work's US public domain status is
+    verified (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 42324) has been inspected and
+    contains solely Mary Shelley's 1831 Introduction and the novel's text
+    plus the excluded Percy Shelley preface (see above), a small printer's
+    colophon, and a transcriber's note (both excluded, see overrides) - no
+    other third-party introductions, notes, or annotations remain. The
+    remaining gate before flipping rights.status to public-domain and
+    moving UK/EU into verified_jurisdictions is the second maintainer
+    sanity-check, per docs/review-checklist.md. An alternate Gutenberg
+    edition (#41445, the 1818 first edition) was considered and set aside
+    for a possible future edition-comparison collection rather than
+    including both editions of one work in the same pack.
+
+classification:
+  primary_genre: science-fiction
+  genres: [science-fiction, horror]
+  subgenres: [scientific-romance, gothic-horror]
+  audience: [adult]
+  pov: [mixed]
+  tense: [past]
+  style_tags: [frame-narrative, epistolary]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Backlog pick (#20). Prepared from the pinned Gutenberg
+    artifact; word count 77,252 against expected_min_words 70000, all 24
+    chapters verified present and in order. The title, subtitle "OR, THE
+    MODERN PROMETHEUS.", and byline "BY MARY W. SHELLEY." are kept at the
+    very start of the body; a credit line, transcriber's
+    note, and the publisher imprint that follow are excluded, keeping
+    Mary Shelley's 1831 Introduction in full - an earlier override version
+    dropped the title/byline along with that boilerplate, caught in
+    review and fixed. Percy Bysshe Shelley's 1817 preface is excluded (see
+    rights.evidence for the attribution) without re-typing the
+    "LETTER I." heading that already follows it in source - an earlier
+    version of this override also injected a duplicate heading there,
+    caught in review and fixed. Ends cleanly on "THE END." with a trailing
+    colophon and transcriber's note excluded. Illustration markers are
+    stripped automatically.
+    The novel's three verse passages - a footnoted Coleridge quotation
+    (ch. 5), an unattributed Percy Bysshe Shelley "Mutability" quotation
+    (ch. 10), and a footnoted Wordsworth quotation (ch. 18) - have their
+    line breaks restored (fiction_clean_v1 is prose-only by design, per
+    docs/cleaning-guide.md). The ASCII em-dash substitution
+    (202 instances) is fixed; confirmed zero real em dash characters
+    reach the extracted body (2 exist in the raw file but sit in
+    Gutenberg's license boilerplate, outside the START/END markers).
+    Not yet human-reviewed.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 70000
+  source_sha256: 34a453edf60de4b66d9b918aeaf48313ddd712a89cc78555e3fc240681c03733
