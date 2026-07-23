@@ -6,7 +6,10 @@ corrections:
     by Jane Austen,
 
 
-    with a Preface by George Saintsbury and Illustrations by Hugh Thomson Ruskin 156. Charing House. Cross Road.
+    with a Preface by George Saintsbury and Illustrations by Hugh Thomson
+
+
+    Ruskin 156. Charing House. Cross Road.
 
 
     London George Allen.
@@ -14,7 +17,6 @@ corrections:
 
 
     CHISWICK PRESS:--CHARLES WHITTINGHAM AND CO. TOOKS COURT, CHANCERY LANE, LONDON.
-
 
 
     PREFACE.
@@ -65,7 +67,10 @@ corrections:
     _And, after all, what is the good of seeking for the reason of charm?--it is there. There were better sense in the sad mechanic exercise of determining the reason of its absence where it is not. In the novels of the last hundred years there are vast numbers of young ladies with whom it might be a pleasure to fall in love; there are at least five with whom, as it seems to me, no man of taste and spirit can help doing so. Their names are, in chronological order, Elizabeth Bennet, Diana Vernon, Argemone Lavington, Beatrix Esmond, and Barbara Grant. I should have been most in love with Beatrix and Argemone; I should, I think, for mere occasional companionship, have preferred Diana and Barbara. But to live with and to marry, I do not know that any one of the four can come into competition with Elizabeth._
 
 
-    _GEORGE SAINTSBURY._ PAGE
+    _GEORGE SAINTSBURY._
+
+
+    PAGE
 
 
     Frontispiece iv
@@ -368,8 +373,11 @@ corrections:
     Heading to Chapter LXI. 472
 
 
-    The End 476 '
-  note: 'Strips the 1894 George Allen "Peacock edition"''s remaining front matter after the general [Illustration ...] stripper (added to gutenberg_txt_v1) already removed the decorative brackets themselves: title-page byline/imprint, printer''s colophon, George Saintsbury''s full critical preface (third-party editorial apparatus - independently public domain, Saintsbury died 1933, but excluded per docs/review-checklist.md, same as the alternate edition considered in rights.evidence), and the generated List of Illustrations (a page-number index, same category as a generated table of contents per docs/cleaning-guide.md). This block ended with "Chapter I"''s heading, which was itself illustrated decoration in this edition and so was removed by the general stripper along with everything else in this span; replaced with a plain "CHAPTER I." heading matching every other chapter (II onward all use plain "CHAPTER N." headings) rather than left missing, since it''s the only marker for the chapter boundary. Austen''s own text - "It is a truth universally acknowledged..." - is unaffected; nothing of hers is in this removed block. Austen published P&P anonymously with no dedication or preface of her own. (Three of this block''s own internal illustration/decoration gaps - after "Hugh Thomson" on the title page, after the frontispiece illustration, and after the List of Illustrations'' final page number before the illustrated "Chapter I" marker - are now joined with a single space rather than left as blank-line gaps, since the general illustration stripper correctly reads none of them as real paragraph boundaries; the whole block is discarded here regardless, so this only affects the exact text of the `find` string below, not the corpus output.)'
+    The End 476
+
+
+    '
+  note: 'Strips the 1894 George Allen "Peacock edition"''s remaining front matter after the general [Illustration ...] stripper (added to gutenberg_txt_v1) already removed the decorative brackets themselves: title-page byline/imprint, printer''s colophon, George Saintsbury''s full critical preface (third-party editorial apparatus - independently public domain, Saintsbury died 1933, but excluded per docs/review-checklist.md, same as the alternate edition considered in rights.evidence), and the generated List of Illustrations (a page-number index, same category as a generated table of contents per docs/cleaning-guide.md). This block ended with "Chapter I"''s heading, which was itself illustrated decoration in this edition and so was removed by the general stripper along with everything else in this span; replaced with a plain "CHAPTER I." heading matching every other chapter (II onward all use plain "CHAPTER N." headings) rather than left missing, since it''s the only marker for the chapter boundary. Austen''s own text - "It is a truth universally acknowledged..." - is unaffected; nothing of hers is in this removed block. Austen published P&P anonymously with no dedication or preface of her own.'
   replace: 'CHAPTER I.
 
 
@@ -406,8 +414,8 @@ corrections:
   replace: CHAPTER XIV.
   note: 'Same transcription inconsistency as Chapter XIII above: missing the trailing period every other chapter heading in this edition uses. Verified the chapter itself is present and complete - it opens "During dinner, Mr. Bennet scarcely spoke at all...", the correct start of chapter 14. Adds the missing period only, no wording changed.'
 - count: 1
-  find: 'Mr, Wickham'
-  replace: 'Mr. Wickham'
+  find: Mr, Wickham
+  replace: Mr. Wickham
   note: 'Transcription typo: a comma where every other honorific in the text uses a period. Confirmed against independent editions (e.g. Wikisource, SparkNotes) that this reads "Mr. Wickham" in the original - punctuation-only fix, no wording changed.'
 - count: 1
   find: often times his consequence
@@ -429,3 +437,125 @@ corrections:
   find: ' */'
   note: Closes out all 9 opening markers removed above (3 NIND + 3 RIGHT + 3 bare); confirmed no other ' */' substring exists anywhere else in the text.
   replace: ''
+- count: 1
+  find: "starting the idea of his\n\nbeing gone to London"
+  replace: "starting the idea of his being gone to London"
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). By-line illustration (a copyright-stamped plate, "When the
+    Party entered") falls between "his" and "being" mid-sentence, ch. 7 -
+    confirmed in the raw source: "...little by starting the idea of his /
+    [Illustration...] / being gone to London only to get a large party for the
+    ball...", one continuous sentence. The general stripper no longer guesses at
+    mid-sentence placement (see prepare.py), so it leaves a paragraph gap here
+    that isn't really there; this override closes it explicitly. The general
+    [Illustration ...] stripper (gutenberg_txt_v1) deliberately does not try to
+    infer sentence vs. paragraph boundaries from context - see its docstring in
+    prepare.py for why that's unsafe as a general rule - so it always leaves a
+    normal paragraph gap where the marker was, correct for the other 147 markers
+    in this edition but not for this one. This override closes the resulting
+    false paragraph break explicitly, joining with a single space; no wording
+    changed.
+- count: 1
+  find: "glad to invite him\n\nto read aloud"
+  replace: "glad to invite him to read aloud"
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). Illustration ("Protested that he never read novels") falls
+    between "him" and "to read" mid-sentence, ch. 13/14 boundary area -
+    confirmed in the raw source as one continuous sentence. The general
+    [Illustration ...] stripper (gutenberg_txt_v1) deliberately does not try to
+    infer sentence vs. paragraph boundaries from context - see its docstring in
+    prepare.py for why that's unsafe as a general rule - so it always leaves a
+    normal paragraph gap where the marker was, correct for the other 147 markers
+    in this edition but not for this one. This override closes the resulting
+    false paragraph break explicitly, joining with a single space; no wording
+    changed.
+- count: 1
+  find: "than the matter had ever\n\nexcited before"
+  replace: "than the matter had ever excited before"
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). Illustration ("So much love and eloquence", copyright-stamped)
+    falls between "ever" and "excited" mid-sentence, ch. 22 - confirmed in the
+    raw source as one continuous sentence. The general [Illustration ...]
+    stripper (gutenberg_txt_v1) deliberately does not try to infer sentence vs.
+    paragraph boundaries from context - see its docstring in prepare.py for why
+    that's unsafe as a general rule - so it always leaves a normal paragraph gap
+    where the marker was, correct for the other 147 markers in this edition but
+    not for this one. This override closes the resulting false paragraph break
+    explicitly, joining with a single space; no wording changed.
+- count: 1
+  find: "in order to have\n\nthe earliest assurance"
+  replace: "in order to have the earliest assurance"
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). Illustration ("The gentlemen accompanied him", copyright-
+    stamped) falls between "have" and "the earliest" mid-sentence, ch. 30/31
+    boundary area - confirmed in the raw source as one continuous sentence. The
+    general [Illustration ...] stripper (gutenberg_txt_v1) deliberately does not
+    try to infer sentence vs. paragraph boundaries from context - see its
+    docstring in prepare.py for why that's unsafe as a general rule - so it
+    always leaves a normal paragraph gap where the marker was, correct for the
+    other 147 markers in this edition but not for this one. This override closes
+    the resulting false paragraph break explicitly, joining with a single space;
+    no wording changed.
+- count: 1
+  find: "but what he told\n\nhimself."
+  replace: "but what he told himself."
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). Illustration ("Meeting accidentally in Town", copyright-
+    stamped) falls between "told" and "himself." mid-sentence, ch. 36 -
+    confirmed in the raw source as one continuous sentence. The general
+    [Illustration ...] stripper (gutenberg_txt_v1) deliberately does not try to
+    infer sentence vs. paragraph boundaries from context - see its docstring in
+    prepare.py for why that's unsafe as a general rule - so it always leaves a
+    normal paragraph gap where the marker was, correct for the other 147 markers
+    in this edition but not for this one. This override closes the resulting
+    false paragraph break explicitly, joining with a single space; no wording
+    changed.
+- count: 1
+  find: "something indistinctly of his\n\nconcern"
+  replace: "something indistinctly of his concern"
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). Illustration ("I have not an instant to lose") falls between
+    "his" and "concern" mid-sentence, ch. 46 - confirmed in the raw source as
+    one continuous sentence. The general [Illustration ...] stripper
+    (gutenberg_txt_v1) deliberately does not try to infer sentence vs. paragraph
+    boundaries from context - see its docstring in prepare.py for why that's
+    unsafe as a general rule - so it always leaves a normal paragraph gap where
+    the marker was, correct for the other 147 markers in this edition but not
+    for this one. This override closes the resulting false paragraph break
+    explicitly, joining with a single space; no wording changed.
+- count: 1
+  find: "this licentiousness of behaviour in your\n\ndaughter has proceeded"
+  replace: "this licentiousness of behaviour in your daughter has proceeded"
+  note: >-
+    One of the 7 confirmed mid-sentence illustration placements in this edition
+    (154 total markers, 7 of which Gutenberg happens to wrap in blank lines
+    despite them interrupting a single sentence rather than sitting between two
+    paragraphs). Illustration ("To whom I have related the affair", copyright-
+    stamped) falls between "your" and "daughter" mid-sentence, inside the quoted
+    letter in ch. 48 - confirmed in the raw source as one continuous sentence,
+    despite the letter's own per-line indentation making it look more separated
+    than it is. The general [Illustration ...] stripper (gutenberg_txt_v1)
+    deliberately does not try to infer sentence vs. paragraph boundaries from
+    context - see its docstring in prepare.py for why that's unsafe as a general
+    rule - so it always leaves a normal paragraph gap where the marker was,
+    correct for the other 147 markers in this edition but not for this one. This
+    override closes the resulting false paragraph break explicitly, joining with
+    a single space; no wording changed.

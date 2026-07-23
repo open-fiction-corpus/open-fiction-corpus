@@ -52,15 +52,20 @@ rights:
       editorial material, so no separate transcription right is expected
       for the inspected plain-text artifact.
   licence: null
-  notes: The underlying 1868 work is public domain in every reviewed
-    jurisdiction. The exact Gutenberg transcription (ebook 155) has been
-    inspected and contains solely Collins's text plus removable Gutenberg
-    boilerplate and a generated table of contents (excluded, see
-    overrides) - no third-party introductions, notes, or annotations
-    remain. The remaining gate before flipping to public-domain (with US,
-    UK, and EU all verified, no jurisdiction carve-out) is the second
-    maintainer sanity-check of this rights section, per
-    docs/review-checklist.md.
+  notes: The underlying 1868 work's US public domain status is verified
+    (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 155) has been inspected and
+    contains solely Collins's text plus removable Gutenberg boilerplate
+    and a generated table of contents (excluded, see overrides) - no
+    third-party introductions, notes, or annotations remain. The
+    remaining gate before flipping rights.status to public-domain and
+    moving UK/EU into verified_jurisdictions is that second maintainer
+    sanity-check, per docs/review-checklist.md.
 
 classification:
   primary_genre: mystery

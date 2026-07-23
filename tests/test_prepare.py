@@ -157,12 +157,16 @@ def test_extract_leaves_unclosed_illustration_marker_in_place() -> None:
     assert "[Illustration: never closed" in body
 
 
-def test_extract_joins_illustration_placed_mid_sentence() -> None:
+def test_extract_manufactures_visible_break_for_mid_sentence_illustration() -> None:
     # Gutenberg wraps markers in blank lines even when they interrupt one
     # sentence rather than sitting between two paragraphs (confirmed against
     # a real edition: "...the idea of his" / marker / "being gone to
-    # London..."). Since neither side ends at a sentence boundary, the gap
-    # must be closed with a single space, not preserved as a paragraph break.
+    # London..."). This function deliberately does not try to infer that
+    # from context (see its docstring): it always leaves a normal paragraph
+    # gap behind, even here, where it manufactures a break that isn't really
+    # there. That's a visible, inspectable difference a human or per-work
+    # override can fix once confirmed against the source - not a silent
+    # guess that risks merging or misreading content it can't verify.
     body = extract_gutenberg_txt(
         _wrap_gutenberg(
             "She amused herself by starting the idea of his\n\n"
@@ -172,27 +176,21 @@ def test_extract_joins_illustration_placed_mid_sentence() -> None:
         )
     )
     assert body == (
-        "She amused herself by starting the idea of his being gone to "
-        "London only to get a large party for the ball."
+        "She amused herself by starting the idea of his\n\n"
+        "being gone to London only to get a large party for the ball."
     )
 
 
-def test_extract_preserves_break_after_bare_chapter_heading() -> None:
-    # A chapter heading with no trailing period (some editions omit it) has
-    # no sentence-terminal punctuation of its own, but it is still a
-    # structural boundary, not a fragment to be joined with what follows.
+def test_extract_does_not_misread_non_chapter_headings() -> None:
+    # A general sentence-boundary heuristic risks misjudging headings it
+    # doesn't recognise (e.g. "PROLOGUE", "BOOK ONE") as unfinished
+    # sentences. This function no longer tries to infer boundaries at all,
+    # so a marker after any heading - recognised or not - always gets the
+    # same canonical paragraph gap.
     body = extract_gutenberg_txt(
-        _wrap_gutenberg(
-            "He continued to apologize for about a quarter of an hour.\n\n"
-            "[Illustration]\n\nCHAPTER XIV\n\n[Illustration]\n\n"
-            "During dinner, Mr. Bennet scarcely spoke at all."
-        )
+        _wrap_gutenberg("PROLOGUE\n\n[Illustration]\n\nIt was a dark and stormy night.")
     )
-    assert body == (
-        "He continued to apologize for about a quarter of an hour.\n\n"
-        "CHAPTER XIV\n\n"
-        "During dinner, Mr. Bennet scarcely spoke at all."
-    )
+    assert body == "PROLOGUE\n\nIt was a dark and stormy night."
 
 
 def test_extract_preserves_paragraph_break_around_illustration() -> None:

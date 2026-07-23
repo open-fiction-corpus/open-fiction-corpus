@@ -282,33 +282,6 @@ _GUTENBERG_CREDIT = re.compile(
 # prose).
 _ILLUSTRATION_MARKER = re.compile(r"\[Illustration\b(?:[^\[\]]|\[[^\[\]]*\])*\]")
 
-# Closing punctuation that can trail a sentence-terminal mark (a closing
-# quote or bracket after a "." etc.), so it still counts as sentence-final.
-_TRAILING_CLOSERS = "\"'’”)]"
-
-# A bare chapter-heading line (some editions omit the trailing period some
-# of this corpus's other chapters use) is a structural boundary in its own
-# right, not an unfinished sentence, even though it has no terminal
-# punctuation of its own - e.g. this edition's "CHAPTER XIII" heading is
-# immediately followed by its own illustration marker before the chapter's
-# first paragraph starts.
-_CHAPTER_HEADING_LINE = re.compile(r"(?i)^[ \t]*chapter\s+[ivxlcdm]+\.?[ \t]*$")
-
-
-def _ends_sentence(text: str) -> bool:
-    """Whether `text` ends at a sentence/paragraph boundary, not mid-sentence."""
-    stripped = text.rstrip()
-    if not stripped:
-        return True
-    char = stripped[-1]
-    if char in ".!?:":
-        return True
-    if char in _TRAILING_CLOSERS and len(stripped) >= 2 and stripped[-2] in ".!?:":
-        return True
-    if _CHAPTER_HEADING_LINE.match(stripped.rsplit("\n", 1)[-1]):
-        return True
-    return False
-
 
 def _strip_illustration_markers(body: str) -> str:
     """Remove Gutenberg "[Illustration ...]" markers, closing the gap left behind.
@@ -317,19 +290,26 @@ def _strip_illustration_markers(body: str) -> str:
     illustration was placed in the middle of a sentence rather than between
     two paragraphs (confirmed in practice: an edition can interrupt "...the
     idea of his" / "[Illustration: ...]" / "being gone to London..." even
-    though that is one continuous sentence). Blindly dropping the marker and
-    only its own trailing newline, as an earlier version of this function
-    did, leaves the leading blank-line gap in place and manufactures a false
-    paragraph break out of thin air.
+    though that is one continuous sentence). An earlier version of this
+    function tried to infer, from the surrounding punctuation, whether a
+    marker's gap was a real paragraph break or a mid-sentence interruption,
+    joining the latter with a space. That inference isn't safe as a general,
+    corpus-wide rule: it can misjudge a heading it doesn't recognise (its
+    chapter-heading check only knew Roman-numeral "CHAPTER" lines, not
+    "BOOK ONE", "PROLOGUE", or any other section convention) and collapse a
+    genuine structural break, or misjudge a sentence that happens to end in
+    a colon and wrongly preserve a break inside it - both of which corrupt
+    real content, a worse failure than the one being fixed.
 
-    So each marker (or run of consecutive markers) is judged by the text
-    immediately preceding its surrounding whitespace: if that text ends at a
-    sentence boundary, the gap is a real paragraph break and is preserved
-    (marker and its whitespace removed, same as before); otherwise the
-    marker genuinely sits inside a sentence, so it - and *all* of its
-    surrounding whitespace - is replaced with a single space, joining the
-    sentence back into one continuous run of prose for the cleaner to
-    unwrap normally.
+    So this function no longer guesses: every marker (or run of consecutive
+    markers, with only whitespace between them) and its surrounding
+    whitespace is replaced with a single canonical blank-line paragraph gap,
+    every time, regardless of context. Between two real paragraphs that's
+    exactly correct. Mid-sentence, it manufactures a paragraph break that
+    isn't really there - visible and inspectable in the cleaned text, and
+    fixable with an explicit, auditable per-work override once confirmed
+    against the source - rather than a general rule silently merging or
+    misreading content it can't actually verify.
     """
     out = []
     pos = 0
@@ -342,7 +322,7 @@ def _strip_illustration_markers(body: str) -> str:
             lead_start -= 1
 
         # Swallow a run of consecutive markers (with only whitespace between
-        # them) as a single unit, deciding once for the whole span.
+        # them) as a single unit, collapsing to one gap for the whole span.
         trail_end = match.end()
         while True:
             probe = trail_end
@@ -356,10 +336,8 @@ def _strip_illustration_markers(body: str) -> str:
             trail_end += 1
 
         out.append(body[pos:lead_start])
-        if _ends_sentence(body[:lead_start]):
-            out.append(body[lead_start : match.start()])  # preserve the paragraph gap
-        else:
-            out.append(" ")
+        if lead_start > 0 and trail_end < len(body):
+            out.append("\n\n")
         pos = trail_end
     out.append(body[pos:])
     return "".join(out)

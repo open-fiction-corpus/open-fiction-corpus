@@ -71,16 +71,22 @@ rights:
       editorial material, so no separate transcription right is expected
       for the inspected plain-text artifact.
   licence: null
-  notes: The underlying 1813 work is public domain in every reviewed
-    jurisdiction. The exact Gutenberg transcription (ebook 1342) has been
-    inspected and contains solely Austen's text plus the Saintsbury
-    preface and Thomson illustrations (both excluded during extraction,
-    see rights.evidence above) and a generated List of Illustrations
-    (also excluded) - no third-party introductions, notes, or annotations
-    remain. The remaining gate before flipping to public-domain (with US,
-    UK, and EU all verified, no jurisdiction carve-out) is the second
-    maintainer sanity-check of this rights section, per
-    docs/review-checklist.md. An alternate Gutenberg edition (#42671) was
+  notes: The underlying 1813 work's US public domain status is verified
+    (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 1342) has been inspected and
+    contains solely Austen's text plus the Saintsbury preface and Thomson
+    illustrations (both excluded during extraction, see rights.evidence
+    above) and a generated List of Illustrations (also excluded) - no
+    third-party introductions, notes, or annotations remain. The
+    remaining gate before flipping rights.status to public-domain and
+    moving UK/EU into verified_jurisdictions is that second maintainer
+    sanity-check, per docs/review-checklist.md. An alternate Gutenberg
+    edition (#42671) was
     considered and rejected, since its metadata lists an editor, R. W.
     Chapman, suggesting the transcribed wording may follow Chapman's 1923
     scholarly collation (Chapman died 1960, not yet public domain in the
@@ -112,13 +118,14 @@ quality:
     George Allen" stamp), previously flagged here as unsolved, are now
     handled generally - gutenberg_txt_v1 strips "[Illustration ...]"
     markup as part of extraction, not as a per-work override, so this
-    benefits any future illustrated Gutenberg edition too. That general
-    step also now tells a marker sitting between two paragraphs apart
-    from one Gutenberg happened to wrap in blank lines despite it
-    falling mid-sentence, joining the latter with a single space instead
-    of manufacturing a false paragraph break; verified against all 7
-    mid-sentence placements this edition contains, plus zero regression
-    on the illustration-free books already in the corpus. The Saintsbury
+    benefits any future illustrated Gutenberg edition too. 7 of those
+    154 markers happen to sit mid-sentence rather than between two real
+    paragraphs, which the general step can't safely infer (a
+    context-guessing version was tried and reverted - see prepare.py's
+    docstring for why that's unsafe as a general rule); it always leaves
+    a normal paragraph gap behind instead, correct for the other 147 but
+    not these 7, so those are closed explicitly via override, verified
+    against the raw source. The Saintsbury
     preface, publisher imprint/copyright, and List of Illustrations
     index are excluded (see overrides); the ASCII em-dash substitution
     and three mis-cased or missing-period chapter headings (XLVI, XIII,
