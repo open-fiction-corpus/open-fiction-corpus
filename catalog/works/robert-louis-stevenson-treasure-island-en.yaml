@@ -1,0 +1,136 @@
+id: robert-louis-stevenson-treasure-island-en
+title: Treasure Island
+language: en
+form: novel
+
+authors:
+  - name: Robert Louis Stevenson
+    birth_year: 1850
+    death_year: 1894
+
+contributors:
+  # Project Gutenberg's ebook 120 metadata credits an illustrator but no
+  # transcriber (no Credits: field in the pg120.txt header at all). Louis
+  # Rhead's illustrations are not represented as inline markers or leaked
+  # captions in this transcription (checked directly), so there is nothing
+  # of his to exclude from the cleaned text; recorded here for provenance
+  # only.
+  - name: Louis Rhead
+    role: illustrator
+    birth_year: 1857
+    death_year: 1926
+
+publication:
+  original_year: 1883
+  edition_year: 1915
+
+source:
+  provider: gutenberg
+  identifier: "120"
+  url: https://www.gutenberg.org/ebooks/120
+  download_url: https://www.gutenberg.org/cache/epub/120/pg120.txt
+  revision: "2025-04-01"
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - First published as a book 14 November 1883, London, Cassell and
+      Company (after serialisation in Young Folks, 1881-82, under the
+      pseudonym "Captain George North"); pre-1930 first publication places
+      it in the United States public domain, and Project Gutenberg
+      distributes ebook 120 with a US public-domain clearance.
+    - Robert Louis Stevenson died 3 December 1894, so life+70 protection
+      expired on 1 January 1965 in the UK and EU member states. Spain's
+      transitional 80-year post-mortem term (1879 Act, authors deceased
+      before 7 December 1987) expired on 1 January 1975, so there is no
+      outstanding Article 10 (Directive 2006/116/EC) exception.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
+  licence: null
+  notes: The underlying 1883 work's US public domain status is verified
+    (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 120) has been inspected and
+    contains solely Stevenson's own text (his dedication "To S.L.O." and
+    the verse dedication "To the Hesitating Purchaser" are his own, kept)
+    plus removable Gutenberg boilerplate - a generated table of contents
+    is present and excluded (see overrides), but there are no
+    third-party introductions, notes, or annotations, no illustration
+    markers, and no leaked captions. An alternate Gutenberg edition
+    (#27780, a 2002 Gramercy Books reprint) was considered and rejected -
+    it carries a separately copyrighted 1986 foreword and modern
+    publisher matter that would need excluding, a harder problem than
+    this edition's plain generated ToC. The remaining gate before
+    flipping rights.status to public-domain and moving UK/EU into
+    verified_jurisdictions is the second maintainer sanity-check, per
+    docs/review-checklist.md.
+
+classification:
+  primary_genre: adventure
+  genres: [adventure]
+  subgenres: [sea-adventure, quest]
+  audience: [middle-grade]
+  pov: [first-person]
+  tense: [past]
+  style_tags: [coming-of-age]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Backlog pick (#29). Prepared from the pinned Gutenberg
+    artifact (ebook 120, the Louis Rhead 1915 Harper &amp; Brothers
+    illustrated edition, per Gutenberg's own catalogue attribution);
+    word count 68,012 against expected_min_words 65000. A second
+    Gutenberg edition (#27780, a 2002 Gramercy Books reprint) was
+    considered and rejected - it carries a separately copyrighted 1986
+    foreword and modern publisher matter this edition avoids. No
+    third-party matter needed excluding from (#120) itself - the text
+    starts with Stevenson's own dedication and verse address to the
+    reader and ends cleanly on the novel's real final line. The title
+    repeats three times in the raw artifact (start-of-body byline, right
+    before the dedication, and right before "PART ONE"); the first is
+    kept and the other two removed via override - the second was missed
+    in an earlier review pass and fixed after a second maintainer's
+    close read of the prepared text. A generated table of contents (found
+    on closer inspection, despite an earlier scan missing it) is removed
+    via override, along with the ASCII em-dash substitution (427
+    instances; one already-correct real em dash, a deliberate
+    redacted-year device, is left untouched). Three verse passages have
+    their line breaks restored (fiction_clean_v1 is prose-only by design,
+    per docs/cleaning-guide.md) - the opening "To the Hesitating
+    Purchaser" dedication poem; the "Fifteen men on the dead man's chest"
+    sea-song, which recurs 6 times in varying forms (4 needed restoring; 2
+    were already correctly split across dialogue and needed no fix); and
+    a second sailor ballad ("But/With one man of her crew alive...") that
+    appears twice, in ch. 23 and ch. 34, both restored - found in a
+    follow-up review pass after the first two passages were already
+    fixed. A single misnumbered chapter heading (source labels Chapter
+    XVII as "XXVII," duplicating the real Chapter XXVII's number) is
+    corrected via override, also caught in that same close read. Not yet
+    human-reviewed.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 65000
+  source_sha256: 20cfdba153743bca26a15028ebb470121cbb7173ddafd435de5c19a79e4bbf30

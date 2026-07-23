@@ -1,0 +1,107 @@
+corrections:
+- count: 1
+  find: '
+
+
+    CONTENTS
+
+
+    PART ONE The Old Buccaneer
+
+
+    I. THE OLD SEA-DOG AT THE ADMIRAL BENBOW . . . . 11 II. BLACK DOG APPEARS AND DISAPPEARS . . . . . . 17 III. THE BLACK SPOT . . . . . . . . . . . . . . 24 IV. THE SEA-CHEST . . . . . . . . . . . . . . . 30 V. THE LAST OF THE BLIND MAN . . . . . . . . . . 36 VI. THE CAPTAIN’S PAPERS . . . . . . . . . . . . 41
+
+
+    PART TWO The Sea Cook
+
+
+    VII. I GO TO BRISTOL . . . . . . . . . . . . . . 48 VIII. AT THE SIGN OF THE SPY-GLASS . . . . . . . 54 IX. POWDER AND ARMS . . . . . . . . . . . . . . 59 X. THE VOYAGE . . . . . . . . . . . . . . . . . . 64 XI. WHAT I HEARD IN THE APPLE-BARREL . . . . . . 70 XII. COUNCIL OF WAR . . . . . . . . . . . . . . 76
+
+
+    PART THREE My Shore Adventure
+
+
+    XIII. HOW I BEGAN MY SHORE ADVENTURE . . . . . . 82 XIV. THE FIRST BLOW . . . . . . . . . . . . . . . 87 XV. THE MAN OF THE ISLAND. . . . . . . . . . . . 93
+
+
+    PART FOUR The Stockade
+
+
+    XVI. NARRATIVE CONTINUED BY THE DOCTOR: HOW THE SHIP WAS ABANDONED . . . . . . . . 100 XVII. NARRATIVE CONTINUED BY THE DOCTOR: THE JOLLY-BOAT’S LAST TRIP . . . . . . . . 105 XVIII. NARRATIVE CONTINUED BY THE DOCTOR: END OF THE FIRST DAY’S FIGHTING . . . . . 109 XIX. NARRATIVE RESUMED BY JIM HAWKINS: THE GARRISON IN THE STOCKADE . . . . . . . 114 XX. SILVER’S EMBASSY . . . . . . . . . . . . . . 120 XXI. THE ATTACK . . . . . . . . . . . . . . . . 125
+
+
+    PART FIVE My Sea Adventure
+
+
+    XXII. HOW I BEGAN MY SEA ADVENTURE . . . . . . . 132 XXIII. THE EBB-TIDE RUNS . . . . . . . . . . . 138 XXIV. THE CRUISE OF THE CORACLE . . . . . . . . 143 XXV. I STRIKE THE JOLLY ROGER . . . . . . . . . 148 XXVI. ISRAEL HANDS . . . . . . . . . . . . . . . 153 XXVII. “PIECES OF EIGHT” . . . . . . . . . . . 161
+
+
+    PART SIX Captain Silver
+
+
+    XXVIII. IN THE ENEMY’S CAMP . . . . . . . . . . 168 XXIX. THE BLACK SPOT AGAIN . . . . . . . . . . . 176 XXX. ON PAROLE . . . . . . . . . . . . . . . . 182 XXXI. THE TREASURE-HUNT--FLINT’S POINTER . . . . 189 XXXII. THE TREASURE-HUNT--THE VOICE AMONG THE TREES . . . . . . . . . . . . . . . . 195 XXXIII. THE FALL OF A CHIEFTAIN . . . . . . . . 201 XXXIV. AND LAST . . . . . . . . . . . . . . . . 207
+
+
+
+    TREASURE ISLAND'
+  replace: '
+
+
+    '
+  note: 'Removes the generated table of contents (per docs/cleaning-guide.md, "generated tables of contents" are normally stripped), same pattern as #17/#31/#32. Also drops the redundant third "TREASURE ISLAND" title repeat that immediately follows the ToC, right before "PART ONE" - the title already appears once at the very start of the body, alongside the author byline; PART ONE itself is the real sectional heading marking where the story proper begins.'
+- count: 1
+  find: "by Robert Louis Stevenson\n\n\nTREASURE ISLAND\n\nTo S.L.O."
+  replace: "by Robert Louis Stevenson\n\nTo S.L.O."
+  note: >-
+    Drops a second, closer "TREASURE ISLAND" title repeat that the earlier
+    review pass missed - the title and byline already appear once at the
+    very start of the body, and this second occurrence sits immediately
+    before Stevenson's own dedication ("To S.L.O., an American
+    gentleman..."), which is kept. A third repeat (right before "PART
+    ONE") is removed by the table-of-contents correction below.
+- count: 1
+  find: "XXVII Narrative Continued by the Doctor: The Jolly-boat’s Last Trip"
+  replace: "XVII Narrative Continued by the Doctor: The Jolly-boat’s Last Trip"
+  note: >-
+    Corrects an apparent source/transcription typo: this chapter is
+    numbered XXVII in the body between XVI and XVIII, but Gutenberg's own
+    generated table of contents (removed above) correctly numbers it XVII,
+    and a genuine, later Chapter XXVII ("Pieces of Eight") exists further
+    on. Fixes only this one misnumbered heading; the real XXVII is
+    untouched. No wording changed.
+- count: 1
+  find: 'If sailor tales to sailor tunes, Storm and adventure, heat and cold, If schooners, islands, and maroons, And buccaneers, and buried gold, And all the old romance, retold Exactly in the ancient way, Can please, as me they pleased of old, The wiser youngsters of today:'
+  replace: "If sailor tales to sailor tunes,\n    Storm and adventure, heat and cold,\nIf schooners, islands, and maroons,\n    And buccaneers, and buried gold,\nAnd all the old romance, retold\n    Exactly in the ancient way,\nCan please, as me they pleased of old,\n    The wiser youngsters of today:"
+  note: Restores the line breaks (1 of 2 stanzas) of Stevenson's own dedicatory poem "To the Hesitating Purchaser," flattened by fiction_clean_v1's prose-only line-unwrapping (see docs/cleaning-guide.md). No wording changed.
+- count: 1
+  find: '--So be it, and fall on! If not, If studious youth no longer crave, His ancient appetites forgot, Kingston, or Ballantyne the brave, Or Cooper of the wood and wave: So be it, also! And may I And all my pirates share the grave Where these and their creations lie!'
+  replace: "--So be it, and fall on!  If not,\n    If studious youth no longer crave,\nHis ancient appetites forgot,\n    Kingston, or Ballantyne the brave,\nOr Cooper of the wood and wave:\n    So be it, also!  And may I\nAnd all my pirates share the grave\n    Where these and their creations lie!"
+  note: Restores the line breaks (2 of 2 stanzas) of the same dedicatory poem. The leading "--" is kept as-is here (not touched by the em-dash rule above, since that rule hasn't run yet at override time - overrides run in file order, and this correction is listed before the em-dash one; kept in ASCII form deliberately so the general rule normalises it afterward, same as everywhere else in the text). No wording changed.
+- count: 2
+  find: “Fifteen men on the dead man’s chest-- Yo-ho-ho, and a bottle of rum!”
+  replace: "“Fifteen men on the dead man’s chest--\n    Yo-ho-ho, and a bottle of rum!”"
+  note: 'The pirate sea-song appears 6 times total in the novel: 2 in this verbatim two-line form (fixed here), 2 in a four-line form (fixed by the sibling correction below), and 2 already sitting as correctly separated dialogue that needed no fix. Restores the line break, flattened by fiction_clean_v1''s prose-only line-unwrapping. No wording changed.'
+- count: 2
+  find: “Fifteen men on the dead man’s chest-- Yo-ho-ho, and a bottle of rum! Drink and the devil had done for the rest-- Yo-ho-ho, and a bottle of rum!”
+  replace: "“Fifteen men on the dead man’s chest--\n    Yo-ho-ho, and a bottle of rum!\nDrink and the devil had done for the rest--\n    Yo-ho-ho, and a bottle of rum!”"
+  note: 'The pirate sea-song appears 6 times total in the novel: 2 in this verbatim four-line form (fixed here), 2 in a two-line form (fixed by the sibling correction above), and 2 already sitting as correctly separated dialogue that needed no fix. Restores the line breaks, flattened by fiction_clean_v1''s prose-only line-unwrapping. No wording changed.'
+- count: 1
+  find: “But one man of her crew alive, What put to sea with seventy-five.”
+  replace: "“But one man of her crew alive,\n    What put to sea with seventy-five.”"
+  note: >-
+    Restores the line break of a second sailor ballad (1 of 2 appearances),
+    quoted in ch. 23 in Jim's dialogue, flattened by fiction_clean_v1's
+    prose-only line-unwrapping - Gutenberg's own HTML edition preserves
+    the break here. No wording changed.
+- count: 1
+  find: With one man of her crew alive, What put to sea with seventy-five.
+  replace: "With one man of her crew alive,\n    What put to sea with seventy-five."
+  note: >-
+    Restores the line break of the same ballad's second appearance (2 of
+    2), in ch. 34's narration (unquoted, unlike the ch. 23 instance),
+    flattened by fiction_clean_v1's prose-only line-unwrapping. No wording
+    changed.
+- count: 427
+  find: --
+  replace: —
+  note: This transcription renders every em dash as plain ASCII "--"; the raw text does contain one already-correct real em dash (U+2014, "in the year of grace 17—," - Jim's own deliberate redaction of the exact year), which is a distinct authorial device left untouched by this rule (it isn't part of the "--" count and this rule doesn't match it). 429 ASCII instances exist in the raw text, but 2 sit inside the generated table of contents removed by the correction above (dot-leader dashes in chapter-title lines) and are gone by the time this rule runs, leaving 427 - the same transcription-encoding limitation seen in Dracula (#31) and P&P (#32), not a second, competing convention - sampled broadly across the text and all follow the same mid-sentence/parenthetical dash usage. Four-hyphen runs (the doubled redaction-dash device, as in "B----" and "by ----!") correctly become "——", matching the same device's native-Unicode form already used elsewhere in the corpus.
