@@ -1,0 +1,116 @@
+id: wilkie-collins-the-moonstone-en
+title: The Moonstone
+language: en
+form: novel
+
+authors:
+  - name: Wilkie Collins
+    birth_year: 1824
+    death_year: 1889
+
+contributors:
+  # Project Gutenberg transcription/production credit from the ebook 155
+  # metadata and the pg155.txt header. Recorded for provenance; a faithful
+  # transcription with trivial corrections is not separately rights-bearing
+  # (see rights.evidence).
+  - name: John Hamm
+    role: other
+  - name: David Widger
+    role: other
+
+publication:
+  original_year: 1868
+  edition_year: null
+
+source:
+  provider: gutenberg
+  identifier: "155"
+  url: https://www.gutenberg.org/ebooks/155
+  download_url: https://www.gutenberg.org/cache/epub/155/pg155.txt
+  revision: "2026-01-10"
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - The work was serialised in Charles Dickens's "All the Year Round"
+      January-August 1868, with book publication in July 1868, London,
+      Tinsley Brothers; pre-1930 first publication places it in the
+      United States public domain, and Project Gutenberg distributes
+      ebook 155 with a US public-domain clearance.
+    - Wilkie Collins died on 23 September 1889, so life+70 protection
+      expired on 1 January 1960 in the UK and EU member states. Spain's
+      transitional 80-year post-mortem term (1879 Act, authors deceased
+      before 7 December 1987) expired on 1 January 1970, so there is no
+      outstanding Article 10 (Directive 2006/116/EC) exception.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
+  licence: null
+  notes: The underlying 1868 work's US public domain status is verified
+    (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 155) has been inspected and
+    contains solely Collins's text plus removable Gutenberg boilerplate
+    and a generated table of contents (excluded, see overrides) - no
+    third-party introductions, notes, or annotations remain. The
+    remaining gate before flipping rights.status to public-domain and
+    moving UK/EU into verified_jurisdictions is that second maintainer
+    sanity-check, per docs/review-checklist.md.
+
+classification:
+  primary_genre: mystery
+  genres: [mystery]
+  subgenres: [detective]
+  audience: [adult]
+  pov: [mixed]
+  tense: [past]
+  style_tags: [multiple-narrators]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Backlog pick (#23). Prepared from the pinned Gutenberg
+    artifact; word count 194,812 against expected_min_words 180000. The
+    Moonstone's real structure - a Prologue, then "The Story" told across
+    First through Eighth Periods/Narratives by different narrators, then
+    an Epilogue - is verified present and in order in the body itself;
+    only the front-loaded generated table of contents duplicating that
+    index is removed (see overrides). The text starts with the actual
+    work - title and author, then the Prologue - with no other front
+    matter; no illustration markers are present in this transcription.
+    The ASCII ellipsis encoding is normalised to the corpus's U+2026
+    convention - one sentence-final four-dot run in Ezra Jennings's
+    journal, and 41 mid-sentence three-dot runs representing the gaps in
+    Mr. Candy's delirious speech (same distinction, same fix, as
+    Dracula's (#31) case). Several archaic hyphenated forms (good-bye,
+    good-night, half-a-dozen, half-an-hour) are modernised via the
+    shared rules file, added for Jane Eyre's corresponding forms and
+    applying here too since they're general rules, not per-work.
+    Automated and preliminary content checks are complete; awaiting the
+    maintainer's full human read-through, reviewed_by, and
+    reviewed_text_sha256.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 180000
+  source_sha256: e2f9023a41c388fa2b0d2a21d71a363e603b33860d8d964e314b5f4da7e6f837

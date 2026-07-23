@@ -104,6 +104,112 @@ def test_extract_requires_markers() -> None:
         extract_gutenberg_txt("No markers here.")
 
 
+def _wrap_gutenberg(body: str) -> str:
+    return f"Header junk\n\n*** START OF THE PROJECT GUTENBERG EBOOK 1 ***\n{body}\n*** END OF THE PROJECT GUTENBERG EBOOK 1 ***\n\nFooter junk\n"
+
+
+def test_extract_strips_bare_illustration_marker() -> None:
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg("First paragraph.\n\n[Illustration]\n\nSecond paragraph.")
+    )
+    assert body == "First paragraph.\n\nSecond paragraph."
+
+
+def test_extract_strips_captioned_illustration_marker() -> None:
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            'First paragraph.\n\n[Illustration: "A caption here"]\n\nSecond paragraph.'
+        )
+    )
+    assert body == "First paragraph.\n\nSecond paragraph."
+
+
+def test_extract_strips_illustration_marker_with_nested_copyright_bracket() -> None:
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "First paragraph.\n\n"
+            "[Illustration:\n\n"
+            '"A caption here"\n\n'
+            "[_Copyright 1894 by Example Press._]]\n\n"
+            "Second paragraph."
+        )
+    )
+    assert body == "First paragraph.\n\nSecond paragraph."
+    assert "Copyright" not in body
+
+
+def test_extract_strips_multiple_illustration_markers_in_sequence() -> None:
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "First.\n\n[Illustration: one]\n\n[Illustration: two]\n\nSecond."
+        )
+    )
+    assert body == "First.\n\nSecond."
+
+
+def test_extract_leaves_unclosed_illustration_marker_in_place() -> None:
+    # No closing bracket: fails safe by leaving it visible for a human to
+    # notice during review, rather than guessing where it should end and
+    # risking eating real prose.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg("First paragraph.\n\n[Illustration: never closed\n\nSecond paragraph.")
+    )
+    assert "[Illustration: never closed" in body
+
+
+def test_extract_manufactures_visible_break_for_mid_sentence_illustration() -> None:
+    # Gutenberg wraps markers in blank lines even when they interrupt one
+    # sentence rather than sitting between two paragraphs (confirmed against
+    # a real edition: "...the idea of his" / marker / "being gone to
+    # London..."). This function deliberately does not try to infer that
+    # from context (see its docstring): it always leaves a normal paragraph
+    # gap behind, even here, where it manufactures a break that isn't really
+    # there. That's a visible, inspectable difference a human or per-work
+    # override can fix once confirmed against the source - not a silent
+    # guess that risks merging or misreading content it can't verify.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "She amused herself by starting the idea of his\n\n"
+            '[Illustration:\n\n"When the Party entered"\n\n'
+            "[_Copyright 1894 by Example Press._]]\n\n"
+            "being gone to London only to get a large party for the ball."
+        )
+    )
+    assert body == (
+        "She amused herself by starting the idea of his\n\n"
+        "being gone to London only to get a large party for the ball."
+    )
+
+
+def test_extract_does_not_misread_non_chapter_headings() -> None:
+    # A general sentence-boundary heuristic risks misjudging headings it
+    # doesn't recognise (e.g. "PROLOGUE", "BOOK ONE") as unfinished
+    # sentences. This function no longer tries to infer boundaries at all,
+    # so a marker after any heading - recognised or not - always gets the
+    # same canonical paragraph gap.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg("PROLOGUE\n\n[Illustration]\n\nIt was a dark and stormy night.")
+    )
+    assert body == "PROLOGUE\n\nIt was a dark and stormy night."
+
+
+def test_extract_preserves_paragraph_break_around_illustration() -> None:
+    # Sanity check alongside the mid-sentence case above: when the marker
+    # really does sit between two sentences, the paragraph break is kept,
+    # not collapsed into a joining space.
+    body = extract_gutenberg_txt(
+        _wrap_gutenberg(
+            "He hurried home with the great intelligence.\n\n"
+            "[Illustration: “The gentlemen accompanied him.”]\n\n"
+            "On the following morning he hastened to Rosings."
+        )
+    )
+    assert body == (
+        "He hurried home with the great intelligence.\n\n"
+        "On the following morning he hastened to Rosings."
+    )
+
+
 def test_clean_unwraps_paragraphs_and_keeps_section_gaps() -> None:
     text = "A heading\n\n\nFirst line\nsecond line.\n\nNext  paragraph\r\nhere.\n"
     cleaned = clean_fiction(text)
@@ -116,6 +222,16 @@ def test_modernize_preserves_case_and_word_boundaries(tmp_path: Path) -> None:
     result, counts = modernize_spelling(text, root)
     assert result == "Today and today, TODAY! A connexional matter. Their connection held.\n"
     assert counts == {"to-day": 3, "connexion": 1}
+
+
+def test_modernize_handles_space_containing_replacement(tmp_path: Path) -> None:
+    # A hyphenated single-token source (matched whole-word, not a multi-word
+    # phrase) is safe even when its unambiguous modern form has a space.
+    root = make_root(tmp_path)
+    text = "Good-night, Jane. good-night! GOOD-NIGHT, all.\n"
+    result, counts = modernize_spelling(text, root)
+    assert result == "Good night, Jane. good night! GOOD NIGHT, all.\n"
+    assert counts == {"good-night": 3}
 
 
 def test_overrides_require_note_and_exact_count(tmp_path: Path) -> None:

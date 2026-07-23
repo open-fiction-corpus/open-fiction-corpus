@@ -273,6 +273,75 @@ _GUTENBERG_CREDIT = re.compile(
     r"^\s*(produced by|e-?text prepared by|transcribed (by|from)|special thanks)", re.IGNORECASE
 )
 
+# Gutenberg's plain-text convention for representing an illustration: a
+# bracketed marker, optionally with a caption, optionally with one level of
+# nested brackets inside (e.g. a per-illustration copyright stamp). No
+# example in any prepared work nests deeper than that, so a single level of
+# nesting is all this matches; a genuinely deeper case would simply be left
+# in place (failing safe, visibly, rather than over-matching into real
+# prose).
+_ILLUSTRATION_MARKER = re.compile(r"\[Illustration\b(?:[^\[\]]|\[[^\[\]]*\])*\]")
+
+
+def _strip_illustration_markers(body: str) -> str:
+    """Remove Gutenberg "[Illustration ...]" markers, closing the gap left behind.
+
+    Gutenberg wraps every illustration marker in blank lines, even when the
+    illustration was placed in the middle of a sentence rather than between
+    two paragraphs (confirmed in practice: an edition can interrupt "...the
+    idea of his" / "[Illustration: ...]" / "being gone to London..." even
+    though that is one continuous sentence). An earlier version of this
+    function tried to infer, from the surrounding punctuation, whether a
+    marker's gap was a real paragraph break or a mid-sentence interruption,
+    joining the latter with a space. That inference isn't safe as a general,
+    corpus-wide rule: it can misjudge a heading it doesn't recognise (its
+    chapter-heading check only knew Roman-numeral "CHAPTER" lines, not
+    "BOOK ONE", "PROLOGUE", or any other section convention) and collapse a
+    genuine structural break, or misjudge a sentence that happens to end in
+    a colon and wrongly preserve a break inside it - both of which corrupt
+    real content, a worse failure than the one being fixed.
+
+    So this function no longer guesses: every marker (or run of consecutive
+    markers, with only whitespace between them) and its surrounding
+    whitespace is replaced with a single canonical blank-line paragraph gap,
+    every time, regardless of context. Between two real paragraphs that's
+    exactly correct. Mid-sentence, it manufactures a paragraph break that
+    isn't really there - visible and inspectable in the cleaned text, and
+    fixable with an explicit, auditable per-work override once confirmed
+    against the source - rather than a general rule silently merging or
+    misreading content it can't actually verify.
+    """
+    out = []
+    pos = 0
+    for match in _ILLUSTRATION_MARKER.finditer(body):
+        if match.start() < pos:
+            continue  # already consumed as part of a preceding marker's span
+
+        lead_start = match.start()
+        while lead_start > pos and body[lead_start - 1] in " \t\n":
+            lead_start -= 1
+
+        # Swallow a run of consecutive markers (with only whitespace between
+        # them) as a single unit, collapsing to one gap for the whole span.
+        trail_end = match.end()
+        while True:
+            probe = trail_end
+            while probe < len(body) and body[probe] in " \t\n":
+                probe += 1
+            next_marker = _ILLUSTRATION_MARKER.match(body, probe)
+            if next_marker is None:
+                break
+            trail_end = next_marker.end()
+        while trail_end < len(body) and body[trail_end] in " \t\n":
+            trail_end += 1
+
+        out.append(body[pos:lead_start])
+        if lead_start > 0 and trail_end < len(body):
+            out.append("\n\n")
+        pos = trail_end
+    out.append(body[pos:])
+    return "".join(out)
+
 
 def extract_gutenberg_txt(raw_text: str) -> str:
     """Return the body between the Project Gutenberg start and end markers."""
@@ -293,6 +362,15 @@ def extract_gutenberg_txt(raw_text: str) -> str:
         if gap is None:
             return ""
         body = body[gap.end() :]
+
+    # Illustration markers carry no literary meaning (per the cleaning
+    # guide) and are common enough across illustrated Gutenberg editions to
+    # handle generically here, rather than per work. A marker that happens
+    # to carry meaningful text alongside the decoration (e.g. this edition's
+    # chapter heading illustrated as part of its artwork) is a work-specific
+    # exception for overrides to restore, not something this general step
+    # can know to special-case.
+    body = _strip_illustration_markers(body)
     return body
 
 

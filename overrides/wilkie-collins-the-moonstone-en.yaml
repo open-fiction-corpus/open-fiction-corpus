@@ -1,0 +1,34 @@
+corrections:
+  - find: "Contents\n\n\nPROLOGUE\n\nTHE STORY\n\nFIRST PERIOD CHAPTER I CHAPTER II CHAPTER III CHAPTER IV CHAPTER V CHAPTER VI CHAPTER VII CHAPTER VIII CHAPTER IX CHAPTER X CHAPTER XI CHAPTER XII CHAPTER XIII CHAPTER XIV CHAPTER XV CHAPTER XVI CHAPTER XVII CHAPTER XVIII CHAPTER XIX CHAPTER XX CHAPTER XXI CHAPTER XXII CHAPTER XXIII\n\nSECOND PERIOD FIRST NARRATIVE CHAPTER I CHAPTER II CHAPTER III CHAPTER IV CHAPTER V CHAPTER VI CHAPTER VII CHAPTER VIII\n\nSECOND NARRATIVE CHAPTER I CHAPTER II CHAPTER III\n\nTHIRD NARRATIVE CHAPTER I CHAPTER II CHAPTER III CHAPTER IV CHAPTER V CHAPTER VI CHAPTER VII CHAPTER VIII CHAPTER IX CHAPTER X\n\nFOURTH NARRATIVE\n\nFIFTH NARRATIVE\n\nSIXTH NARRATIVE I II III IV V\n\nSEVENTH NARRATIVE\n\nEIGHTH NARRATIVE\n\nEPILOGUE I II III\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Removes the generated table of contents (per docs/cleaning-guide.md,
+      "generated tables of contents" are normally stripped), same pattern
+      as #17/#31. The Moonstone's real structure - a Prologue, then
+      "The Story" told across First through Eighth "Periods"/"Narratives"
+      by different narrators, then an Epilogue - is preserved in the body
+      itself via each section's own heading; only the front-loaded index
+      of that structure is removed.
+  - find: "...."
+    replace: ".…"
+    count: 1
+    note: >-
+      This one terminal four-dot run is a sentence-ending period ("1849.—June
+      15.") followed by a trailing-off ellipsis in Ezra Jennings's journal,
+      distinct in meaning from the mid-sentence three-dot form below - same
+      pattern and same fix as Dracula's identical case in #31. Normalizes
+      only the encoding (ASCII periods to the corpus's U+2026 convention,
+      per docs/cleaning-guide.md) while keeping the semantic distinction
+      intact. Must run before the three-dot rule so it isn't double-matched.
+  - find: "..."
+    replace: "…"
+    count: 41
+    note: >-
+      All 41 of these are Ezra Jennings's transcription of Mr. Candy's
+      delirious, gap-riddled speech (ch. "Fourth Narrative"): a single
+      fragmented sentence broken into disconnected phrases by "..." standing
+      in for the words Jennings couldn't make out, never a sentence-ending
+      period. Normalizes the encoding only; the semantic distinction from
+      the four-dot form above is preserved (that one becomes ".…", this one
+      becomes "…" alone), same as Dracula's identical case in #31.

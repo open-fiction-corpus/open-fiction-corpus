@@ -17,21 +17,28 @@ corrections:
       titles. This reprint edition's back matter is not part of Stoker's
       novel; the story itself ends cleanly at "JONATHAN HARKER." / "THE
       END", which is kept.
-  - find: "Bram Stoker\n\n[Illustration: colophon]\n\nNEW YORK\n\nGROSSET & DUNLAP\n\n_Publishers_\n\nCopyright, 1897, in the United States of America, according to Act of Congress, by Bram Stoker\n\n[_All rights reserved._]\n\nPRINTED IN THE UNITED STATES AT THE COUNTRY LIFE PRESS, GARDEN CITY, N.Y.\n\n\n"
+  - find: "Bram Stoker\n\nNEW YORK\n\nGROSSET & DUNLAP\n\n_Publishers_\n\nCopyright, 1897, in the United States of America, according to Act of Congress, by Bram Stoker\n\n[_All rights reserved._]\n\nPRINTED IN THE UNITED STATES AT THE COUNTRY LIFE PRESS, GARDEN CITY, N.Y.\n\n\n"
     replace: "Bram Stoker\n\n\n"
     count: 1
     note: >-
       Strips the Grosset & Dunlap reprint's title-page matter after the
-      author byline: a leftover [Illustration: colophon] marker (the
-      publisher's logo), the publisher/city imprint, and — the actual
-      catch, a caught mistake on the first pass — a "Copyright, 1897 ...
-      Act of Congress" notice and "[All rights reserved.]" plus the
-      printer's imprint. docs/review-checklist.md is explicit that the
-      text must start with "the actual work ... no licence text"; a
+      author byline: the publisher/city imprint, and — the actual catch,
+      a caught mistake on the first pass — a "Copyright, 1897 ... Act of
+      Congress" notice and "[All rights reserved.]" plus the printer's
+      imprint. docs/review-checklist.md is explicit that the text must
+      start with "the actual work ... no licence text"; a
       copyright/rights-reserved notice is exactly that, not part of
       Stoker's novel, regardless of how public-domain the underlying work
       is. Stoker's own dedication ("TO / MY DEAR FRIEND / HOMMY-BEG",
-      i.e. Hall Caine) immediately follows and is kept.
+      i.e. Hall Caine) immediately follows and is kept. (A leftover
+      [Illustration: colophon] marker used to sit right after the byline
+      too; the general Gutenberg illustration-marker stripper removes
+      that automatically before this override runs, always leaving a
+      normal paragraph gap behind regardless of context - it no longer
+      tries to infer whether a gap is a real paragraph break, so this
+      find string doesn't need to track that inference. This whole block
+      is discarded either way, so it only affects this find string, not
+      corpus output.)
   - find: "--"
     replace: "—"
     count: 1460

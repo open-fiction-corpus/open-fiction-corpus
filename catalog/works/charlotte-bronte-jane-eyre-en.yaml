@@ -1,0 +1,120 @@
+id: charlotte-bronte-jane-eyre-en
+title: "Jane Eyre: An Autobiography"
+language: en
+form: novel
+
+authors:
+  - name: Charlotte Brontë
+    birth_year: 1816
+    death_year: 1855
+
+contributors:
+  # Project Gutenberg transcription/production credit from the ebook 1260
+  # metadata and the pg1260.txt header. Recorded for provenance; a faithful
+  # transcription with trivial corrections is not separately rights-bearing
+  # (see rights.evidence).
+  - name: David Price
+    role: other
+
+publication:
+  original_year: 1847
+  edition_year: 1897
+
+source:
+  provider: gutenberg
+  identifier: "1260"
+  url: https://www.gutenberg.org/ebooks/1260
+  download_url: https://www.gutenberg.org/cache/epub/1260/pg1260.txt
+  revision: "2025-09-27"
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - The work was first published 16 October 1847, London, Smith, Elder
+      & Co., under the pseudonym "Currer Bell"; pre-1930 first publication
+      places it in the United States public domain, and Project Gutenberg
+      distributes ebook 1260 with a US public-domain clearance.
+    - Charlotte Brontë died on 31 March 1855, so life+70 protection
+      expired on 1 January 1926 in the UK and EU member states. Spain's
+      transitional 80-year post-mortem term (1879 Act, authors deceased
+      before 7 December 1987) expired on 1 January 1936, so there is no
+      outstanding Article 10 (Directive 2006/116/EC) exception.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
+  licence: null
+  notes: The underlying 1847 work's US public domain status is verified
+    (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 1260) has been inspected and
+    contains solely Brontë's text (her own dedication to Thackeray and
+    second-edition preface are hers, not third-party apparatus, and are
+    kept) plus removable Gutenberg boilerplate and this 1897 Service &
+    Paton edition's publisher imprint and illustrations-copyright notice
+    (excluded, see overrides) - no third-party introductions, notes, or
+    annotations remain. The remaining gate before flipping rights.status
+    to public-domain and moving UK/EU into verified_jurisdictions is that
+    second maintainer sanity-check, per docs/review-checklist.md.
+
+classification:
+  primary_genre: romance
+  genres: [romance, literary-fiction]
+  subgenres: [gothic-romance, bildungsroman]
+  audience: [adult]
+  pov: [first-person]
+  tense: [past]
+  style_tags: [dialogue-heavy]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Backlog pick (#19). Prepared from the pinned Gutenberg
+    artifact; word count 185,284 against expected_min_words 180000, all
+    38 chapters verified present and in order (the last, "CHAPTER
+    XXXVIII—CONCLUSION", correctly carries its dual heading from the
+    source). The text starts with the actual work - title, Brontë's
+    dedication to Thackeray, her second-edition preface - with the 1897
+    Service & Paton edition's publisher imprint and illustrations-
+    copyright notice excluded (see overrides). This transcription carries
+    no [Illustration ...] markers, but it does carry the illustrations'
+    captions themselves as bare, unmarked duplicate paragraphs scattered
+    through the body (confirmed against Gutenberg's separate HTML
+    edition of the same ebook, which places each exact phrase as an
+    image caption); all 13 found are excluded via override. The corpus's
+    five short verse/song quotations in this novel (Bewick's Thomson
+    excerpt, Bessie's two songs, a Scott couplet, and the opening of
+    Scott's "Marmion") had their line breaks flattened by
+    fiction_clean_v1, which is prose-only by design - restored via
+    override, scoped to this work rather than a pipeline change, since
+    it's a handful of short quotations rather than substantial lineated
+    content. Several archaic hyphenated forms (good-bye, good-night,
+    good-morning, good-afternoon, half-an-hour, half-a-dozen,
+    half-a-slice, every-day) and encyclopædic (de-ligature) are
+    modernised via the shared rules file. Automated and preliminary
+    content checks are complete; awaiting the maintainer's full human
+    read-through, reviewed_by, and reviewed_text_sha256.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 180000
+  source_sha256: 13414dee2951c3ee731d76d2ffd822016b2479c892162760c5d0eb2aa5fa7631

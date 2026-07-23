@@ -1,0 +1,267 @@
+corrections:
+  - find: "_ILLUSTRATED BY F. H. TOWNSEND_\n\nLondon SERVICE & PATON 5 HENRIETTA STREET 1897\n\n_The Illustrations_ _in this Volume are the copyright of_ SERVICE & PATON, _London_\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Strips this 1897 illustrated edition's publisher imprint (Service
+      & Paton, London) and, more importantly, its illustrations-copyright
+      notice ("The Illustrations in this Volume are the copyright of
+      Service & Paton, London"). docs/review-checklist.md requires the
+      text to start with the actual work and no licence text; a
+      copyright notice is exactly that, regardless of how public-domain
+      the underlying 1847 text is, and it only concerns the illustrations
+      (not present as inline markers in this transcription) in any case.
+      Brontë's own dedication to Thackeray and her second-edition preface
+      immediately follow and are kept.
+  - find: "\n\n\nHow dare I, Mrs. Reed? How dare I? Because it is the truth\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Jane's outburst at Mrs. Reed in the red-room aftermath (ch. 4);
+      drops the closing dialogue ("You think I have no feelings...") and the
+      italics on "truth".
+  - find: "\n\n\n“What is it and who did it?” he asked\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Rochester discovering his bed-curtains set alight (ch. 15); keeps
+      its quotation marks and "he asked", but drops one of the two "?" the live
+      dialogue has.
+  - find: "\n\n\nDuring all that time she never turned a page\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Blanche Ingram sulking during the charades game (ch. 18).
+  - find: "\n\n\nShe did not stoop towards me, but only gazed, leaning back in her chair\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. The gipsy-fortune-teller scene, actually Rochester in disguise (ch.
+      19); drops the sentence's continuation ("I knelt...").
+  - find: "\n\n\nIt removed my veil from its gaunt head, rent it in two parts, and flinging both on the floor, trampled on them\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. The strange visitor tearing Jane's wedding veil, recounted the next
+      morning (ch. 25).
+  - find: "\n\n\nI said my evening prayers\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Jane's night alone on the moor after fleeing Thornfield (ch. 28).
+  - find: "\n\n\n“Will you give me that?” I asked\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Jane begging food from the Rivers' servant Hannah (ch. 28); keeps
+      its quotation marks and "I asked" attribution, a near-verbatim duplicate
+      rather than a paraphrase.
+  - find: "\n\n\nHush, Hannah; I have a word to say to the woman\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. St. John Rivers admitting Jane into Moor House (ch. 29).
+  - find: "\n\n\nAnd I am a hard woman,—impossible to put off\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. St. John Rivers pressing his marriage proposal on Jane (ch. 34);
+      drops the closing quotation mark and period.
+  - find: "\n\n\nThe next minute she lay smashed on the pavement\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Bertha Mason's death recounted to Jane at the Rochester Arms (ch.
+      36).
+  - find: "\n\n\nYou are altogether a human being, Jane? You are certain of that?\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Jane and the blinded Rochester reunited at Ferndean (ch. 37).
+  - find: "\n\n\nAnd have you a pale blue dress on?\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Rochester questioning Jane about her appearance at Ferndean (ch.
+      37).
+  - find: "\n\n\nI was mortally afraid of its trampling forefeet\n\n"
+    replace: "\n\n"
+    count: 1
+    note: >-
+      Stray duplicate of nearby dialogue/narration, sitting alone as its own
+      paragraph with a wider blank-line gap before it than the corpus's normal
+      single-blank-line paragraph break, usually (not always, see below) missing
+      the quotation marks or emphasis markup the live text has — the leftover text
+      remnant of an illustration caption from this 1897 Townsend-illustrated
+      edition, which the plain-text transcription (unlike P&P's, which uses
+      explicit [Illustration ...] markers) carries as bare prose rather than a
+      recognisable marker. Confirmed against Project Gutenberg's separate HTML
+      edition of the same ebook (1260), which places this exact phrase as an image
+      caption. Jane leading Rochester's horse Mesrour on the Hay Lane road (ch.
+      12); drops the hyphen in "trampling fore-feet".
+  - find: "“Where the Northern Ocean, in vast whirls, Boils round the naked, melancholy isles Of farthest Thule; and the Atlantic surge Pours in among the stormy Hebrides.”"
+    replace: "“Where the Northern Ocean, in vast whirls,\nBoils round the naked, melancholy isles\nOf farthest Thule; and the Atlantic surge\nPours in among the stormy Hebrides.”"
+    count: 1
+    note: >-
+      Restores the line breaks of the quatrain from James Thomson's "The Seasons"
+      that young Jane reads in Bewick's History of British Birds (ch. 1),
+      flattened by fiction_clean_v1's prose-only line-unwrapping (see
+      docs/cleaning-guide.md). No wording changed.
+  - find: "“In the days when we went gipsying, A long time ago.”"
+    replace: "“In the days when we went gipsying,\n    A long time ago.”"
+    count: 1
+    note: >-
+      Restores the line break (and the second line's indent, matching the source)
+      of the couplet from Bessie's song (ch. 3), flattened by fiction_clean_v1's
+      prose-only line-unwrapping. No wording changed.
+  - find: "“My feet they are sore, and my limbs they are weary; Long is the way, and the mountains are wild; Soon will the twilight close moonless and dreary Over the path of the poor orphan child."
+    replace: "“My feet they are sore, and my limbs they are weary;\n    Long is the way, and the mountains are wild;\nSoon will the twilight close moonless and dreary\n    Over the path of the poor orphan child."
+    count: 1
+    note: >-
+      Restores the line breaks (1 of 5) of "The Poor Orphan Child," the ballad
+      Bessie sings in ch. 3, flattened by fiction_clean_v1's prose-only line-
+      unwrapping. No wording changed.
+  - find: "Why did they send me so far and so lonely, Up where the moors spread and grey rocks are piled? Men are hard-hearted, and kind angels only Watch o’er the steps of a poor orphan child."
+    replace: "Why did they send me so far and so lonely,\n    Up where the moors spread and grey rocks are piled?\nMen are hard-hearted, and kind angels only\n    Watch o’er the steps of a poor orphan child."
+    count: 1
+    note: >-
+      Restores the line breaks (2 of 5) of the same ballad. No wording changed.
+  - find: "Yet distant and soft the night breeze is blowing, Clouds there are none, and clear stars beam mild, God, in His mercy, protection is showing, Comfort and hope to the poor orphan child."
+    replace: "Yet distant and soft the night breeze is blowing,\n    Clouds there are none, and clear stars beam mild,\nGod, in His mercy, protection is showing,\n    Comfort and hope to the poor orphan child."
+    count: 1
+    note: >-
+      Restores the line breaks (3 of 5) of the same ballad. No wording changed.
+  - find: "Ev’n should I fall o’er the broken bridge passing, Or stray in the marshes, by false lights beguiled, Still will my Father, with promise and blessing, Take to His bosom the poor orphan child."
+    replace: "Ev’n should I fall o’er the broken bridge passing,\n    Or stray in the marshes, by false lights beguiled,\nStill will my Father, with promise and blessing,\n    Take to His bosom the poor orphan child."
+    count: 1
+    note: >-
+      Restores the line breaks (4 of 5) of the same ballad. No wording changed.
+  - find: "There is a thought that for strength should avail me, Though both of shelter and kindred despoiled; Heaven is a home, and a rest will not fail me; God is a friend to the poor orphan child.”"
+    replace: "There is a thought that for strength should avail me,\n    Though both of shelter and kindred despoiled;\nHeaven is a home, and a rest will not fail me;\n    God is a friend to the poor orphan child.”"
+    count: 1
+    note: >-
+      Restores the line breaks (5 of 5, final stanza) of the same ballad. No
+      wording changed.
+  - find: "“Like heath that, in the wilderness, The wild wind whirls away.”"
+    replace: "“Like heath that, in the wilderness,\n    The wild wind whirls away.”"
+    count: 1
+    note: >-
+      Restores the line break (and the second line's indent, matching the source)
+      of this couplet - a variation on lines from Walter Scott's "The Lady of the
+      Lake" - quoted as Rochester rides off in ch. 12, flattened by
+      fiction_clean_v1's prose-only line-unwrapping. No wording changed.
+  - find: "“Day set on Norham’s castled steep, And Tweed’s fair river broad and deep, And Cheviot’s mountains lone; The massive towers, the donjon keep, The flanking walls that round them sweep, In yellow lustre shone”—"
+    replace: "“Day set on Norham’s castled steep,\nAnd Tweed’s fair river broad and deep,\n    And Cheviot’s mountains lone;\nThe massive towers, the donjon keep,\nThe flanking walls that round them sweep,\n    In yellow lustre shone”—"
+    count: 1
+    note: >-
+      Restores the line breaks of the opening lines of Walter Scott's "Marmion,"
+      which Jane reads aloud at Moor House (ch. 30), flattened by
+      fiction_clean_v1's prose-only line-unwrapping. No wording changed.

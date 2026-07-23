@@ -7,9 +7,15 @@
 #
 # Keep rules strictly to archaic spellings of words whose modern form is
 # unambiguous, including de-ligatured Latin/Greek loanwords (æ -> ae,
-# œ -> oe). Never add grammar, vocabulary, dialect, punctuation, or
-# multi-word rules (e.g. "any one" -> "anyone" is unsafe: "any one of them"
-# is correct modern English).
+# œ -> oe). Never add grammar, vocabulary, dialect, punctuation rules, or
+# rules whose *source* is a multi-word phrase (e.g. "any one" -> "anyone"
+# is unsafe: "any one of them" is correct modern English, so matching the
+# bare two-word phrase would corrupt it). A single hyphenated token as the
+# source (e.g. "good-night") is not a multi-word phrase - it is matched as
+# one whole word via \b...\b - so it is fine for its *replacement* to
+# contain a space where that's genuinely the modern spelling (e.g.
+# "good night"); what's unsafe is a multi-word source, not a multi-word
+# replacement.
 #
 # Keys and replacements are always lowercase, matched case-insensitively:
 # _match_case() derives the output casing from what actually matched, so a
@@ -35,8 +41,21 @@ rules:
   phœnician: phoenician
   antennæ: antennae
   gynæceum: gynaeceum
+  manœuvre: manoeuvre
   manœuvring: manoeuvring
   dyspnœa: dyspnoea
   anæmic: anaemic
   mediæval: mediaeval
   hæmorrhage: haemorrhage
+  develope: develop
+  ancle: ankle
+  ancles: ankles
+  encyclopædic: encyclopaedic
+  good-bye: goodbye
+  good-night: good night
+  good-morning: good morning
+  good-afternoon: good afternoon
+  half-an-hour: half an hour
+  half-a-dozen: half a dozen
+  half-a-slice: half a slice
+  every-day: everyday
