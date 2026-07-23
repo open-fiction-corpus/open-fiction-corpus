@@ -85,6 +85,22 @@ corrections:
   find: “Fifteen men on the dead man’s chest-- Yo-ho-ho, and a bottle of rum! Drink and the devil had done for the rest-- Yo-ho-ho, and a bottle of rum!”
   replace: "“Fifteen men on the dead man’s chest--\n    Yo-ho-ho, and a bottle of rum!\nDrink and the devil had done for the rest--\n    Yo-ho-ho, and a bottle of rum!”"
   note: 'The pirate sea-song appears 6 times total in the novel: 2 in this verbatim four-line form (fixed here), 2 in a two-line form (fixed by the sibling correction above), and 2 already sitting as correctly separated dialogue that needed no fix. Restores the line breaks, flattened by fiction_clean_v1''s prose-only line-unwrapping. No wording changed.'
+- count: 1
+  find: “But one man of her crew alive, What put to sea with seventy-five.”
+  replace: "“But one man of her crew alive,\n    What put to sea with seventy-five.”"
+  note: >-
+    Restores the line break of a second sailor ballad (1 of 2 appearances),
+    quoted in ch. 23 in Jim's dialogue, flattened by fiction_clean_v1's
+    prose-only line-unwrapping - Gutenberg's own HTML edition preserves
+    the break here. No wording changed.
+- count: 1
+  find: With one man of her crew alive, What put to sea with seventy-five.
+  replace: "With one man of her crew alive,\n    What put to sea with seventy-five."
+  note: >-
+    Restores the line break of the same ballad's second appearance (2 of
+    2), in ch. 34's narration (unquoted, unlike the ch. 23 instance),
+    flattened by fiction_clean_v1's prose-only line-unwrapping. No wording
+    changed.
 - count: 427
   find: --
   replace: —

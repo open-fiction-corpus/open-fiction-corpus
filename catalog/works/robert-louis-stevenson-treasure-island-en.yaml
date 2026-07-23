@@ -113,13 +113,16 @@ quality:
     on closer inspection, despite an earlier scan missing it) is removed
     via override, along with the ASCII em-dash substitution (427
     instances; one already-correct real em dash, a deliberate
-    redacted-year device, is left untouched). Two verse passages have
+    redacted-year device, is left untouched). Three verse passages have
     their line breaks restored (fiction_clean_v1 is prose-only by design,
     per docs/cleaning-guide.md) - the opening "To the Hesitating
-    Purchaser" dedication poem, and the "Fifteen men on the dead man's
-    chest" sea-song, which recurs 6 times in varying forms (4 needed
-    restoring; 2 were already correctly split across dialogue and needed
-    no fix). A single misnumbered chapter heading (source labels Chapter
+    Purchaser" dedication poem; the "Fifteen men on the dead man's chest"
+    sea-song, which recurs 6 times in varying forms (4 needed restoring; 2
+    were already correctly split across dialogue and needed no fix); and
+    a second sailor ballad ("But/With one man of her crew alive...") that
+    appears twice, in ch. 23 and ch. 34, both restored - found in a
+    follow-up review pass after the first two passages were already
+    fixed. A single misnumbered chapter heading (source labels Chapter
     XVII as "XXVII," duplicating the real Chapter XXVII's number) is
     corrected via override, also caught in that same close read. Not yet
     human-reviewed.
