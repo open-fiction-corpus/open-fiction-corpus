@@ -1,0 +1,43 @@
+corrections:
+  - find: "W. W. Denslow.\n\nGeo. M. Hill Co. New York.\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Strips the illustrator-credit line and publisher imprint from the title page
+      - neither is Baum's own text. The title and byline ("The WONDERFUL WIZARD OF
+      OZ" / "BY L. Frank Baum") are kept at the very start of the body, same
+      pattern as Treasure Island in #34; Denslow's illustrator credit is recorded
+      in contributors instead (see rights.evidence). Baum's own signed and dated
+      Introduction immediately follows and is kept in full.
+  - find: "Copyright 1899 By L. Frank Baum and W. W. Denslow. All rights reserved\n\nLIST OF CHAPTERS.\n\n\nCHAPTER I.--The Cyclone.\n\nCHAPTER II.--The Council with The Munchkins.\n\nCHAPTER III.--How Dorothy Saved the Scarecrow.\n\nCHAPTER IV.--The Road Through the Forest.\n\nCHAPTER V.--The Rescue of the Tin Woodman.\n\nCHAPTER VI.--The Cowardly Lion.\n\nCHAPTER VII.--The Journey to The Great Oz.\n\nCHAPTER VIII.--The Deadly Poppy Field.\n\nCHAPTER IX.--The Queen of the Field Mice.\n\nCHAPTER X.--The Guardian of the Gates.\n\nCHAPTER XI.--The Wonderful Emerald City of Oz.\n\nCHAPTER XII.--The Search for the Wicked Witch.\n\nCHAPTER XIII.--How the Four were Reunited.\n\nCHAPTER XIV.--The Winged Monkeys.\n\nCHAPTER XV.--The Discovery of Oz the Terrible.\n\nCHAPTER XVI.--The Magic Art of the Great Humbug.\n\nCHAPTER XVII.--How the Balloon was Launched.\n\nCHAPTER XVIII.--Away to the South.\n\nCHAPTER XIX.--Attacked by the Fighting Trees.\n\nCHAPTER XX.--The Dainty China Country.\n\nCHAPTER XXI.--The Lion Becomes the King of Beasts.\n\nCHAPTER XXII.--The Country of the Quadlings.\n\nCHAPTER XXIII.--The Good Witch grants Dorothy's Wish.\n\nCHAPTER XXIV.--Home Again.\n\n\n"
+    replace: ""
+    count: 1
+    note: >-
+      Removes the copyright notice and the generated table of contents (per
+      docs/cleaning-guide.md, "generated tables of contents" are normally
+      stripped), same pattern as #17/#31/#32/#34/#35. Baum's own dedication ("This
+      book is dedicated to my good friend & comrade...") immediately follows and
+      is kept, as is the Chapter I heading.
+  - find: "\n\nTranscriber's Notes:\n\n\nObvious punctuation and spelling errors have been fixed throughout.\n\n\nEnd of Project Gutenberg's The Wonderful Wizard of Oz, by L. Frank Baum\n"
+    replace: "\n"
+    count: 1
+    note: >-
+      Strips a trailing transcriber's note and the redundant "End of Project
+      Gutenberg's..." line, both sitting inside the licensed body after the
+      story's own final line ("I'm so glad to be at home again!"), same
+      pattern as Dracula's colophon in #31 and Frankenstein's transcriber's
+      note in #35.
+  - find: "--"
+    replace: "—"
+    count: 28
+    note: >-
+      Normalizes the ASCII em-dash substitute to the corpus's U+2014 convention
+      (per docs/cleaning-guide.md): this transcription renders every em dash as
+      plain "--", with no real "—" character anywhere in the file, and no four-
+      hyphen redaction runs. 52 raw "--" occurrences total; 24 are consumed by the
+      removed table of contents (each "CHAPTER N.--Title" line), leaving 28
+      genuine em dashes in the body - parenthetical asides and mid-dialogue
+      interruptions/trailing-off, e.g. "gently--for a cyclone--in the midst" and
+      "please don't!--and I'll do anything you want". Must run after the front-
+      matter corrections above so the count isn't thrown off by the ToC's own "--"
+      instances.

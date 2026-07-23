@@ -1,0 +1,146 @@
+id: l-frank-baum-the-wonderful-wizard-of-oz-en
+title: The Wonderful Wizard of Oz
+language: en
+form: novel
+
+authors:
+  - name: L. Frank Baum
+    birth_year: 1856
+    death_year: 1919
+
+contributors:
+  # Project Gutenberg transcription/production credits from the ebook
+  # 43936 metadata and the pg43936.txt header. Recorded for provenance; a
+  # faithful transcription with trivial corrections is not separately
+  # rights-bearing (see rights.evidence). W. W. Denslow's illustrations
+  # are recorded separately below as rights-relevant edition apparatus;
+  # they are not reproducible in a plain-text file and the corresponding
+  # [Illustration] markers are stripped during extraction (see overrides
+  # and processing notes), so no separate exclusion override is needed
+  # for the illustrations themselves.
+  - name: Douglas L. Alley III
+    role: other
+  - name: Chris Curnow
+    role: other
+  - name: Joseph Cooper
+    role: other
+  - name: The Online Distributed Proofreading Team
+    role: other
+  - name: W. W. Denslow
+    role: illustrator
+    birth_year: 1856
+    death_year: 1915
+
+publication:
+  original_year: 1900
+  edition_year: 1900
+
+source:
+  provider: gutenberg
+  identifier: "43936"
+  url: https://www.gutenberg.org/ebooks/43936
+  download_url: https://www.gutenberg.org/cache/epub/43936/pg43936.txt
+  revision: "2026-05-17"
+  format: txt
+
+rights:
+  status: uncertain
+  verified_jurisdictions: [US]
+  unverified_jurisdictions: [EU, UK]
+  evidence:
+    - First published in 1900, Chicago, George M. Hill Company (the first
+      copy came off the press 17 May 1900 - hand-assembled by Baum for his
+      sister - with general distribution following in September 1900 after
+      copyright registration on 1 August 1900; the exact day is immaterial
+      to the rights analysis, which turns only on the year). Pre-1930 first
+      publication places it in the United States public domain, and Project
+      Gutenberg distributes ebook 43936 with a US public-domain clearance.
+    - L. Frank Baum died 6 May 1919, so life+70 protection expired on 1
+      January 1990 in the UK and EU member states. Spain's transitional
+      80-year post-mortem term (1879 Act, authors deceased before 7
+      December 1987) expired on 1 January 2000, so there is no
+      outstanding Article 10 (Directive 2006/116/EC) exception.
+    - This transcription is a faithful reproduction of the original
+      Denslow-illustrated first edition (153 inline illustration markers,
+      stripped during extraction per the general Gutenberg
+      illustration-marker capability added in (#32) - not accepted into
+      the corpus, per docs/review-checklist.md section 1). W. W. Denslow
+      died 29 March 1915, so his illustrations are independently public
+      domain too (UK/EU life+70 expired 1986; Spain's transitional term
+      expired 1996), but that is not why they are excluded - they are
+      simply not reproducible in a plain-text file.
+    - A faithful transcription with trivial corrections does not meet the
+      EU originality threshold for separate protection, and the UK
+      typographical-arrangement right does not subsist in a plain-text
+      file. The inspected artifact contains no separately rights-bearing
+      editorial material, so no separate transcription right is expected
+      for the inspected plain-text artifact.
+  licence: null
+  notes: The underlying 1900 work's US public domain status is verified
+    (see evidence above). The same evidence supports UK and EU
+    public-domain status too - life+70 and Spain's transitional term both
+    expired decades ago, with no outstanding jurisdiction exception - but
+    that analysis has not yet had the second maintainer sanity-check, so
+    UK and EU stay in unverified_jurisdictions until it does; this notes
+    field should not be read as a substitute claim of verification. The
+    exact Gutenberg transcription (ebook 43936) has been inspected and
+    contains solely Baum's own text (his signed and dated introduction, and
+    his dedication, are kept) plus removable production/platform matter -
+    the Denslow illustrator credit and publisher imprint on the title
+    page, the historical publisher's copyright notice, a generated table
+    of contents, the (stripped) illustration markers, a trailing
+    transcriber's note, and the closing "End of Project Gutenberg's..."
+    line - no third-party introductions, notes, or annotations remain. An
+    alternate Gutenberg
+    edition (#55) was considered and rejected - direct wording comparison
+    shows signs of light modernisation not present here (e.g. "cookstove"
+    and "trap door" where this edition has "cooking stove" and
+    "trap-door", matching this corpus's own established archaic-hyphen
+    conventions), and it lacks the illustrator credit and most of the
+    illustration markers this edition preserves. The remaining gate
+    before flipping rights.status to public-domain and moving UK/EU into
+    verified_jurisdictions is the second maintainer sanity-check, per
+    docs/review-checklist.md.
+
+classification:
+  primary_genre: fantasy
+  genres: [fantasy, adventure]
+  subgenres: [quest]
+  audience: [children]
+  pov: [third-person-omniscient]
+  tense: [past]
+  style_tags: [episodic]
+
+content:
+  origin: human
+  ai_assistance: none
+  original_language: en
+  is_translation: false
+
+quality:
+  status: candidate
+  flags: [uncertain-rights]
+  reviewed_by: []
+  review_notes: Backlog pick (issue 27), edition 43936 selected over edition
+    55 for wording fidelity (see rights.evidence). 153 inline illustration
+    markers were audited individually (accounting for the marker-merging
+    behavior of _strip_illustration_markers) for mid-sentence risk; 14
+    merged spans were not preceded by terminal punctuation and were checked
+    by hand against the raw text, breaking down as follows - 8 turned out
+    to be dialogue-attribution
+    paragraph breaks ("...she said,\n\nQUOTE"), which is this book's own
+    established convention throughout (confirmed by grepping the same
+    pattern dozens of times elsewhere with no illustration involved), so
+    none needed a join override; 4 were 2-line chapter-heading continuations
+    (e.g. "The Rescue of\n   the Tin Woodman"), confirmed safe; 1 sat in the
+    front-matter block already handled by the copyright/ToC-removal
+    override; and 1 was the story's closing asterism scene-break, also
+    confirmed safe. Prepared at 39,505 words.
+  reviewed_text_sha256: null
+
+processing:
+  extractor: gutenberg_txt_v1
+  cleaner: fiction_clean_v1
+  modernizer: modernize_spelling_v1
+  expected_min_words: 35000
+  source_sha256: 2d37997253197f4435c74a5661fc5407693c8b53cfa94c5c98cc47875e2df6de
